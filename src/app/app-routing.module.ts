@@ -4,6 +4,7 @@ import { IdeaboxComponent } from './ideabox/ideabox.component';
 import { MemberlistComponent } from './memberlist/memberlist.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'ideabox',
     component: IdeaboxComponent
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent
   },
 ];
 

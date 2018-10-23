@@ -8,6 +8,7 @@ import { MemberlistComponent } from './memberlist/memberlist.component';
 import { IdeaboxComponent } from './ideabox/ideabox.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UsersettingsComponent } from './usersettings/usersettings.component';
     MemberlistComponent,
     IdeaboxComponent,
     DebtlistComponent,
-    UsersettingsComponent
+    UsersettingsComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

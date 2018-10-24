@@ -1,0 +1,21 @@
+<nav>
+  <ul>
+    <li>
+      <a routerLink="" [class.activated]="currentUrl == '/'">
+        <i class="material-icons">home</i>
+      </a>
+      <a routerLink="memberlist" [class.activated]="currentUrl == '/memberlist'">
+        <i class="material-icons">person</i>
+      </a>
+      <a routerLink="debtlist" [class.activated]="currentUrl == '/debtlist'">
+        <i class="material-icons">attach_money</i>
+      </a>
+      <a routerLink="ideabox" [class.activated]="currentUrl == '/ideabox'">
+        <i class="material-icons">comment</i>
+      </a>
+      <a routerLink="inscription" [class.activated]="currentUrl == '/inscription'">
+        <i class="material-icons">person_add</i>
+      </a>
+    </li>
+  </ul>
+</nav>

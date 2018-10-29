@@ -1,112 +1,206 @@
+<!-- Options -->
 <div>
-  <h2>Options</h2>
-  <p>Actif</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+  <a data-toggle="collapse" data-target="#options"><h2>Options</h2></a>
+  <div id="options" class="collapse">
+    <div>
+      <p>Actif</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Visible</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Visible</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Name</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Name</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Last name</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Last name</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Phone number</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Phone number</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Allergy</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Allergy</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Physical limitation</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Physical limitation</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Birthdate</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Birthdate</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Gender</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Gender</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <p>Email</p>
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
+    <div>
+      <p>Email</p>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
 </div>
 
 <hr>
 
+<!-- INPUT -->
 <div>
-  <h2>Preview</h2>
-  <form>
-    <!-- Email -->
-    <div id="formEmail" class="form-group">
-      Email<br/>
-      <input id="inpEmail" type="email">
-    </div>
+  <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
+  <div id="input" class="collapse">
+    <!-- Input form -->
+  </div>
+</div>
 
-    <!-- Name -->
-    <div id="formName" class="form-group">
-      Name<br/>
-      <input id="inpName" type="text">
-    </div>
+<hr>
 
-    <!-- Birthdate -->
-    <div id="formBirthDate" class="form-group">
-      Birthdate<br/>
-      <input id="inpBirthDate" type="date">
-    </div>
+<!-- PREVIEW -->
+<div>
+  <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
+  <div id="preview" class="collapse">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <h5 *ngIf="success">Your form is valid!</h5>
 
-    <!-- Gender -->
-    <div id="formGender" class="form-group">
-      Gender<br/>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="gender1" value="1">
-        <label class="form-check-label" for="gender1">
-          Man
+      <div class="form-group">
+        <label>
+          Name:
+          <input type="text" formControlName="name">
+          <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+            <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+          </div>
         </label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="gender2" value="2">
-        <label class="form-check-label" for="gender2">
-          Woman
+
+      <div class="form-group">
+        <label>
+          Last name:
+          <input formControlName="lastName">
+          <div *ngIf="submitted && messageForm.controls.lastName.errors" class="error">
+            <div *ngIf="messageForm.controls.lastName.errors.required">A lastName is required</div>
+          </div>
         </label>
       </div>
-    </div>
 
-    <!-- Telnumber -->
-    <div id="formTelNumber" class="form-group">
-      Email<br/>
-      <input id="inpTelNumber" type="text">
-    </div>
+      <div class="form-group">
+        <label>
+          Phone number:
+          <input formControlName="phoneNumber">
+          <div *ngIf="submitted && messageForm.controls.phoneNumber.errors" class="error">
+            <div *ngIf="messageForm.controls.phoneNumber.errors.required">A phoneNumber is required</div>
+          </div>
+        </label>
+      </div>
 
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
+      <div class="form-group">
+        <label>
+          Allergy:
+          <input formControlName="allergy">
+          <div *ngIf="submitted && messageForm.controls.allergy.errors" class="error">
+            <div *ngIf="messageForm.controls.allergy.errors.required">A allergy is required</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Physical limitation:
+          <input formControlName="physicalLimitation">
+          <div *ngIf="submitted && messageForm.controls.physicalLimitation.errors" class="error">
+            <div *ngIf="messageForm.controls.physicalLimitation.errors.required">A physicalLimitation is required</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Birthdate:
+          <input type="date" formControlName="birthdate">
+          <div *ngIf="submitted && messageForm.controls.birthdate.errors" class="error">
+            <div *ngIf="messageForm.controls.birthdate.errors.required">A birthdate is required</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Gender:
+          <div class="form-check">
+            <input formControlName="gender" class="form-check-input" type="radio" name="genderRadio" id="manRadio">
+            <label class="form-check-label" for="manRadio">
+              Man
+            </label>
+          </div>
+          <div class="form-check">
+            <input formControlName="gender" class="form-check-input" type="radio" name="genderRadio" id="womanRadio">
+            <label class="form-check-label" for="womanRadio">
+              Woman
+            </label>
+          </div>
+
+          <div *ngIf="submitted && messageForm.controls.gender.errors" class="error">
+            <div *ngIf="messageForm.controls.gender.errors.required">A gender is required</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Email:
+          <input type="email" formControlName="email">
+          <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
+            <div *ngIf="messageForm.controls.email.errors.required">A gender is required</div>
+          </div>
+        </label>
+      </div>
+
+      <input type="submit" value="Send message" class="cta">
+
+    </form>
+
+    <div *ngIf="submitted" class="results">
+
+    </div>
+  </div>
 </div>

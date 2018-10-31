@@ -34,6 +34,16 @@ export class InscriptionComponent implements OnInit {
       return;
     }
 
+
+    const name: string = this.messageForm.get('name').value;
+    const lastName: string = this.messageForm.get('lastName').value;
+    const phoneNumber: string = this.messageForm.get('phoneNumber').value;
+    const allergy: string = this.messageForm.get('allergy').value;
+    const physicalLimitation: string = this.messageForm.get('physicalLimitation').value;
+    const birthdate: string = this.messageForm.get('birthdate').value;
+    const gender: string = this.messageForm.get('gender').value;
+    const email: string = this.messageForm.get('email').value;
+
     this.success = true;
   }
 }

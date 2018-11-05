@@ -1,206 +1,221 @@
-<!-- Options -->
 <div>
-  <a data-toggle="collapse" data-target="#options"><h2>Options</h2></a>
-  <div id="options" class="collapse">
-    <div>
-      <p>Actif</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+  <!-- Options -->
+  <div>
+    <a data-toggle="collapse" data-target="#options"><h2>Options</h2></a>
+    <div id="options" class="collapse">
+      <div>
+        <p>Actif</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Visible</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Visible</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Name</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Name</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Last name</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Last name</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Phone number</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Phone number</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Allergy</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Allergy</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Physical limitation</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Physical limitation</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Birthdate</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Birthdate</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Gender</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
+      <div>
+        <p>Gender</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
-    <div>
-      <p>Email</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
+      <div>
+        <p>Email</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
   </div>
-</div>
 
-<hr>
+  <hr>
 
-<!-- INPUT -->
-<div>
-  <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
-  <div id="input" class="collapse">
-    <!-- Input form -->
-  </div>
-</div>
+  <!-- INPUT -->
+  <div>
+    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
+    <div id="input" class="collapse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
 
-<hr>
-
-<!-- PREVIEW -->
-<div>
-  <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
-  <div id="preview" class="collapse">
-    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-      <h5 *ngIf="success">Your form is valid!</h5>
-
-      <div class="form-group">
-        <label>
-          Name:
-          <input type="text" formControlName="name">
-          <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
-            <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
-          </div>
-        </label>
+      <div id="theList">
+        <h2>The list</h2>
+        <ul>
+          <li *ngFor="let item of inscriptions">{{item.id}}</li>
+        </ul>
       </div>
-
-      <div class="form-group">
-        <label>
-          Last name:
-          <input formControlName="lastName">
-          <div *ngIf="submitted && messageForm.controls.lastName.errors" class="error">
-            <div *ngIf="messageForm.controls.lastName.errors.required">A lastName is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Phone number:
-          <input formControlName="phoneNumber">
-          <div *ngIf="submitted && messageForm.controls.phoneNumber.errors" class="error">
-            <div *ngIf="messageForm.controls.phoneNumber.errors.required">A phoneNumber is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Allergy:
-          <input formControlName="allergy">
-          <div *ngIf="submitted && messageForm.controls.allergy.errors" class="error">
-            <div *ngIf="messageForm.controls.allergy.errors.required">A allergy is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Physical limitation:
-          <input formControlName="physicalLimitation">
-          <div *ngIf="submitted && messageForm.controls.physicalLimitation.errors" class="error">
-            <div *ngIf="messageForm.controls.physicalLimitation.errors.required">A physicalLimitation is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Birthdate:
-          <input type="date" formControlName="birthdate">
-          <div *ngIf="submitted && messageForm.controls.birthdate.errors" class="error">
-            <div *ngIf="messageForm.controls.birthdate.errors.required">A birthdate is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Gender:
-          <div class="form-check">
-            <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="manRadio">
-            <label class="form-check-label" for="manRadio">
-              Man
-            </label>
-          </div>
-          <div class="form-check">
-            <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="womanRadio">
-            <label class="form-check-label" for="womanRadio">
-              Woman
-            </label>
-          </div>
-
-          <div *ngIf="submitted && messageForm.controls.gender.errors" class="error">
-            <div *ngIf="messageForm.controls.gender.errors.required">A gender is required</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Email:
-          <input type="email" formControlName="email">
-          <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
-            <div *ngIf="messageForm.controls.email.errors.required">A gender is required</div>
-          </div>
-        </label>
-      </div>
-
-      <input type="submit" value="Send message" class="cta">
-
-    </form>
-
-    <div *ngIf="submitted" class="results">
-
     </div>
   </div>
+
+  <hr>
+
+  <!-- PREVIEW
+  <div>
+    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
+    <div id="preview" class="collapse">
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <h5 *ngIf="success">Your form is valid!</h5>
+
+        <div class="form-group">
+          <label>
+            Name:
+            <input type="text" formControlName="name">
+            <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+              <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Last name:
+            <input formControlName="lastName">
+            <div *ngIf="submitted && messageForm.controls.lastName.errors" class="error">
+              <div *ngIf="messageForm.controls.lastName.errors.required">A lastName is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Phone number:
+            <input formControlName="phoneNumber">
+            <div *ngIf="submitted && messageForm.controls.phoneNumber.errors" class="error">
+              <div *ngIf="messageForm.controls.phoneNumber.errors.required">A phoneNumber is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Allergy:
+            <input formControlName="allergy">
+            <div *ngIf="submitted && messageForm.controls.allergy.errors" class="error">
+              <div *ngIf="messageForm.controls.allergy.errors.required">A allergy is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Physical limitation:
+            <input formControlName="physicalLimitation">
+            <div *ngIf="submitted && messageForm.controls.physicalLimitation.errors" class="error">
+              <div *ngIf="messageForm.controls.physicalLimitation.errors.required">A physicalLimitation is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+            <div *ngIf="submitted && messageForm.controls.birthdate.errors" class="error">
+              <div *ngIf="messageForm.controls.birthdate.errors.required">A birthdate is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Gender:
+            <div class="form-check">
+              <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="manRadio">
+              <label class="form-check-label" for="manRadio">
+                Man
+              </label>
+            </div>
+            <div class="form-check">
+              <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="womanRadio">
+              <label class="form-check-label" for="womanRadio">
+                Woman
+              </label>
+            </div>
+
+            <div *ngIf="submitted && messageForm.controls.gender.errors" class="error">
+              <div *ngIf="messageForm.controls.gender.errors.required">A gender is required</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Email:
+            <input type="email" formControlName="email">
+            <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
+              <div *ngIf="messageForm.controls.email.errors.required">A email is required</div>
+            </div>
+          </label>
+        </div>
+
+        <input type="submit" value="Send message" class="cta">
+
+      </form>
+
+      <div *ngIf="submitted" class="results">
+
+      </div>
+    </div>
+  </div>
+  -->
+
+  <hr>
 </div>
+
+

@@ -1,0 +1,30 @@
+<?php
+  echo "<h1>PHP works</h1>";
+
+  header("Access-Control-Allow-Origin: *");
+  header("Content-Type: application/json; charset=UTF-8");
+
+  $conn=mysqli_connect("dt5.ehb.be", "1819SP2_DB", "eixpbwz", "1819SP2_Org2");
+  if(!$conn)
+  {
+      die("Connection failed: " . mysqli_connect_error());
+      echo "fail";
+  }
+
+  $result = $conn->query("SELECT CompanyName, City, Country FROM Customers")
+
+  echo "Good";
+
+  $outp = "";
+  while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
+      if ($outp != "") {$outp .= ",";}
+      $outp .= '{"Name":"'  . $rs["CompanyName"] . '",';
+      $outp .= '"City":"'   . $rs["City"]        . '",';
+      $outp .= '"Country":"'. $rs["Country"]     . '"}';
+  }
+  $outp ='{"records":['.$outp.']}';
+  $conn->close();
+
+  echo($outp);
+
+?>

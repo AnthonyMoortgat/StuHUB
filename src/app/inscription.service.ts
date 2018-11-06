@@ -11,13 +11,13 @@ import { Inscription } from './inscription/inscription';
 })
 export class InscriptionService {
 
-  baseUrl = 'http://localhost:4200/api';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api';
   inscriptions: Inscription[];
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Inscription[]> {
-    return this.http.get(`${this.baseUrl}/inscriptionList`).pipe(
+    return this.http.get(`${this.baseUrl}/inscriptionList.php`).pipe(
       map((res) => {
         this.inscriptions = res['data'];
         return this.inscriptions;

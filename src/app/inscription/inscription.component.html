@@ -95,9 +95,9 @@
       <div *ngIf="success">{{success}}</div>
 
       <div id="theList">
-        <h2>The list</h2>
+        <h2>Namen van de ingeschreven</h2>
         <ul>
-          <li *ngFor="let item of inscriptions">{{item.id}}</li>
+          <li *ngFor="let item of inscription">{{item.lastName}} {{item.firstName}}</li>
         </ul>
       </div>
     </div>

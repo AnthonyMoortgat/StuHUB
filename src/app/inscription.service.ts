@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { Inscription } from './inscription/inscription';
+import {NULL_INJECTOR} from '@angular/core/src/render3/component';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,15 @@ export class InscriptionService {
         return this.inscriptions;
     }),
     catchError(this.handleError));
+  }
+
+  store(inscription: Inscription): Observable<Inscription[]> {
+    return this.http.post(`${this.baseUrl}/inscriptionStore`, { data: inscription })
+      .pipe(map((res) => {
+          this.inscriptions.push(res['data']);
+          return this.inscriptions;
+        }),
+        catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

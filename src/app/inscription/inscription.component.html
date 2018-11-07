@@ -91,19 +91,100 @@
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
+      <div id="theForm">
+        <form #f="ngForm" name="theForm" (submit)="addInscription(f)">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text"
+                   class="form-control"
+                   name="firstName"
+                   [(ngModel)]="inscriptionData.firstName"
+                   #inscriptionFirstName="ngModel"
+                   required
+                   pattern="^[a-zA-Z]+$">
+            <span class="help-block danger" *ngIf="inscriptionFirstName.errors?.required && inscriptionFirstName.touched">
+        The first name is required
+      </span>
+            <span class="help-block danger" *ngIf="inscriptionFirstName.errors?.pattern && inscriptionFirstName.touched">
+        The first name name can only contain the letters a-z or A-Z
+      </span>
+          </div>
+
+          <div class="form-group">
+            <label>LastName</label>
+            <input type="text"
+                   class="form-control"
+                   name="lastName"
+                   required
+                   [(ngModel)]="inscriptionData.lastName"
+                   #inscriptionLastName="ngModel">
+            <span class="help-block danger" *ngIf="inscriptionLastName.errors?.required && inscriptionLastName.touched">
+        The price is required
+      </span>
+            <span class="help-block danger" *ngIf="inscriptionLastName.errors?.pattern && inscriptionLastName.touched">
+        The last name name can only contain the letters a-z or A-Z
+      </span>
+          </div>
+
+          <button
+            class="btn btn-primary btn-sm"
+            [disabled]="f.invalid">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- GEGEVENS -->
+  <div>
+    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
+    <div id="gegevens" class="collapse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
 
-      <div id="theList">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Birthdate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of inscription">
+            <th> {{item.id}} </th>
+            <th> {{item.firstName}} </th>
+            <th> {{item.lastName}} </th>
+            <th> {{item.birthdate}} </th>
+          </tr>
+        </tbody>
+      </table>
+
+      <!--
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
+
+      <div id="inscriptionList">
         <h2>Namen van de ingeschreven</h2>
         <ul>
           <li *ngFor="let item of inscription">{{item.lastName}} {{item.firstName}}</li>
         </ul>
       </div>
+      -->
     </div>
   </div>
 
   <hr>
+
+
+  <div>
+    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
+    <div id="preview" class="collapse">
+
+    </div>
+  </div>
 
   <!-- PREVIEW
   <div>

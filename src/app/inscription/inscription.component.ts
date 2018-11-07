@@ -15,7 +15,10 @@ export class InscriptionComponent implements OnInit {
   error = '';
   success = '';
 
-  constructor(private inscriptionService: InscriptionService) {
+  inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
+
+
+  constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -31,5 +34,25 @@ export class InscriptionComponent implements OnInit {
         this.error = err;
       }
     );
+  }
+
+  addInscription(f) {
+    this.error = '';
+    this.success = '';
+
+    this.inscriptionService.store(this.inscriptionData)
+      .subscribe(
+        (res: Inscription[]) => {
+          // Update the list of cars
+          this.inscription = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          f.reset();
+        },
+        (err) => this.error = err
+      );
   }
 }

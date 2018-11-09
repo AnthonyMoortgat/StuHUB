@@ -26,7 +26,16 @@ export class InscriptionService {
   }
 
   store(inscription: Inscription): Observable<Inscription[]> {
-    return this.http.post(`${this.baseUrl}/inscriptionStore`, { data: inscription })
+    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription })
+      .pipe(map((res) => {
+          this.inscriptions.push(res['data']);
+          return this.inscriptions;
+        }),
+        catchError(this.handleError));
+  }
+
+  test(inscription: Inscription): Observable<Inscription[]> {
+    return this.http.post(`${this.baseUrl}/testStore.php`, { data: inscription })
       .pipe(map((res) => {
           this.inscriptions.push(res['data']);
           return this.inscriptions;

@@ -26,10 +26,33 @@ export class InscriptionService {
   }
 
   store(inscription: Inscription): Observable<Inscription[]> {
-    return this.http.post(`${this.baseUrl}/inscriptionStore`, { data: inscription })
+    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription })
       .pipe(map((res) => {
           this.inscriptions.push(res['data']);
           return this.inscriptions;
+        }),
+        catchError(this.handleError));
+  }
+
+  test(inscription: Inscription): Observable<Inscription[]> {
+    return this.http.post(`${this.baseUrl}/testStore.php`, { data: inscription })
+      .pipe(map((res) => {
+          this.inscriptions.push(res['data']);
+          return this.inscriptions;
+        }),
+        catchError(this.handleError));
+  }
+
+  delete(id: number): Observable<Inscription[]> {
+    const params = new HttpParams()
+      .set('id', id.toString());
+
+    return this.http.delete(`${this.baseUrl}/delete`, { params: params })
+      .pipe(map(res => {
+          const filteredCars = this.inscriptions.filter((car) => {
+            return +car['id'] !== +id;
+          });
+          return this.inscriptions = filteredCars;
         }),
         catchError(this.handleError));
   }

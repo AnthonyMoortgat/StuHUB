@@ -12,6 +12,7 @@ import { IdeaboxComponent } from './ideabox/ideabox.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     IdeaboxComponent,
     DebtlistComponent,
     UsersettingsComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

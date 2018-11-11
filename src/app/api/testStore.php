@@ -28,18 +28,11 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
   $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
-  $phoneNumber = mysqli_real_escape_string($con, (int)$request->data->phoneNumber);
-  $allergy = mysqli_real_escape_string($con, trim($request->data->allergy));
-  $physicalLimitations = mysqli_real_escape_string($con, trim($request->data->physicalLimitations));
-  $birthdate = mysqli_real_escape_string($con, $request->data->birthdate);
-  $gender = mysqli_real_escape_string($con, (boolean)$request->data->gender);
-  $email = mysqli_real_escape_string($con, trim($request->data->email));
-
-
+  $birthdate = mysqli_real_escape_string($con, $request->data->birthdate); //Zorgt voor 422 error
 
   // Store.
-  $sql = "INSERT INTO `Inscription`(`id`,`firstName`,`lastName`, `phoneNumber` , `allergy`, `physicalLimitations`, `birthdate`, `gender`, `email` ) 
-VALUES (null,'{$firstName}','{$lastName}','{$phoneNumber}','{$allergy}','{$physicalLimitations}','{$birthdate}','{$gender}','{$email}')";
+  $sql = "INSERT INTO `testPostTable`(`id`,`naam`, `lastName`,`birthdate`) 
+VALUES (null,'{$firstName}', '{$lastName}', '{$birthdate}')";
 
   if(mysqli_query($con,$sql))
   {

@@ -12,6 +12,8 @@ import { IdeaboxComponent } from './ideabox/ideabox.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { InscriptionComponent } from './inscription/inscription.component';
     IdeaboxComponent,
     DebtlistComponent,
     UsersettingsComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -246,6 +246,7 @@
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Birthdate</th>
+            <th scope="col">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -254,6 +255,8 @@
             <th> {{item.firstName}} </th>
             <th> {{item.lastName}} </th>
             <th> {{item.birthdate}} </th>
+            <th> <button (click)="editInscription()">Edit</button>
+             <button (click)="deleteInscription(item.id)">Delete</button> </th>
           </tr>
         </tbody>
       </table>

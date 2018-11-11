@@ -55,4 +55,23 @@ export class InscriptionComponent implements OnInit {
         (err) => this.error = err
       );
   }
+
+
+  editInscription(): void {
+
+  }
+
+  deleteInscription(id): void {
+    this.success = '';
+    this.error   = '';
+
+    this.inscriptionService.delete(+id)
+      .subscribe(
+        (res: Inscription[]) => {
+          this.inscription = res;
+          this.success = 'Deleted successfully';
+        },
+        (err) => this.error = err
+      );
+  }
 }

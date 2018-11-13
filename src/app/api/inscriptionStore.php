@@ -16,15 +16,6 @@ if(isset($postdata) && !empty($postdata))
   // Extract the data.
   $request = json_decode($postdata);
 
-
-  // Validate.
-  /*
-  if(trim($request->data->model) === '' || (int)$request->data->price < 1)
-  {
-    return http_response_code(400);
-  }
-  */
-
   // Sanitize.
   $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
   $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));

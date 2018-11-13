@@ -16,7 +16,10 @@ export class InscriptionComponent implements OnInit {
   success = '';
 
   inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
+  inscriptionUpdateData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
 
+  edit = false;
+  editID: number;
 
   constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
   }
@@ -56,9 +59,45 @@ export class InscriptionComponent implements OnInit {
       );
   }
 
+  updateInscription(f) {
+    this.error = '';
+    this.success = '';
 
-  editInscription(): void {
+    this.inscriptionService.update(this.inscriptionUpdateData)
+      .subscribe(
+        (res: Inscription[]) => {
+          // Update the list of cars
+          this.inscription = res;
 
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          f.reset();
+        },
+        (err) => this.error = err
+      );
+  }
+
+
+  editInscription(id): void {
+
+    this.editID = id;
+    this.edit = true;
+
+    console.log(this.editID);
+    /*
+    this.inscriptionService.getInscriptionWithId(id).subscribe(
+      (res: Inscription[]) => {
+        this.inscription = res;
+
+        console.log(res);
+      },
+      (err) => {
+        this.error = err;
+      }
+    );
+    */
   }
 
   deleteInscription(id): void {

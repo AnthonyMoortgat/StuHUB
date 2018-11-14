@@ -16,6 +16,7 @@ export class InscriptionService {
   inscriptions: Inscription[];
 
   constructor(private http: HttpClient) { }
+
   getAll(): Observable<Inscription[]> {
     return this.http.get(`${this.baseUrl}/inscriptionList.php`).pipe(
       map((res) => {

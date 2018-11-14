@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {Login} from './login';
+import {LoginService} from './login.service';
 // import {LoginService} from '../login.service';
 // import {Login} from '../login/login';
 
@@ -18,12 +19,11 @@ export class LoginComponent implements OnInit {
   success = '';
 
   loginData = new Login(0, '', '', '', '');
-  constructor(/*private loginService: LoginService, private formBuilder: FormBuilder*/) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
-}
-/*
+
   getLogin(): void {
     this.loginService.getAll().subscribe(
       (res: Login[]) => {
@@ -55,4 +55,3 @@ export class LoginComponent implements OnInit {
       );
   }
 }
-*/

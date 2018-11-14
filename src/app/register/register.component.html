@@ -8,7 +8,7 @@
 
 <p id = "fault" > E-mail already used, please try again.</p > <!--moet verschijnen na php-->
 
-<form #f="ngForm" method="post" action="" id="formReg" >
+<form #f="ngForm" method="post" action="" id="formReg" (submit)="addInscription(f)">
   <div style="max-width: 400px;">
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 

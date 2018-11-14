@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {Register} from './register';
+import {User} from './register';
+import {RegisterService} from './register.service';
 // import {RegisterService} from '../register.service';
 // import {Register} from '../register/register';
 
@@ -13,20 +14,19 @@ import {Register} from './register';
 })
 export class RegisterComponent implements OnInit {
   /* register */
-  register: Register[];
+  register: User[];
   error = '';
   success = '';
 
-  registerData = new Register(0, '', '', '', '');
-  constructor(/*private registerService: RegisterService, private formBuilder: FormBuilder*/) { }
+  registerData = new User(0, '', '', '', '');
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
-}
-/*
+
   getRegister(): void {
     this.registerService.getAll().subscribe(
-      (res: Register[]) => {
+      (res: User[]) => {
         this.register = res;
       },
       (err) => {
@@ -38,11 +38,12 @@ export class RegisterComponent implements OnInit {
   addInscription(f) {
     this.error = '';
     this.success = '';
+    console.log(f);
 
     this.registerService.store(this.registerData)
       .subscribe(
-        (res: Register[]) => {
-          // Update the list of cars
+        (res: User[]) => {
+          // Update the list
           this.register = res;
 
           // Inform the user
@@ -55,4 +56,3 @@ export class RegisterComponent implements OnInit {
       );
   }
 }
-*/

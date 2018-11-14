@@ -1,4 +1,4 @@
-export class Register {
+export class User {
   constructor(
     user_id: number,
     first_name?: string,

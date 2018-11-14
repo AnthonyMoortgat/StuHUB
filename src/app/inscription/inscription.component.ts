@@ -98,7 +98,20 @@ export class InscriptionComponent implements OnInit {
     this.editID = id;
     this.edit = true;
 
-    console.log(this.editID);
+    const incriptionEditIndex = this.inscription.findIndex(w => w.id === id);
+    const inscriptionEditForm = this.inscription[incriptionEditIndex];
+
+    const inscriptionEdit = this.inscription.filter(x => x.id === id);
+
+    this.inscriptionForm.get('firstName').setValue(inscriptionEditForm.firstName);
+    this.inscriptionForm.get('lastName').setValue(inscriptionEditForm.lastName);
+    this.inscriptionForm.get('phoneNumber').setValue(inscriptionEditForm.phoneNumber);
+    this.inscriptionForm.get('allergy').setValue(inscriptionEditForm.allergy);
+    this.inscriptionForm.get('physicalLimitation').setValue(inscriptionEditForm.physicalLimitation);
+    this.inscriptionForm.get('birthdate').setValue(inscriptionEditForm.birthdate);
+    this.inscriptionForm.get('gender').setValue(inscriptionEditForm.gender);
+    this.inscriptionForm.get('email').setValue(inscriptionEditForm.email);
+
     /*
     this.inscriptionService.getInscriptionWithId(id).subscribe(
       (res: Inscription[]) => {
@@ -128,8 +141,6 @@ export class InscriptionComponent implements OnInit {
   }
 
   onSubmit() {
-
-
     this.error = '';
     this.success = '';
 

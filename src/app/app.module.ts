@@ -13,6 +13,7 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { FormComponent } from './inscription/form/form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { FormComponent } from './inscription/form/form.component';
     DebtlistComponent,
     UsersettingsComponent,
     InscriptionComponent,
-    FormComponent
+    FormComponent,
+    InscriptionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

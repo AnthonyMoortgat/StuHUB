@@ -63,15 +63,41 @@
 
   <hr>
 
-  <!-- INPUT -->
+  <!-- Input -->
+
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
+
+      <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label><br/>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label><br/>
+
+        <label>
+          Age:
+          <input type="date" formControlName="birthdate">
+        </label><br/>
+
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label><br/>
+
+        <button type="submit" [disabled]="!inscriptionForm.valid">Submit</button>
+      </form>
 
     </div>
   </div>
 
   <hr/>
+
 
   <!-- GEGEVENS -->
   <div>

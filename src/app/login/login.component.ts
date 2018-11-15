@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
+/*
   addInscription(f) {
     this.error = '';
     this.success = '';
@@ -54,4 +54,5 @@ export class LoginComponent implements OnInit {
         (err) => this.error = err
       );
   }
+  */
 }

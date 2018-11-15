@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {User} from './register';
 import {RegisterService} from './register.service';
@@ -18,12 +19,14 @@ export class RegisterComponent implements OnInit {
   error = '';
   success = '';
 
+  // let errorMsg = false;
+
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder) { }
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, /* private router: Router */) { }
 
   ngOnInit() {
   }
-
+  /*
   getRegister(): void {
     this.registerService.getAll().subscribe(
       (res: User[]) => {
@@ -33,7 +36,7 @@ export class RegisterComponent implements OnInit {
         this.error = err;
       }
     );
-  }
+  }*/
 
   addInscription(f) {
     this.error = '';
@@ -47,6 +50,7 @@ export class RegisterComponent implements OnInit {
           this.register = res;
 
           // Inform the user
+          // this.router.navigate(['/login']);
           this.success = 'Created successfully';
 
           // Reset the form

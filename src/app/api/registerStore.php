@@ -26,14 +26,18 @@ if(isset($postdata) && !empty($postdata))
 
   // Sanitize.
   $firstname = mysqli_real_escape_string($con, trim($request->data->txtFirstname));
+  $firstnameCap = ucfirst(strtolower($firstname));
+
   $lastname = mysqli_real_escape_string($con, trim($request->data->txtLastname));
+
   $email = mysqli_real_escape_string($con, trim($request->data->txtEmail));
+
   $password = mysqli_real_escape_string($con, trim($request->data->txtPassword));
   $encryptPassword = md5($password);
 
   //Store
   $sql = "INSERT INTO `User`(`user_id`,`first_name`,`last_name`, `user_email` , `user_password`) 
-VALUES (null,'{$firstname}','{$lastname}','{$email}','{$encryptPassword}')";
+VALUES (null,'{$firstnameCap}','{$lastname}','{$email}','{$encryptPassword}')";
 
   //Read
   $sqlRead = "SELECT first_name, last_name, user_email, user_password FROM User WHERE user_email = '$email'";
@@ -41,7 +45,7 @@ VALUES (null,'{$firstname}','{$lastname}','{$email}','{$encryptPassword}')";
   $result = mysqli_query($con, $sqlRead);
 
   if (mysqli_num_rows($result) > 0) {
-    echo 'E-mail already exist!';
+    return 'E-mail already exist!';
   }
   else {
     if(mysqli_query($con,$sql))

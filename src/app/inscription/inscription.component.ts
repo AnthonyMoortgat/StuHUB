@@ -26,8 +26,8 @@ export class InscriptionComponent implements OnInit {
   error = '';
   success = '';
 
-  inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
-  inscriptionUpdateData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
+  inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
+  inscriptionUpdateData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
 
   edit = false;
   editID: number;
@@ -63,8 +63,10 @@ export class InscriptionComponent implements OnInit {
           // Inform the user
           this.success = 'Created successfully';
 
+          console.log(this.inscriptionForm);
+
           // Reset the form
-          f.reset();
+          this.inscriptionForm.reset();
         },
         (err) => this.error = err
       );
@@ -154,7 +156,7 @@ export class InscriptionComponent implements OnInit {
           this.success = 'Created successfully';
 
           // Reset the form
-          this.inscriptionForm.value.reset();
+          this.inscriptionForm.reset();
         },
         (err) => this.error = err
       );

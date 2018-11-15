@@ -6,7 +6,7 @@ export class Inscription {
   allergy?: string;
   physicalLimitation?: string;
   birthdate?: Date;
-  gender?: boolean;
+  gender?: string;
   email?: string;
 
   constructor(
@@ -17,6 +17,6 @@ export class Inscription {
     allergy?: string,
     physicalLimitation?: string,
     birthdate?: Date,
-    gender?: boolean,
+    gender?: string,
     email?: string) {}
 }

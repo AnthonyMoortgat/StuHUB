@@ -21,16 +21,16 @@ if(isset($postdata) && !empty($postdata))
   $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
   $phoneNumber = mysqli_real_escape_string($con, (int)$request->data->phoneNumber);
   $allergy = mysqli_real_escape_string($con, trim($request->data->allergy));
-  $physicalLimitations = mysqli_real_escape_string($con, trim($request->data->physicalLimitations));
+  $physicalLimitation = mysqli_real_escape_string($con, trim($request->data->physicalLimitation));
   $birthdate = mysqli_real_escape_string($con, $request->data->birthdate);
-  $gender = mysqli_real_escape_string($con, (boolean)$request->data->gender);
+  $gender = mysqli_real_escape_string($con, trim($request->data->gender));
   $email = mysqli_real_escape_string($con, trim($request->data->email));
 
 
 
   // Store.
-  $sql = "INSERT INTO `Inscription`(`id`,`firstName`,`lastName`, `phoneNumber` , `allergy`, `physicalLimitations`, `birthdate`, `gender`, `email` ) 
-VALUES (null,'{$firstName}','{$lastName}','{$phoneNumber}','{$allergy}','{$physicalLimitations}','{$birthdate}','{$gender}','{$email}')";
+  $sql = "INSERT INTO `Inscription`(`id`,`firstName`,`lastName`, `phoneNumber` , `allergy`, `physicalLimitation`, `birthdate`, `gender`, `email` ) 
+VALUES (null,'{$firstName}','{$lastName}','{$phoneNumber}','{$allergy}','{$physicalLimitation}','{$birthdate}','{$gender}','{$email}')";
 
   if(mysqli_query($con,$sql))
   {
@@ -40,7 +40,7 @@ VALUES (null,'{$firstName}','{$lastName}','{$phoneNumber}','{$allergy}','{$physi
       'lastName' => $lastName,
       'phoneNumber' => $phoneNumber,
       'allergy' => $allergy,
-      'physicalLimitations' => $physicalLimitations,
+      'physicalLimitation' => $physicalLimitation,
       'birthdate' => $birthdate,
       'gender' => $gender,
       'email' => $email,

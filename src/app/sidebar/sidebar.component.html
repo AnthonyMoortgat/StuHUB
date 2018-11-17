@@ -1,9 +1,6 @@
-<nav>
+<nav *ngIf="router.url != '/login' && router.url != '/register'">
   <ul>
     <li>
-      <a routerLink="login" routerLinkActive="activated">
-        <i class="material-icons">fingerprint</i>
-      </a>
       <a routerLink="" routerLinkActive="activated">
         <i class="material-icons">home</i>
       </a>
@@ -18,6 +15,9 @@
       </a>
       <a routerLink="inscription" routerLinkActive="activated">
         <i class="material-icons">person_add</i>
+      </a>
+      <a routerLink="login" routerLinkActive="deactivated">
+        <i class="material-icons">logout</i>
       </a>
     </li>
   </ul>

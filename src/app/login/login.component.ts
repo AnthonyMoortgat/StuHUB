@@ -3,9 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {Login} from './login';
 import {LoginService} from './login.service';
-// import {LoginService} from '../login.service';
-// import {Login} from '../login/login';
-
 
 @Component({
   selector: 'app-login',
@@ -23,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
+/*
   getLogin(): void {
     this.loginService.getAll().subscribe(
       (res: Login[]) => {
@@ -34,8 +31,8 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-/*
-  addInscription(f) {
+*/
+  getLogin(f) {
     this.error = '';
     this.success = '';
 
@@ -54,5 +51,4 @@ export class LoginComponent implements OnInit {
         (err) => this.error = err
       );
   }
-  */
 }

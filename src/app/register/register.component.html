@@ -5,16 +5,10 @@
             <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
                 <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
 
-<!--
-<span *ngIf="addInscription(f).errors">
-  <p id = "fault" > E-mail already used, please try again.</p >
-</span>
--->
-
-<form #f="ngForm" method="post" action="" id="formReg" (submit)="addInscription(f)">
+<form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
   <div style="max-width: 400px;">
 
-    <p *ngIf="true" id = "fault"> E-mail already used, please try again.</p >
+    <p *ngIf="" id="fault">E-mail already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 
@@ -121,6 +115,19 @@
         Passwords do not match! <br/>
       </span>
     </div>
+
+    <br />
+
+    <input name="terms"
+           id="terms"
+           type="checkbox"
+           [(ngModel)]="registerData.terms"
+           #terms="ngModel"
+           value=""
+           required />
+    <label for="terms" style="margin-left: 1%">Accept Terms Of Use</label>
+
+    <a href="./termsofuse.html" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
 
     <hr />
 

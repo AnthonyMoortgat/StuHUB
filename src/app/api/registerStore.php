@@ -45,20 +45,21 @@ VALUES (null,'{$firstnameCap}','{$lastname}','{$email}','{$encryptPassword}')";
   $result = mysqli_query($con, $sqlRead);
 
   if (mysqli_num_rows($result) > 0) {
-    return 'E-mail already exist!';
+    header("Location: /register?reg=false");
   }
   else {
     if(mysqli_query($con,$sql))
     {
       http_response_code(201);
       $register = [
-        'first_name' => $firstname, //attribute name html => variabele
+        'first_name' => $firstnameCap, //attribute name html => variabele
         'last_name' => $lastname,
         'user_email' => $email,
         'user_password' => $encryptPassword,
         'user_id' => mysqli_insert_id($con)
       ];
-      //header("Location: /login");
+      //$http.post('/login');
+      header("Location: /login");
 
       echo 'Gelukt';
       echo json_encode(['data'=>$register]);

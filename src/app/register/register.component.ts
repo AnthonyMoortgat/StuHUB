@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 
 import {User} from './register';
 import {RegisterService} from './register.service';
-// import {RegisterService} from '../register.service';
-// import {Register} from '../register/register';
 
 
 @Component({
@@ -18,11 +16,10 @@ export class RegisterComponent implements OnInit {
   register: User[];
   error = '';
   success = '';
-
   // let errorMsg = false;
 
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, /* private router: Router */) { }
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, private router: Router ) { }
 
   ngOnInit() {
   }
@@ -38,7 +35,7 @@ export class RegisterComponent implements OnInit {
     );
   }*/
 
-  addInscription(f) {
+  addRegister(f) {
     this.error = '';
     this.success = '';
     console.log(f);
@@ -50,7 +47,7 @@ export class RegisterComponent implements OnInit {
           this.register = res;
 
           // Inform the user
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/', 'login']); // werkt niet
           this.success = 'Created successfully';
 
           // Reset the form

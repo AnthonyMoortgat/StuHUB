@@ -13,6 +13,7 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
+import { ShowhtmlComponent } from './generate/showhtml.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     DebtlistComponent,
     UsersettingsComponent,
     InscriptionComponent,
-    LoginComponent
+    LoginComponent,
+    ShowhtmlComponent
   ],
   imports: [
     BrowserModule,

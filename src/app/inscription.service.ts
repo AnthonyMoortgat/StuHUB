@@ -38,7 +38,6 @@ export class InscriptionService {
   }
 
   store(inscription: Inscription): Observable<Inscription[]> {
-    console.log(inscription);
     return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription })
       .pipe(map((res) => {
           this.inscriptions.push(res['data']);
@@ -48,7 +47,8 @@ export class InscriptionService {
   }
 
   update(inscription: Inscription): Observable<Inscription[]> {
-    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription })
+    console.log(inscription);
+    return this.http.post(`${this.baseUrl}/inscriptionUpdate.php`, { data: inscription})
       .pipe(map((res) => {
           this.inscriptions.push(res['data']);
           return this.inscriptions;

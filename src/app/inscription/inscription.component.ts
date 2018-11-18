@@ -11,6 +11,7 @@ import { InscriptionService } from '../inscription.service';
 })
 export class InscriptionComponent implements OnInit {
   inscriptionForm = new FormGroup({
+    id: new FormControl(0),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
@@ -31,6 +32,8 @@ export class InscriptionComponent implements OnInit {
 
   edit = false;
   editID: number;
+  btnText: 'Add inscription';
+  editText: 'Edit inscription';
 
   constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
   }
@@ -72,13 +75,13 @@ export class InscriptionComponent implements OnInit {
       );
   }
 
-  updateInscription(f) {
-
-
-    /*this.error = '';
+  updateInscription() {
+    this.error = '';
     this.success = '';
 
-    this.inscriptionService.update(this.inscriptionUpdateData)
+    this.inscriptionForm.get('id').setValue(this.editID)
+
+    this.inscriptionService.update(this.inscriptionForm.value)
       .subscribe(
         (res: Inscription[]) => {
           // Update the list of cars
@@ -88,12 +91,17 @@ export class InscriptionComponent implements OnInit {
           this.success = 'Created successfully';
 
           // Reset the form
-          f.reset();
+          this.inscriptionForm.reset();
         },
         (err) => this.error = err
-      );*/
+      );
   }
 
+  returnForm() {
+    this.edit = false;
+    this.editID = null;
+    this.inscriptionForm.reset();
+  }
 
   editInscription(id): void {
 

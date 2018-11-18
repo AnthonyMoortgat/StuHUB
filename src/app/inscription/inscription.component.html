@@ -92,7 +92,7 @@
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
 
-      <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+      <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
         <label>
           First Name:
           <input type="text" formControlName="firstName">
@@ -136,7 +136,55 @@
           <input type="text" formControlName="email">
         </label><br/>
 
-        <button type="submit" [disabled]="!inscriptionForm.valid">Submit</button>
+        <button type="submit" [disabled]="!inscriptionForm.valid">Add inscription</button>
+      </form>
+
+      <form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label><br/>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label><br/>
+
+        <label>
+          Phone number:
+          <input type="text" formControlName="phoneNumber">
+        </label><br/>
+
+        <label>
+          Allergy:
+          <input type="text" formControlName="allergy">
+        </label><br/>
+
+        <label>
+          Physical limitations:
+          <input type="text" formControlName="physicalLimitation">
+        </label><br/>
+
+        <label>
+          Birthdate:
+          <input type="date" formControlName="birthdate">
+        </label><br/>
+
+        <label>
+          Gender:
+          <label>
+            Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+            Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+          </label>
+        </label><br/>
+
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label><br/>
+
+        <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
+        <button type="button" (click)="returnForm()">Return</button>
       </form>
 
     </div>

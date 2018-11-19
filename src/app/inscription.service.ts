@@ -47,19 +47,36 @@ export class InscriptionService {
   }
 
   update(inscription: Inscription): Observable<Inscription[]> {
-    console.log(inscription);
-    return this.http.post(`${this.baseUrl}/inscriptionUpdate.php`, { data: inscription})
+    return this.http.put(`${this.baseUrl}/testUpdate.php`, { data: inscription })
       .pipe(map((res) => {
-          this.inscriptions.push(res['data']);
+          const theInscription = this.inscriptions.find((item) => {
+            return +item['id'] === +inscription['id'];
+          });
+          if (theInscription) {
+            theInscription['firstName'] = inscription['firstName'];
+            theInscription['lastName'] = inscription['lastName'];
+            theInscription['phoneNumber'] = inscription['phoneNumber'];
+            theInscription['allergy'] = inscription['allergy'];
+            theInscription['physicalLimitation'] = inscription['physicalLimitation'];
+            theInscription['birthdate'] = inscription['birthdate'];
+            theInscription['gender'] = inscription['gender'];
+            theInscription['email'] = inscription['email'];
+          }
           return this.inscriptions;
         }),
         catchError(this.handleError));
   }
 
   test(inscription: Inscription): Observable<Inscription[]> {
-    return this.http.post(`${this.baseUrl}/testStore.php`, { data: inscription })
+    return this.http.put(`${this.baseUrl}/testUpdate.php`, { data: inscription })
       .pipe(map((res) => {
-          this.inscriptions.push(res['data']);
+          const theInscription = this.inscriptions.find((item) => {
+            return +item['id'] === +inscription['id'];
+          });
+          if (theInscription) {
+            theInscription['firstName'] = inscription['firstName'];
+            theInscription['lastName'] = inscription['lastName'];
+          }
           return this.inscriptions;
         }),
         catchError(this.handleError));

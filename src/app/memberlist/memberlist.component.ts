@@ -9,11 +9,11 @@ import {FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class MemberlistComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
 
 }
-
-/*test*/

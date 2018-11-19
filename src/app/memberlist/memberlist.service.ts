@@ -15,6 +15,5 @@ export class MemberlistService {
   members: Member[];
 
     constructor(private http: HttpClient) { }
-}
 
-/* test*/
+}

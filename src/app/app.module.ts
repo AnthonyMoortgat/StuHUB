@@ -13,7 +13,8 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
-import { InscriptionOptionsComponent } from './inscription/inscriptionOptions/inscription-options.component';
+import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
+import { InformationComponent } from './information/information.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InscriptionOptionsComponent } from './inscription/inscriptionOptions/in
     InscriptionComponent,
     InscriptionComponent,
     LoginComponent,
-    InscriptionOptionsComponent
+    InscriptionOptionsComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,

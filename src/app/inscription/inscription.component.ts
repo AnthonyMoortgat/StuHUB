@@ -80,7 +80,7 @@ export class InscriptionComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.inscriptionForm.get('id').setValue(this.editID)
+    this.inscriptionForm.get('id').setValue(this.editID);
 
     this.inscriptionService.update(this.inscriptionForm.value)
       .subscribe(

@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { Inscription } from './inscription/inscription';
 import {NULL_INJECTOR} from '@angular/core/src/render3/component';
+import {QueryEncoder} from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,29 @@ export class InscriptionService {
     catchError(this.handleError));
   }
 
+  getInscriptionWithId(id): Observable<Inscription[]> {
+    const params = new HttpParams().set('id', id);
+
+    return this.http.get(`${this.baseUrl}/inscriptionGetWithID.php`, {params: params}).pipe(
+      map((res) => {
+        this.inscriptions = res['data'];
+        return this.inscriptions;
+      }),
+      catchError(this.handleError));
+  }
+
   store(inscription: Inscription): Observable<Inscription[]> {
     return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription })
+      .pipe(map((res) => {
+          this.inscriptions.push(res['data']);
+          return this.inscriptions;
+        }),
+        catchError(this.handleError));
+  }
+
+  update(inscription: Inscription): Observable<Inscription[]> {
+    console.log(inscription);
+    return this.http.post(`${this.baseUrl}/inscriptionUpdate.php`, { data: inscription})
       .pipe(map((res) => {
           this.inscriptions.push(res['data']);
           return this.inscriptions;
@@ -47,7 +69,7 @@ export class InscriptionService {
     const params = new HttpParams()
       .set('id', id.toString());
 
-    return this.http.delete(`${this.baseUrl}/delete`, { params: params })
+    return this.http.delete(`${this.baseUrl}/inscriptionDelete.php`, { params: params })
       .pipe(map(res => {
           const filteredCars = this.inscriptions.filter((car) => {
             return +car['id'] !== +id;

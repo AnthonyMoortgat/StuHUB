@@ -17,6 +17,7 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
 
   // Sanitize.
+  $id = mysqli_real_escape_string($con, trim($request->data->id));
   $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
   $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
   $phoneNumber = mysqli_real_escape_string($con, (int)$request->data->phoneNumber);
@@ -29,24 +30,13 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Store.
-  $sql = "INSERT INTO `Inscription`(`id`,`firstName`,`lastName`, `phoneNumber` , `allergy`, `physicalLimitation`, `birthdate`, `gender`, `email` ) 
-VALUES (null,'{$firstName}','{$lastName}','{$phoneNumber}','{$allergy}','{$physicalLimitation}','{$birthdate}','{$gender}','{$email}')";
+  // $sql = "UPDATE `Inscription` SET `firstName`='{$firstName}',`lastName`='{$lastName}',`phoneNumber`='{$phoneNumber}',`allergy`='{$allergy}',`physicalLimitation`='{$physicalLimitation}',`birthdate`='{$birthdate}',`gender`='{$gender}',`email`='{$email}' WHERE `id` = '{$id}'";
+
+  $sql = "UPDATE `Inscription` SET `firstName`='TestName' WHERE id = 0";
 
   if(mysqli_query($con,$sql))
   {
-    http_response_code(201);
-    $inscription = [
-      'firstName' => $firstName,
-      'lastName' => $lastName,
-      'phoneNumber' => $phoneNumber,
-      'allergy' => $allergy,
-      'physicalLimitation' => $physicalLimitation,
-      'birthdate' => $birthdate,
-      'gender' => $gender,
-      'email' => $email,
-      'id'    => mysqli_insert_id($con)
-    ];
-    echo json_encode(['data'=>$inscription]);
+    http_response_code(204);
   }
   else
   {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
@@ -10,13 +10,30 @@ import { InscriptionService } from '../inscription.service';
   styleUrls: ['./inscription.component.scss']
 })
 export class InscriptionComponent implements OnInit {
+  inscriptionForm = new FormGroup({
+    id: new FormControl(0),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+    allergy: new FormControl('', Validators.required),
+    physicalLimitation: new FormControl('', Validators.required),
+    birthdate: new FormControl(new Date(), Validators.required),
+    gender: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required)
+  });
+
   /* inscription */
   inscription: Inscription[];
   error = '';
   success = '';
 
-  inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), true, '');
+  inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
+  inscriptionUpdateData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
 
+  edit = false;
+  editID: number;
+  btnText: 'Add inscription';
+  editText: 'Edit inscription';
 
   constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
   }
@@ -49,16 +66,74 @@ export class InscriptionComponent implements OnInit {
           // Inform the user
           this.success = 'Created successfully';
 
+          console.log(this.inscriptionForm);
+
           // Reset the form
-          f.reset();
+          this.inscriptionForm.reset();
         },
         (err) => this.error = err
       );
   }
 
+  updateInscription() {
+    this.error = '';
+    this.success = '';
 
-  editInscription(): void {
+    this.inscriptionForm.get('id').setValue(this.editID)
 
+    this.inscriptionService.update(this.inscriptionForm.value)
+      .subscribe(
+        (res: Inscription[]) => {
+          // Update the list of cars
+          this.inscription = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          this.inscriptionForm.reset();
+        },
+        (err) => this.error = err
+      );
+  }
+
+  returnForm() {
+    this.edit = false;
+    this.editID = null;
+    this.inscriptionForm.reset();
+  }
+
+  editInscription(id): void {
+
+    this.editID = id;
+    this.edit = true;
+
+    const incriptionEditIndex = this.inscription.findIndex(w => w.id === id);
+    const inscriptionEditForm = this.inscription[incriptionEditIndex];
+
+    const inscriptionEdit = this.inscription.filter(x => x.id === id);
+
+    this.inscriptionForm.get('firstName').setValue(inscriptionEditForm.firstName);
+    this.inscriptionForm.get('lastName').setValue(inscriptionEditForm.lastName);
+    this.inscriptionForm.get('phoneNumber').setValue(inscriptionEditForm.phoneNumber);
+    this.inscriptionForm.get('allergy').setValue(inscriptionEditForm.allergy);
+    this.inscriptionForm.get('physicalLimitation').setValue(inscriptionEditForm.physicalLimitation);
+    this.inscriptionForm.get('birthdate').setValue(inscriptionEditForm.birthdate);
+    this.inscriptionForm.get('gender').setValue(inscriptionEditForm.gender);
+    this.inscriptionForm.get('email').setValue(inscriptionEditForm.email);
+
+    /*
+    this.inscriptionService.getInscriptionWithId(id).subscribe(
+      (res: Inscription[]) => {
+        this.inscription = res;
+
+        console.log(res);
+      },
+      (err) => {
+        this.error = err;
+      }
+    );
+    */
   }
 
   deleteInscription(id): void {
@@ -70,6 +145,26 @@ export class InscriptionComponent implements OnInit {
         (res: Inscription[]) => {
           this.inscription = res;
           this.success = 'Deleted successfully';
+        },
+        (err) => this.error = err
+      );
+  }
+
+  onSubmit() {
+    this.error = '';
+    this.success = '';
+
+    this.inscriptionService.store(this.inscriptionForm.value)
+      .subscribe(
+        (res: Inscription[]) => {
+          // Update the list of cars
+          this.inscription = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          this.inscriptionForm.reset();
         },
         (err) => this.error = err
       );

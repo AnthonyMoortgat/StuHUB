@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {Login} from './login';
+import {User} from './login';
 import {LoginService} from './login.service';
 
 @Component({
@@ -11,11 +11,11 @@ import {LoginService} from './login.service';
 })
 export class LoginComponent implements OnInit {
   /* login */
-  login: Login[];
+  login: User[];
   error = '';
   success = '';
 
-  loginData = new Login(0, '', '', '', '');
+  loginData = new User(0, '', '', '', '');
   constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.store(this.loginData)
       .subscribe(
-        (res: Login[]) => {
+        (res: User[]) => {
           // Update the list of cars
           this.login = res;
 

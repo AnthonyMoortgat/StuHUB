@@ -21,10 +21,13 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "angular-http-server": "^1.7.0",
+    "angular2-cookie": "^1.2.6",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
+    "ngx-cookie-service": "^2.0.0",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "ngx-cookie": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.4",

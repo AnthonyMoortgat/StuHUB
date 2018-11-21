@@ -26,6 +26,7 @@ export class InscriptionComponent implements OnInit {
   inscription: Inscription[];
   error = '';
   success = '';
+  // formdata: Inscription = new Inscription();
 
   inscriptionData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
   inscriptionUpdateData = new Inscription(0, '', '', 0, '', '', new Date(), '', '');
@@ -92,6 +93,9 @@ export class InscriptionComponent implements OnInit {
 
           // Reset the form
           this.inscriptionForm.reset();
+
+          // Return
+          this.returnForm();
         },
         (err) => this.error = err
       );

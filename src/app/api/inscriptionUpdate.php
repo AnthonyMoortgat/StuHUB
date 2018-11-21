@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: antho
- * Date: 07-Nov-18
- * Time: 20:46
- */
-
 require 'connect.php';
 
 // Get the posted data.
@@ -27,19 +20,21 @@ if(isset($postdata) && !empty($postdata))
   $gender = mysqli_real_escape_string($con, trim($request->data->gender));
   $email = mysqli_real_escape_string($con, trim($request->data->email));
 
+  $sql = "UPDATE `Inscription` SET `firstName`='{$firstName}',
+`lastName`='{$lastName}',
+`phoneNumber`='{$phoneNumber}',
+`allergy`='{$allergy}',
+`physicalLimitation`='{$physicalLimitation}',
+`birthdate`='{$birthdate}',
+`gender`='{$gender}',
+`email`='{$email}' WHERE `id` = '{$id}'";
 
-
-  // Store.
-  // $sql = "UPDATE `Inscription` SET `firstName`='{$firstName}',`lastName`='{$lastName}',`phoneNumber`='{$phoneNumber}',`allergy`='{$allergy}',`physicalLimitation`='{$physicalLimitation}',`birthdate`='{$birthdate}',`gender`='{$gender}',`email`='{$email}' WHERE `id` = '{$id}'";
-
-  $sql = "UPDATE `Inscription` SET `firstName`='TestName' WHERE id = 0";
-
-  if(mysqli_query($con,$sql))
+  if(mysqli_query($con, $sql))
   {
     http_response_code(204);
   }
   else
   {
-    http_response_code(422);
+    return http_response_code(422);
   }
 }

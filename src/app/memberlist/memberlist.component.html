@@ -44,7 +44,7 @@
       </div>
 
       <div>
-        <p>Age</p>
+        <p>Birthday</p>
         <label class="switch">
           <input type="checkbox">
           <span class="slider round"></span>
@@ -63,56 +63,129 @@
 
   <hr>
 
-  <!-- Input -->
-
+  <!-- INPUT -->
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
+      <div id="theForm">
+        <form #f="ngForm" name="theForm" (submit)="addMember(f)">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text"
+                   class="form-control"
+                   name="firstName"
+                   [(ngModel)]="memberlistData.firstName"
+                   #memberlistFirstName="ngModel"
+                   required
+                   pattern="^[a-zA-Z]+$">
+            <span class="help-block danger" *ngIf="memberlistFirstName.errors?.required && memberlistFirstName.touched">
+        The first name is required
+      </span>
+            <span class="help-block danger" *ngIf="memberlistFirstName.errors?.pattern && memberlistFirstName.touched">
+        The first name name can only contain the letters a-z or A-Z
+      </span>
+          </div>
 
-      <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
-        <label>
-          First Name:
-          <input type="text" formControlName="firstName">
-        </label><br/>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text"
+                   class="form-control"
+                   name="lastName"
+                   required
+                   [(ngModel)]="memberlistData.lastName"
+                   #memberlistLastName="ngModel"
+                   pattern="^[a-zA-Z]+$">
+            <span class="help-block danger" *ngIf="memberlistLastName.errors?.required && memberlistLastName.touched">
+        The last name is required
+      </span>
+            <span class="help-block danger" *ngIf="memberlistLastName.errors?.pattern && memberlistLastName.touched">
+        The last name name can only contain the letters a-z or A-Z
+      </span>
+          </div>
 
-        <label>
-          Last Name:
-          <input type="text" formControlName="lastName">
-        </label><br/>
+          <div class="form-group">
+            <label>Role</label>
+            <input type="text"
+                   class="form-control"
+                   name="Rol"
+                   [(ngModel)]="memberlistData.rol"
+                   #memberlistRole="ngModel"
+                   required>
+            <span class="help-block danger" *ngIf="memberlistRole.errors?.required && memberlistRole.touched">
+        The role  is required
+      </span>
+            <span class="help-block danger" *ngIf="memberlistRole.errors?.pattern && memberlistRole.touched">
+        The role can only contain the letters a-z or A-Z
+      </span>
+          </div>
+          <div class="form-group">
+            <label>Birthdate</label>
+            <input type="date"
+                   class="form-control"
+                   name="birthdate"
+                   [(ngModel)]="memberlistData.birthdate"
+                   #memberlistBirthDate="ngModel"
+                   required>
+            <span class="help-block danger" *ngIf="memberlistBirthDate.errors?.required && memberlistBirthDate.touched">
+        The date is required
+      </span>
+          </div>
 
-        <label>
-          Age:
-          <input type="date" formControlName="birthdate">
-        </label><br/>
-
-        <label>
-          Email:
-          <input type="text" formControlName="email">
-        </label><br/>
-
-        <button type="submit" [disabled]="!inscriptionForm.valid">Submit</button>
-      </form>
-
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email"
+                   class="form-control"
+                   name="email"
+                   required
+                   [(ngModel)]="memberlistData.email"
+                   #memberlistEmail="ngModel">
+            <span class="help-block danger" *ngIf="memberlistEmail.errors?.required && memberlistEmail.touched">
+        The email is required
+      </span>
+          </div>
+          <button
+            class="btn btn-primary btn-sm"
+            [disabled]="f.invalid">Add</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <hr/>
 
-
-  <!-- GEGEVENS -->
+  <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
-    <div id="gegevens" class="collapse">
+    <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
+    <div id="gegevens" class="coll  apse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Birthdate</th>
+          <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of member">
+          <th> {{item.id}} </th>
+          <th> {{item.firstName}} </th>
+          <th> {{item.lastName}} </th>
+          <th> {{item.rol}} </th>
+          <th> {{item.birthdate}} </th>
+          <th> <button (click)="editMemberlist()">Edit</button>
+            <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
+        </tr>
+        </tbody>
+      </table>
 
     </div>
   </div>
 
-  <hr>
 
-  <div>
-    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
-    <div id="preview" class="collapse">
-
-    </div>
-  </div>
 </div>

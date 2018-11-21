@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
+
 
 
 @Component({
@@ -9,11 +11,13 @@ import {MemberlistService} from './memberlist.service';
   templateUrl: './memberlist.component.html',
   styleUrls: ['./memberlist.component.scss']
 })
-export class MemeberComponent implements OnInit {
+export class MemberlistComponent implements OnInit {
   members: Member[];
   error = '';
   success = '';
-  constructor(private memberlistService: MemberlistService) {
+
+  memberlistData = new Member(0, '', '', '', '', new Date());
+  constructor(private memberlistService: MemberlistService, private formBuilder: FormBuilder) {
   }
 
 
@@ -31,7 +35,29 @@ export class MemeberComponent implements OnInit {
       );
     }
 
-    deleteMember(id) {
+  addMember(form) {
+    this.error = '';
+    this.success = '';
+
+    this.memberlistService.store(this.memberlistData)
+      .subscribe(
+        (res: Member[]) => {
+          // Update the list of members
+          this.members = res;
+          // Inform the user
+          this.success = 'Created successfully';
+          // Reset the form
+          form.reset();
+        },
+        (err) => this.error = err
+      );
+  }
+
+  editMemberlist(): void {
+
+  }
+
+  deleteMemberlist(id): void {
     this.success = '';
     this.error = '';
 

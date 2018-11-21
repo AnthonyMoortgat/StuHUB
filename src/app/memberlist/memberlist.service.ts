@@ -7,6 +7,7 @@ import {map, catchError } from 'rxjs/operators';
 import {Member} from './member';
 import {Inscription} from '../inscription/inscription';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,6 +43,15 @@ export class MemberlistService {
             return +member['id'] !== +id;
           });
           return this.members = filteredMembers;
+        }),
+        catchError(this.handleError));
+  }
+
+  store(member: Member): Observable<Member[]> {
+    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: member })
+      .pipe(map((res) => {
+          this.members.push(res['data']);
+          return this.members;
         }),
         catchError(this.handleError));
   }

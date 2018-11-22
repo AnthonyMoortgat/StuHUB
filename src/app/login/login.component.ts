@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { UserLogin } from 'src/app/login/UserLogin';
-import {LoginService} from 'src/app/login/login.service';
+import {User} from './login';
+import {LoginService} from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +10,45 @@ import {LoginService} from 'src/app/login/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    userEmail: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
-
-  userLogin: UserLogin[];
+  /* login */
+  login: User[];
   error = '';
   success = '';
 
-  constructor() { }
+  loginData = new User(0, '', '', '', '');
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
   }
-
-  login() {
+/*
+  getLogin(): void {
+    this.loginService.getAll().subscribe(
+      (res: Login[]) => {
+        this.login = res;
+      },
+      (err) => {
+        this.error = err;
+      }
+    );
+  }
+*/
+  getLogin(f) {
+    this.error = '';
     this.success = '';
-    this.error   = '';
 
+    this.loginService.store(this.loginData)
+      .subscribe(
+        (res: User[]) => {
+          // Update the list of cars
+          this.login = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          f.reset();
+        },
+        (err) => this.error = err
+      );
   }
 }

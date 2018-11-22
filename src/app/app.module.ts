@@ -13,6 +13,9 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
+import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
+import { InformationComponent } from './information/information.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,18 @@ import { LoginComponent } from './login/login.component';
     DebtlistComponent,
     UsersettingsComponent,
     InscriptionComponent,
-    LoginComponent
+    InscriptionComponent,
+    LoginComponent,
+    InscriptionOptionsComponent,
+    InformationComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

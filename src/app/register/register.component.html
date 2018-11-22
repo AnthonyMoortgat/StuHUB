@@ -1,0 +1,137 @@
+<meta charset="UTF-8">
+    <title>Register</title>
+        <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+            <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+                <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
+
+<form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
+  <div style="max-width: 400px;">
+
+    <p *ngIf="" id="fault">E-mail already used, please try again.</p>
+
+    <h2 class="form-signin-heading"><b>Registration</b></h2>
+
+    <hr />
+
+    <!--First name-->
+    <div class="form-group">
+      <label for="txtFirstname">First Name</label>
+      <input name="txtFirstname"
+             type="text"
+             id="txtFirstname"
+             class="form-control"
+             [(ngModel)]="registerData.txtFirstname"
+             #txtFirstname="ngModel"
+             placeholder="Enter First Name"
+             required />
+      <span class="alert-danger" *ngIf="txtFirstname.errors?.required && txtFirstname.touched">
+        The first name is required!
+      </span>
+    </div>
+
+    <br />
+
+    <!--Last name-->
+    <div class="form-group">
+      <label for="txtLastname">Last Name</label>
+      <input name="txtLastname"
+             type="text"
+             id="txtLastname"
+             class="form-control"
+             [(ngModel)]="registerData.txtLastname"
+             #txtLastname="ngModel"
+             placeholder="Enter Last Name"
+             required />
+      <span class="alert-danger" *ngIf="txtLastname.errors?.required && txtLastname.touched">
+        The last name is required!
+      </span>
+    </div>
+
+    <br />
+
+    <!--E-mail-->
+    <div class="form-group">
+      <label for="txtEmail">E-mail</label>
+      <input name="txtEmail"
+             type="email"
+             id="txtEmail"
+             class="form-control"
+             [(ngModel)]="registerData.txtEmail"
+             #txtEmail="ngModel"
+             placeholder="Enter E-mail"
+             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+             required />
+      <span class="alert-danger" *ngIf="txtEmail.errors?.required && txtEmail.touched">
+        The e-mail is required! <br/>
+      </span>
+      <span class="alert-danger" *ngIf="txtEmail.errors?.pattern && txtEmail.touched">
+        The e-mail is not valid! <br/>
+      </span>
+    </div>
+
+    <br />
+
+    <!--Password-->
+    <div class="form-group">
+    <label for="txtPassword">Password</label>
+    <input name="txtPassword"
+           type="password"
+           id="txtPassword"
+           title="Password must contain: Minimum 8 characters and maximum 20 characters atleast 1 Alphabet and 1 Number"
+           class="form-control"
+           [(ngModel)]="registerData.txtPassword"
+           #txtPassword ="ngModel"
+           placeholder="Enter Password"
+           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"
+           minlength="8"
+           maxlength="20"
+           required />
+      <span class="alert-danger" *ngIf="txtPassword.errors?.required && txtPassword.touched">
+        The password is required! <br/>
+      </span>
+      <span class="alert-danger" *ngIf="txtPassword.errors?.pattern && txtPassword.touched">
+        The password is not valid! <br/>
+      </span>
+    </div>
+
+    <br />
+
+    <!--Confirm password-->
+    <div class="form-group">
+    <label for="txtConfirmPassword">Confirm Password</label>
+    <input name="txtConfirmPassword"
+           type="password"
+           id="txtConfirmPassword"
+           class="form-control"
+           [(ngModel)]="registerData.txtConfirmPassword"
+           #txtConfirmPassword="ngModel"
+           placeholder="Confirm Password"
+           required />
+      <span class="alert-danger" *ngIf="txtConfirmPassword.errors?.required && txtConfirmPassword.touched">
+        The confirm password is required! <br/>
+      </span>
+      <span class="alert-danger" *ngIf="txtConfirmPassword.value !== txtPassword.value && txtConfirmPassword.touched">
+        Passwords do not match! <br/>
+      </span>
+    </div>
+
+    <br />
+
+    <input name="terms"
+           id="terms"
+           type="checkbox"
+           [(ngModel)]="registerData.terms"
+           #terms="ngModel"
+           value=""
+           required />
+    <label for="terms" style="margin-left: 1%">Accept Terms Of Use</label>
+
+    <a href="./termsofuse.html" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
+
+    <hr />
+
+    <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" [disabled]="!(f.form.valid) || !(txtConfirmPassword.value === txtPassword.value)"/>
+
+    <a href="/login" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
+  </div>
+</form>

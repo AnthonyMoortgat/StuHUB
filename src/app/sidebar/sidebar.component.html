@@ -1,7 +1,7 @@
-<nav>
+<nav *ngIf="router.url != '/' && router.url != '/register'">
   <ul>
     <li>
-      <a routerLink="" routerLinkActive="activated">
+      <a routerLink="home" routerLinkActive="activated">
         <i class="material-icons">home</i>
       </a>
       <a routerLink="usersettings" routerLinkActive="activated">
@@ -19,7 +19,7 @@
       <a routerLink="inscription" routerLinkActive="activated">
         <i class="material-icons">person_add</i>
       </a>
-      <a routerLink="login" routerLinkActive="deactivated">
+      <a routerLink="" routerLinkActive="deactivated">
         <i class="material-icons">logout</i>
       </a>
     </li>

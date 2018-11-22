@@ -15,11 +15,11 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: '',
+    path: 'home',
     component: InformationComponent
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   },
   {

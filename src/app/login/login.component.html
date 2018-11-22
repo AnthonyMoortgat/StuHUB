@@ -5,12 +5,13 @@
           <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
               <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
                   <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
-  <p id="fault">E-mail or password incorrect!</p> <!--moet verschijnen na php-->
+
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
+    <!-- <p id="fault">E-mail or password incorrect!</p> -->
 
-    <p id="regSuccess">Registration successful!</p> <!--moet verschijnen na php-->
+    <!-- <p id="regSuccess">Registration successful!</p> -->
 
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
@@ -53,6 +54,6 @@
     <input type="submit" name="btnLogin" value="Login" id="btnLogin" class="btn btn-primary" [disabled]="!(f.form.valid)" />
     <!--<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/register" *ngIf="success">-->
     <a href="/register" class="btn btn-primary" style="margin-left: 1%"><b>Register</b></a>
-    <a href="/" class="btn btn-primary" style="margin-left: 1%"><b>Homepage</b></a>
+    <a href="/home" class="btn btn-primary" style="margin-left: 1%"><b>Homepage</b></a>
   </div>
 </form>

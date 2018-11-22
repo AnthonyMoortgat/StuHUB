@@ -6,14 +6,19 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
-
-
-
-
+import { InformationComponent } from './information/information.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: InformationComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'usersettings',
     component: UsersettingsComponent
   },
   {

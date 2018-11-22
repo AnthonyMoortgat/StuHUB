@@ -15,7 +15,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { CookieModule } from 'ngx-cookie';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    CookieModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

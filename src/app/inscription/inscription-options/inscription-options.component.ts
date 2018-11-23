@@ -10,16 +10,60 @@ export class InscriptionOptionsComponent implements OnInit {
 
   inscriptionOptions = new FormGroup({
     fistNameActive: new FormControl(),
-    fistNameForm: new FormControl(),
-    fistNameVisible: new FormControl()
+    fistNameRequired: new FormControl(),
+    fistNameVisible: new FormControl(),
+    lastNameActive: new FormControl(),
+    lastNameRequired: new FormControl(),
+    lastNameVisible: new FormControl(),
+    phoneNumberActive: new FormControl(),
+    phoneNumberRequired: new FormControl(),
+    phoneNumberVisible: new FormControl(),
+    allergyActive: new FormControl(),
+    allergyRequired: new FormControl(),
+    allergyVisible: new FormControl(),
+    physicalLimitationActive: new FormControl(),
+    physicalLimitationRequired: new FormControl(),
+    physicalLimitationVisible: new FormControl(),
+    birthdateActive: new FormControl(),
+    birthdateRequired: new FormControl(),
+    birthdateVisible: new FormControl(),
+    genderActive: new FormControl(),
+    genderRequired: new FormControl(),
+    genderVisible: new FormControl(),
+    emailActive: new FormControl(),
+    emailRequired: new FormControl(),
+    emailVisible: new FormControl()
   });
 
-  fistNameOptionsList: Boolean[];
+  firstNameActiveChecked = false;
+  firstNameRequiredChecked = false;
+  firstNameVisibleChecked = false;
+  lastNameActiveChecked = false;
+  lastNameRequiredChecked = false;
+  lastNameVisibleChecked = false;
+  phoneNumberActiveChecked = false;
+  phoneNumberRequiredChecked = false;
+  phoneNumberVisibleChecked = false;
+  allergyActiveChecked = false;
+  allergyRequiredChecked = false;
+  allergyVisibleChecked = false;
+  physicalLimitationActiveChecked = false;
+  physicalLimitationRequiredChecked = false;
+  physicalLimitationVisibleChecked = false;
+  birthdateActiveChecked = false;
+  birthdateRequiredChecked = false;
+  birthdateVisibleChecked = false;
+  genderActiveChecked = false;
+  genderRequiredChecked = false;
+  genderVisibleChecked = false;
+  emailActiveChecked = false;
+  emailRequiredChecked = false;
+  emailVisibleChecked = false;
 
   constructor() { }
 
   ngOnInit() {
-    this.inscriptionOptions.get('firstNameActive').setValue(true);
+
   }
 
   onSubmit() {

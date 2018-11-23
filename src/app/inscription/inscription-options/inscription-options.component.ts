@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+import { InscriptionOptions } from './inscriptionOptions';
+import { InscriptionOptionsService } from './inscriptionOptions.service';
+import {Inscription} from '../inscription';
+
+
 @Component({
   selector: 'app-inscription-options',
   templateUrl: './inscription-options.component.html',
@@ -35,35 +40,26 @@ export class InscriptionOptionsComponent implements OnInit {
     emailVisible: new FormControl()
   });
 
-  firstNameActiveChecked = false;
-  firstNameRequiredChecked = false;
-  firstNameVisibleChecked = false;
-  lastNameActiveChecked = false;
-  lastNameRequiredChecked = false;
-  lastNameVisibleChecked = false;
-  phoneNumberActiveChecked = false;
-  phoneNumberRequiredChecked = false;
-  phoneNumberVisibleChecked = false;
-  allergyActiveChecked = false;
-  allergyRequiredChecked = false;
-  allergyVisibleChecked = false;
-  physicalLimitationActiveChecked = false;
-  physicalLimitationRequiredChecked = false;
-  physicalLimitationVisibleChecked = false;
-  birthdateActiveChecked = false;
-  birthdateRequiredChecked = false;
-  birthdateVisibleChecked = false;
-  genderActiveChecked = false;
-  genderRequiredChecked = false;
-  genderVisibleChecked = false;
-  emailActiveChecked = false;
-  emailRequiredChecked = false;
-  emailVisibleChecked = false;
+  inscriptionOptionsArray: InscriptionOptions[];
+  optionsData = new InscriptionOptions();
 
-  constructor() { }
+  error = '';
+
+  constructor(private inscriptionOptionsService: InscriptionOptionsService) { }
 
   ngOnInit() {
+    this.getOptions();
+  }
 
+  getOptions(): void {
+    this.inscriptionOptionsService.getAll().subscribe(
+      (res: InscriptionOptions[]) => {
+        this.inscriptionOptionsArray = res;
+      },
+      (err) => {
+        this.error = err;
+      }
+    );
   }
 
   onSubmit() {

@@ -3,85 +3,7 @@
   <div>
     <a data-toggle="collapse" data-target="#options"><h2>Options</h2></a>
     <div id="options" class="collapse">
-      <div>
-        <p>Actif</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Visible</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Last name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Phone number</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Allergy</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Physical limitation</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Birthdate</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Gender</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Email</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
+      <app-inscription-options></app-inscription-options>
     </div>
   </div>
 
@@ -91,142 +13,102 @@
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
-      <div id="theForm">
-        <form #f="ngForm" name="theForm" (submit)="addInscription(f)">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text"
-                   class="form-control"
-                   name="firstName"
-                   [(ngModel)]="inscriptionData.firstName"
-                   #inscriptionFirstName="ngModel"
-                   required
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="inscriptionFirstName.errors?.required && inscriptionFirstName.touched">
-        The first name is required
-      </span>
-            <span class="help-block danger" *ngIf="inscriptionFirstName.errors?.pattern && inscriptionFirstName.touched">
-        The first name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
 
-          <div class="form-group">
-            <label>LastName</label>
-            <input type="text"
-                   class="form-control"
-                   name="lastName"
-                   required
-                   [(ngModel)]="inscriptionData.lastName"
-                   #inscriptionLastName="ngModel"
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="inscriptionLastName.errors?.required && inscriptionLastName.touched">
-        The last name is required
-      </span>
-            <span class="help-block danger" *ngIf="inscriptionLastName.errors?.pattern && inscriptionLastName.touched">
-        The last name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
+      <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label><br/>
 
-          <div class="form-group">
-            <label>Phone number</label>
-            <input type="text"
-                   class="form-control"
-                   name="phoneNmber"
-                   [(ngModel)]="inscriptionData.phoneNumber"
-                   #inscriptionPhoneNumber="ngModel"
-                   required>
-            <span class="help-block danger" *ngIf="inscriptionPhoneNumber.errors?.required && inscriptionPhoneNumber.touched">
-        The phone number is required
-      </span>
-          </div>
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label><br/>
 
-          <div class="form-group">
-            <label>Allergy</label>
-            <input type="text"
-                   class="form-control"
-                   name="allergy"
-                   required
-                   [(ngModel)]="inscriptionData.allergy"
-                   #inscriptionAllergy="ngModel"
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="inscriptionAllergy.errors?.required && inscriptionAllergy.touched">
-        The allergy is required
-      </span>
-            <span class="help-block danger" *ngIf="inscriptionAllergy.errors?.pattern && inscriptionAllergy.touched">
-        Allergy can only contain the letters a-z or A-Z
-      </span>
-          </div>
+        <label>
+          Phone number:
+          <input type="text" formControlName="phoneNumber">
+        </label><br/>
 
-          <div class="form-group">
-            <label>Physical limitations</label>
-            <input type="text"
-                   class="form-control"
-                   name="physicalLimitations"
-                   required
-                   [(ngModel)]="inscriptionData.physicalLimitations"
-                   #inscriptionPhysicalLimitations="ngModel"
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="inscriptionPhysicalLimitations.errors?.required && inscriptionPhysicalLimitations.touched">
-        The physical limitations are required
-      </span>
-            <span class="help-block danger" *ngIf="inscriptionPhysicalLimitations.errors?.pattern && inscriptionPhysicalLimitations.touched">
-        Allergy can only contain the letters a-z or A-Z
-      </span>
-          </div>
+        <label>
+          Allergy:
+          <input type="text" formControlName="allergy">
+        </label><br/>
 
-          <div class="form-group">
-            <label>Birthdate</label>
-            <input type="date"
-                   class="form-control"
-                   name="birthdate"
-                   [(ngModel)]="inscriptionData.birthdate"
-                   #inscriptionBirthdate="ngModel"
-                   required>
-            <span class="help-block danger" *ngIf="inscriptionBirthdate.errors?.required && inscriptionBirthdate.touched">
-        The date is required
-      </span>
-          </div>
+        <label>
+          Physical limitations:
+          <input type="text" formControlName="physicalLimitation">
+        </label><br/>
 
-          <div class="form-group">
-            <label>Gender</label>
-            <input type="radio"
-                   class="form-control"
-                   name="gender"
-                   [(ngModel)]="inscriptionData.gender"
-                   #inscriptionGender="ngModel"
-                   required
-                   value="Man"> Man
+        <label>
+          Birthdate:
+          <input type="date" formControlName="birthdate">
+        </label><br/>
 
-            <input type="radio"
-                   class="form-control"
-                   name="gender"
-                   [(ngModel)]="inscriptionData.gender"
-                   #inscriptionGender="ngModel"
-                   required
-                   value="woman"> Woman
-            <span class="help-block danger" *ngIf="inscriptionGender.errors?.required && inscriptionGender.touched">
-        The gender is required
-      </span>
-          </div>
+        <label>
+          Gender:
+          <label>
+            Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+            Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+          </label>
+        </label><br/>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email"
-                   class="form-control"
-                   name="email"
-                   required
-                   [(ngModel)]="inscriptionData.email"
-                   #inscriptionEmail="ngModel">
-            <span class="help-block danger" *ngIf="inscriptionEmail.errors?.required && inscriptionEmail.touched">
-        The email is required
-      </span>
-          </div>
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label><br/>
 
-          <button
-            class="btn btn-primary btn-sm"
-            [disabled]="f.invalid">Add</button>
-        </form>
-      </div>
+        <button type="submit" [disabled]="!inscriptionForm.valid">Add inscription</button>
+      </form>
+
+      <form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label><br/>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label><br/>
+
+        <label>
+          Phone number:
+          <input type="text" formControlName="phoneNumber">
+        </label><br/>
+
+        <label>
+          Allergy:
+          <input type="text" formControlName="allergy">
+        </label><br/>
+
+        <label>
+          Physical limitations:
+          <input type="text" formControlName="physicalLimitation">
+        </label><br/>
+
+        <label>
+          Birthdate:
+          <input type="date" formControlName="birthdate">
+        </label><br/>
+
+        <label>
+          Gender:
+          <label>
+            Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+            Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+          </label>
+        </label><br/>
+
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label><br/>
+
+        <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
+        <button type="button" (click)="returnForm()">Return</button>
+      </form>
+
     </div>
   </div>
 
@@ -255,23 +137,11 @@
             <th> {{item.firstName}} </th>
             <th> {{item.lastName}} </th>
             <th> {{item.birthdate}} </th>
-            <th> <button (click)="editInscription()">Edit</button>
+            <th> <button (click)="editInscription(item.id)">Edit</button>
              <button (click)="deleteInscription(item.id)">Delete</button> </th>
           </tr>
         </tbody>
       </table>
-
-      <!--
-      <div *ngIf="error">{{error}}</div>
-      <div *ngIf="success">{{success}}</div>
-
-      <div id="inscriptionList">
-        <h2>Namen van de ingeschreven</h2>
-        <ul>
-          <li *ngFor="let item of inscription">{{item.lastName}} {{item.firstName}}</li>
-        </ul>
-      </div>
-      -->
     </div>
   </div>
 
@@ -284,115 +154,7 @@
     </div>
   </div>
 
-  <!-- PREVIEW
-  <div>
-    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
-    <div id="preview" class="collapse">
-      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-        <h5 *ngIf="success">Your form is valid!</h5>
 
-        <div class="form-group">
-          <label>
-            Name:
-            <input type="text" formControlName="name">
-            <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
-              <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Last name:
-            <input formControlName="lastName">
-            <div *ngIf="submitted && messageForm.controls.lastName.errors" class="error">
-              <div *ngIf="messageForm.controls.lastName.errors.required">A lastName is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Phone number:
-            <input formControlName="phoneNumber">
-            <div *ngIf="submitted && messageForm.controls.phoneNumber.errors" class="error">
-              <div *ngIf="messageForm.controls.phoneNumber.errors.required">A phoneNumber is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Allergy:
-            <input formControlName="allergy">
-            <div *ngIf="submitted && messageForm.controls.allergy.errors" class="error">
-              <div *ngIf="messageForm.controls.allergy.errors.required">A allergy is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Physical limitation:
-            <input formControlName="physicalLimitation">
-            <div *ngIf="submitted && messageForm.controls.physicalLimitation.errors" class="error">
-              <div *ngIf="messageForm.controls.physicalLimitation.errors.required">A physicalLimitation is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Birthdate:
-            <input type="date" formControlName="birthdate">
-            <div *ngIf="submitted && messageForm.controls.birthdate.errors" class="error">
-              <div *ngIf="messageForm.controls.birthdate.errors.required">A birthdate is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Gender:
-            <div class="form-check">
-              <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="manRadio">
-              <label class="form-check-label" for="manRadio">
-                Man
-              </label>
-            </div>
-            <div class="form-check">
-              <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="womanRadio">
-              <label class="form-check-label" for="womanRadio">
-                Woman
-              </label>
-            </div>
-
-            <div *ngIf="submitted && messageForm.controls.gender.errors" class="error">
-              <div *ngIf="messageForm.controls.gender.errors.required">A gender is required</div>
-            </div>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label>
-            Email:
-            <input type="email" formControlName="email">
-            <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
-              <div *ngIf="messageForm.controls.email.errors.required">A email is required</div>
-            </div>
-          </label>
-        </div>
-
-        <input type="submit" value="Send message" class="cta">
-
-      </form>
-
-      <div *ngIf="submitted" class="results">
-
-      </div>
-    </div>
-  </div>
-  -->
 </div>
 
 

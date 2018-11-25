@@ -155,8 +155,8 @@
 
   <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
-    <div id="gegevens" class="coll  apse">
+    <a data-toggle="collapse" data-target="#data"><h2>Data</h2></a>
+    <div id="data" class="coll  apse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
 
@@ -178,8 +178,6 @@
           <th> {{item.lastName}} </th>
           <th> {{item.rol}} </th>
           <th> {{item.birthdate}} </th>
-          <th> <button (click)="editMemberlist()">Edit</button>
-            <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
         </tr>
         </tbody>
       </table>

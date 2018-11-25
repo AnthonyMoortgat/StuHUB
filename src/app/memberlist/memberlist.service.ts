@@ -13,13 +13,13 @@ import {Inscription} from '../inscription/inscription';
 })
 export class MemberlistService {
 
-  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API/';
+  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API';
   members: Member[];
 
     constructor(private http: HttpClient) { }
 
     getAll(): Observable<Member[]> {
-    return this.http.get(`${this.baseUrl}/list`).pipe(
+    return this.http.get(`${this.baseUrl}/memberlistList.php`).pipe(
       map((res) => {
         this.members = res['data'];
         return this.members;
@@ -48,7 +48,7 @@ export class MemberlistService {
   }
 
   store(member: Member): Observable<Member[]> {
-    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: member })
+    return this.http.post(`${this.baseUrl}/memberlistStore.php`, { data: member })
       .pipe(map((res) => {
           this.members.push(res['data']);
           return this.members;

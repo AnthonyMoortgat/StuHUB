@@ -12,7 +12,7 @@ require 'connect.php';
 $members = [];
 $sql = "SELECT id, firstName, lastName, rol, email, birthdate FROM MEMBERLIST";
 
-if($result = my_sqli_query($con,$sql)){
+if($result = mysqli_query($con,$sql)){
   $mr = 0;
   while($row = mysqli_fetch_assoc($result)){
     $members[$mr]['id'] = $row['id'];

@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: antho
- * Date: 07-Nov-18
- * Time: 20:46
- */
-
 require 'connect.php';
 
 // Get the posted data.
@@ -14,44 +7,57 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata))
 {
   // Extract the data.
-  $request = json_decode($postdata);
-
-
-  // Validate.
-  /*
-  if(trim($request->data->model) === '' || (int)$request->data->price < 1)
-  {
-    return http_response_code(400);
-  }
-  */
+  $request = json_decode("$postdata");
 
   // Sanitize.
-  $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
-  $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
-  $birthdate = mysqli_real_escape_string($con, $request->data->birthdate); //Zorgt voor 422 error
+  $firstname = mysqli_real_escape_string($con, trim($request->data->txtFirstname));
+  $firstnameCap = ucfirst(strtolower($firstname));
 
-  // Store.
-  $sql = "INSERT INTO `testPostTable`(`id`,`naam`, `lastName`,`birthdate`) 
-VALUES (null,'{$firstName}', '{$lastName}', '{$birthdate}')";
+  $lastname = mysqli_real_escape_string($con, trim($request->data->txtLastname));
 
-  if(mysqli_query($con,$sql))
-  {
-    http_response_code(201);
-    $inscription = [
-      'firstName' => $firstName,
-      'lastName' => $lastName,
-      'phoneNumber' => $phoneNumber,
-      'allergy' => $allergy,
-      'physicalLimitations' => $physicalLimitations,
-      'birthdate' => $birthdate,
-      'gender' => $gender,
-      'email' => $email,
-      'id'    => mysqli_insert_id($con)
-    ];
-    echo json_encode(['data'=>$inscription]);
-  }
-  else
-  {
-    http_response_code(422);
-  }
+  $email = mysqli_real_escape_string($con, trim($request->data->txtEmail));
+
+  $password = mysqli_real_escape_string($con, trim($request->data->txtPassword));
+  $encryptPassword = md5($password);
+
+  //Store
+  $sql = "INSERT INTO `User`(`user_id`,`first_name`,`last_name`, `user_email` , `user_password`) 
+  VALUES (null,'{$firstnameCap}','{$lastname}','{$email}','{$encryptPassword}')";
+
+
+    if(mysqli_query($con,$sql))
+    {
+      http_response_code(201);
+      $register = [
+        'first_name' => $firstnameCap, //attribute name html => variabele
+        'last_name' => $lastname,
+        'user_email' => $email,
+        'user_password' => $encryptPassword,
+        'user_id' => mysqli_insert_id($con)
+      ];
+      //$http.post('/login');
+      //header("Location: /login");
+
+      /*
+      if(isset($email) && !empty($email))
+      {
+        //$email = mysqli_escape_string($email);
+        $to      = "michael.de.gauquier@gmail.com";
+        $subject = "Signup Verification";
+        $message = "Thanks for signing up!
+          Your account has been created, you can login after you have activated your account by pressing the url below:
+          LINK VOLGT NOG!";
+        // $headers = 'From:noreply@stuhub.com' . "\r\n";
+        mail($to, $subject, $message);
+        echo 'E-mail send to you!';
+      }*/
+
+      echo json_encode(['data'=>$register]);
+    }
+    else
+    {
+      http_response_code(422);
+    }
+
 }
+?>

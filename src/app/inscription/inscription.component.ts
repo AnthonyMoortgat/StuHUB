@@ -57,6 +57,7 @@ export class InscriptionComponent implements OnInit {
   addInscription(f) {
     this.error = '';
     this.success = '';
+    console.log(f);
 
     this.inscriptionService.store(this.inscriptionData)
       .subscribe(

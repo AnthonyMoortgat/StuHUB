@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

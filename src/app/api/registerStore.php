@@ -1,11 +1,4 @@
 <?php
-  /**
-   * Created by IntelliJ IDEA.
-   * User: antho
-   * Date: 07-Nov-18
-   * Time: 20:46
-   */
-
   require 'connect.php';
 
   // Get the posted data.
@@ -14,15 +7,7 @@
   if(isset($postdata) && !empty($postdata))
   {
     // Extract the data.
-    $request = json_decode($postdata);
-
-    // Validate.
-    /*
-    if(trim($request->data->model) === '' || (int)$request->data->price < 1)
-    {
-      return http_response_code(400);
-    }
-    */
+    $request = json_decode("$postdata");
 
     // Sanitize.
     $firstname = mysqli_real_escape_string($con, trim($request->data->txtFirstname));
@@ -45,7 +30,8 @@
     $result = mysqli_query($con, $sqlRead);
 
     if (mysqli_num_rows($result) > 0) {
-      header("Location: /register?reg=false");
+      $var = '*E-mail already exists!*';
+      echo "$var";
     }
     else {
       if(mysqli_query($con,$sql))
@@ -59,7 +45,8 @@
           'user_id' => mysqli_insert_id($con)
         ];
         //$http.post('/login');
-        header("Location: /login");
+        //header("Location: /login");
+
         /*
         if(isset($email) && !empty($email))
         {
@@ -74,13 +61,10 @@
           echo 'E-mail send to you!';
         }*/
 
-        echo 'Gelukt';
         echo json_encode(['data'=>$register]);
-
       }
       else
       {
-        echo 'Gefaald';
         http_response_code(422);
       }
     }

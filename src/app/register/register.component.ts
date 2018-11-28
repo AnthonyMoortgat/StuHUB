@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import {User} from './register';
 import {RegisterService} from './register.service';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -12,14 +12,21 @@ import {RegisterService} from './register.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  /* register */
+  registerForm = new FormGroup({
+    id: new FormControl(0),
+    txtFirstname: new FormControl('', Validators.required),
+    txtLastname: new FormControl('', Validators.required),
+    txtEmail: new FormControl('', Validators.required),
+    txtPassword: new FormControl('', Validators.required),
+  });
+
   register: User[];
   error = '';
   success = '';
   // let errorMsg = false;
 
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, private router: Router ) { }
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder /*, private router: Router */ ) { }
 
   ngOnInit() {
   }
@@ -47,11 +54,13 @@ export class RegisterComponent implements OnInit {
           this.register = res;
 
           // Inform the user
-          this.router.navigate(['/', 'login']); // werkt niet
+          // this.router.navigate(['/', 'login']); // werkt niet
           this.success = 'Created successfully';
 
+          console.log(this.registerForm);
+
           // Reset the form
-          f.reset();
+          this.registerForm.reset();
         },
         (err) => this.error = err
       );

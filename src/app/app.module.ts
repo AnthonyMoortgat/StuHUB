@@ -12,6 +12,10 @@ import { IdeaboxComponent } from './ideabox/ideabox.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { LoginComponent } from './login/login.component';
+import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
+import { InformationComponent } from './information/information.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,19 @@ import { InscriptionComponent } from './inscription/inscription.component';
     IdeaboxComponent,
     DebtlistComponent,
     UsersettingsComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    InscriptionComponent,
+    LoginComponent,
+    InscriptionOptionsComponent,
+    InformationComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

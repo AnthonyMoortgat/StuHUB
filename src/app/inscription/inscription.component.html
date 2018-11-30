@@ -15,10 +15,14 @@
     <div id="input" class="collapse">
 
       <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
-        <label>
-          First Name:
-          <input type="text" formControlName="firstName">
-        </label><br/>
+        <div *ngIf="true">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+          <br/>
 
         <label>
           Last Name:

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
+import { InscriptionOptionsComponent } from './inscription-options/inscription-options.component';
 
 import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-inscription',
@@ -10,6 +13,8 @@ import { InscriptionService } from '../inscription.service';
   styleUrls: ['./inscription.component.scss']
 })
 export class InscriptionComponent implements OnInit {
+  @ViewChild(InscriptionOptionsComponent) inscriptionOptionsChild;
+
   inscriptionForm = new FormGroup({
     id: new FormControl(0),
     firstName: new FormControl('', Validators.required),

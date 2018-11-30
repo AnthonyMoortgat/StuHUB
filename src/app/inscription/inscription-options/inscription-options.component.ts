@@ -41,7 +41,44 @@ export class InscriptionOptionsComponent implements OnInit {
   });
 
   inscriptionOptionsArray: InscriptionOptions[];
-  optionsData = new InscriptionOptions();
+  testString: string[];
+  optionsData = new InscriptionOptions('', 4, 0, 0, 0, 0, 0, 0, 0);
+
+  firstNameActiveChecked = false;
+  firstNameRequiredChecked = false;
+  firstNameVisibleChecked = false;
+  lastNameActiveChecked = false;
+  lastNameRequiredChecked = false;
+  lastNameVisibleChecked = false;
+  phoneNumberActiveChecked = false;
+  phoneNumberRequiredChecked = false;
+  phoneNumberVisibleChecked = false;
+  allergyActiveChecked = false;
+  allergyRequiredChecked = false;
+  allergyVisibleChecked = false;
+  physicalLimitationActiveChecked = false;
+  physicalLimitationRequiredChecked = false;
+  physicalLimitationVisibleChecked = false;
+  birthdateActiveChecked = false;
+  birthdateRequiredChecked = false;
+  birthdateVisibleChecked = false;
+  genderActiveChecked = false;
+  genderRequiredChecked = false;
+  genderVisibleChecked = false;
+  emailActiveChecked = false;
+  emailRequiredChecked = false;
+  emailVisibleChecked = false;
+
+  /*Voorlopige code*/
+  // Can be replaced when the array works
+  firstNameNumber = 0;
+  lastNameNumber = 3;
+  phoneNumberNumber = 2;
+  allergyNumber = 1;
+  physicalLimitationNumber = 0;
+  birthdateNumber = 4;
+  genderNumber = 3;
+  emailNumber = 2;
 
   error = '';
 
@@ -49,6 +86,7 @@ export class InscriptionOptionsComponent implements OnInit {
 
   ngOnInit() {
     this.getOptions();
+    this.changeOptionCheckboxes();
   }
 
   getOptions(): void {
@@ -64,5 +102,213 @@ export class InscriptionOptionsComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  changeOptionCheckboxes() {
+
+
+    // const incriptionEditIndex = this.inscriptionOptionsArray.findIndex(w => w.organisationId === 'Enigma');
+    // const inscriptionOptionsValues = this.inscriptionOptionsArray[0];
+    // console.log(inscriptionOptionsValues);
+
+    switch (this.firstNameNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.firstNameActiveChecked = true;
+        break;
+
+      case 2:
+        this.firstNameActiveChecked = true;
+        this.firstNameRequiredChecked = true;
+        break;
+
+      case 3:
+        this.firstNameActiveChecked = true;
+        this.firstNameVisibleChecked = true;
+        break;
+
+      case 4:
+        this.firstNameActiveChecked = true;
+        this.firstNameRequiredChecked = true;
+        this.firstNameVisibleChecked = true;
+        break;
+    }
+
+    switch (this.lastNameNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.lastNameActiveChecked = true;
+        break;
+
+      case 2:
+        this.lastNameActiveChecked = true;
+        this.lastNameRequiredChecked = true;
+        break;
+
+      case 3:
+        this.lastNameActiveChecked = true;
+        this.lastNameVisibleChecked = true;
+        break;
+
+      case 4:
+        this.lastNameActiveChecked = true;
+        this.lastNameRequiredChecked = true;
+        this.lastNameVisibleChecked = true;
+        break;
+    }
+
+    switch (this.phoneNumberNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.phoneNumberActiveChecked = true;
+        break;
+
+      case 2:
+        this.phoneNumberActiveChecked = true;
+        this.phoneNumberRequiredChecked = true;
+        break;
+
+      case 3:
+        this.phoneNumberActiveChecked = true;
+        this.phoneNumberVisibleChecked = true;
+        break;
+
+      case 4:
+        this.phoneNumberActiveChecked = true;
+        this.phoneNumberRequiredChecked = true;
+        this.phoneNumberVisibleChecked = true;
+        break;
+    }
+
+    switch (this.allergyNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.allergyActiveChecked = true;
+        break;
+
+      case 2:
+        this.allergyActiveChecked = true;
+        this.allergyRequiredChecked = true;
+        break;
+
+      case 3:
+        this.allergyActiveChecked = true;
+        this.allergyVisibleChecked = true;
+        break;
+
+      case 4:
+        this.allergyActiveChecked = true;
+        this.allergyRequiredChecked = true;
+        this.allergyVisibleChecked = true;
+        break;
+    }
+
+    switch (this.physicalLimitationNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.physicalLimitationActiveChecked = true;
+        break;
+
+      case 2:
+        this.physicalLimitationActiveChecked = true;
+        this.physicalLimitationRequiredChecked = true;
+        break;
+
+      case 3:
+        this.physicalLimitationActiveChecked = true;
+        this.physicalLimitationVisibleChecked = true;
+        break;
+
+      case 4:
+        this.physicalLimitationActiveChecked = true;
+        this.physicalLimitationRequiredChecked = true;
+        this.physicalLimitationVisibleChecked = true;
+        break;
+    }
+
+    switch (this.birthdateNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.birthdateActiveChecked = true;
+        break;
+
+      case 2:
+        this.birthdateActiveChecked = true;
+        this.birthdateRequiredChecked = true;
+        break;
+
+      case 3:
+        this.birthdateActiveChecked = true;
+        this.birthdateVisibleChecked = true;
+        break;
+
+      case 4:
+        this.birthdateActiveChecked = true;
+        this.birthdateRequiredChecked = true;
+        this.birthdateVisibleChecked = true;
+        break;
+    }
+
+    switch (this.genderNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.genderActiveChecked = true;
+        break;
+
+      case 2:
+        this.genderActiveChecked = true;
+        this.genderRequiredChecked = true;
+        break;
+
+      case 3:
+        this.genderActiveChecked = true;
+        this.genderVisibleChecked = true;
+        break;
+
+      case 4:
+        this.genderActiveChecked = true;
+        this.genderRequiredChecked = true;
+        this.genderVisibleChecked = true;
+        break;
+    }
+
+    switch (this.emailNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.emailActiveChecked = true;
+        break;
+
+      case 2:
+        this.emailActiveChecked = true;
+        this.emailRequiredChecked = true;
+        break;
+
+      case 3:
+        this.emailActiveChecked = true;
+        this.emailVisibleChecked = true;
+        break;
+
+      case 4:
+        this.emailActiveChecked = true;
+        this.emailRequiredChecked = true;
+        this.emailVisibleChecked = true;
+        break;
+    }
   }
 }

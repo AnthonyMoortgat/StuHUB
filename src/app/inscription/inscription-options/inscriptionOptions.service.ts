@@ -11,12 +11,12 @@ import { InscriptionOptions } from './inscriptionOptions';
 })
 export class InscriptionOptionsService {
 
-  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/options';
   inscriptionOptionsArray: InscriptionOptions[];
 
   constructor(private http: HttpClient) { }
   getAll(): Observable<InscriptionOptions[]> {
-    return this.http.get(`${this.baseUrl}/inscriptionList.php`).pipe(
+    return this.http.get(`${this.baseUrl}/inscriptionOptionsGetAll.php`).pipe(
       map((res) => {
         this.inscriptionOptionsArray = res['data'];
         return this.inscriptionOptionsArray;

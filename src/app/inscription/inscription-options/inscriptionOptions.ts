@@ -1,30 +1,22 @@
 export class InscriptionOptions {
-  firstNameActiveChecked = false;
-  firstNameRequiredChecked = false;
-  firstNameVisibleChecked = false;
-  lastNameActiveChecked = false;
-  lastNameRequiredChecked = false;
-  lastNameVisibleChecked = false;
-  phoneNumberActiveChecked = false;
-  phoneNumberRequiredChecked = false;
-  phoneNumberVisibleChecked = false;
-  allergyActiveChecked = false;
-  allergyRequiredChecked = false;
-  allergyVisibleChecked = false;
-  physicalLimitationActiveChecked = false;
-  physicalLimitationRequiredChecked = false;
-  physicalLimitationVisibleChecked = false;
-  birthdateActiveChecked = false;
-  birthdateRequiredChecked = false;
-  birthdateVisibleChecked = false;
-  genderActiveChecked = false;
-  genderRequiredChecked = false;
-  genderVisibleChecked = false;
-  emailActiveChecked = false;
-  emailRequiredChecked = false;
-  emailVisibleChecked = false;
+  organisationId: string;
+  firstNameOption?: number;
+  lastNameOption?: number;
+  phoneNumberOption?: number;
+  allergyOption?: number;
+  physicalLimitationOption?: number;
+  birthdateOption?: number;
+  genderOption?: number;
+  emailOption?: number;
 
-  constructor() {
-
-  }
+  constructor(
+    organisationId: string,
+    firstNameOption?: number,
+    lastNameOption?: number,
+    phoneNumberOption?: number,
+    allergyOption?: number,
+    physicalLimitationOption?: number,
+    birthdateOption?: number,
+    genderOption?: number,
+    email?: number) {}
 }

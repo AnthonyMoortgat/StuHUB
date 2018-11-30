@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { InscriptionOptions } from './inscriptionOptions';
@@ -87,6 +87,7 @@ export class InscriptionOptionsComponent implements OnInit {
   ngOnInit() {
     this.getOptions();
     this.changeOptionCheckboxes();
+    this.onChanges();
   }
 
   getOptions(): void {
@@ -102,6 +103,26 @@ export class InscriptionOptionsComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  onChanges(): void {
+    this.inscriptionOptions.get('fistNameActive').valueChanges.subscribe(val => {
+      if (val === false) {
+        this.firstNameActiveChecked = false;
+        this.firstNameRequiredChecked = false;
+        this.firstNameVisibleChecked = false;
+      } else {
+        this.firstNameActiveChecked = true;
+      }
+    });
+
+    this.inscriptionOptions.get('fistNameVisible').valueChanges.subscribe(val => {
+      if (val === false) {
+        this.firstNameVisibleChecked = false;
+      } else {
+        this.firstNameVisibleChecked = true;
+      }
+    });
   }
 
   changeOptionCheckboxes() {

@@ -224,7 +224,34 @@
   <div>
     <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
     <div id="preview" class="collapse">
-
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.firstNameVisibleChecked">First name</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.lastNameVisibleChecked">Last name</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.phoneNumberVisibleChecked">Phone number</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.allergyVisibleChecked">Allergy</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.physicalLimitationVisibleChecked">Physical limitation</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.birthdateVisibleChecked">Birthdate</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.genderVisibleChecked">Gender</th>
+          <th scope="col" *ngIf="inscriptionOptionsChild.emailVisibleChecked">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of inscription">
+          <th> {{item.id}} </th>
+          <th *ngIf="inscriptionOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </th>
+          <th *ngIf="inscriptionOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </th>
+          <th *ngIf="inscriptionOptionsChild.phoneNumberVisibleChecked"> {{item.phoneNumber}} </th>
+          <th *ngIf="inscriptionOptionsChild.allergyVisibleChecked"> {{item.allergy}} </th>
+          <th *ngIf="inscriptionOptionsChild.physicalLimitationVisibleChecked"> {{item.physicalLimitation}} </th>
+          <th *ngIf="inscriptionOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
+          <th *ngIf="inscriptionOptionsChild.genderVisibleChecked"> {{item.gender}} </th>
+          <th *ngIf="inscriptionOptionsChild.emailVisibleChecked"> {{item.email}} </th>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

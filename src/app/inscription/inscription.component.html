@@ -15,99 +15,159 @@
     <div id="input" class="collapse">
 
       <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="true">
+        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
           <label>
             First Name:
             <input type="text" formControlName="firstName">
           </label>
         </div>
 
-          <br/>
+        <br/>
 
-        <label>
-          Last Name:
-          <input type="text" formControlName="lastName">
-        </label><br/>
-
-        <label>
-          Phone number:
-          <input type="text" formControlName="phoneNumber">
-        </label><br/>
-
-        <label>
-          Allergy:
-          <input type="text" formControlName="allergy">
-        </label><br/>
-
-        <label>
-          Physical limitations:
-          <input type="text" formControlName="physicalLimitation">
-        </label><br/>
-
-        <label>
-          Birthdate:
-          <input type="date" formControlName="birthdate">
-        </label><br/>
-
-        <label>
-          Gender:
+        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
           <label>
-            Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
-            Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+            Last Name:
+            <input type="text" formControlName="lastName">
           </label>
-        </label><br/>
+        </div>
 
-        <label>
-          Email:
-          <input type="text" formControlName="email">
-        </label><br/>
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
+          <label>
+            Phone number:
+            <input type="text" formControlName="phoneNumber">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
+          <label>
+            Allergy:
+            <input type="text" formControlName="allergy">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
+          <label>
+            Physical limitations:
+            <input type="text" formControlName="physicalLimitation">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
+          <label>
+            Gender:
+            <label>
+              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+            </label>
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
 
         <button type="submit" [disabled]="!inscriptionForm.valid">Add inscription</button>
       </form>
 
       <form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
-        <label>
-          First Name:
-          <input type="text" formControlName="firstName">
-        </label><br/>
-
-        <label>
-          Last Name:
-          <input type="text" formControlName="lastName">
-        </label><br/>
-
-        <label>
-          Phone number:
-          <input type="text" formControlName="phoneNumber">
-        </label><br/>
-
-        <label>
-          Allergy:
-          <input type="text" formControlName="allergy">
-        </label><br/>
-
-        <label>
-          Physical limitations:
-          <input type="text" formControlName="physicalLimitation">
-        </label><br/>
-
-        <label>
-          Birthdate:
-          <input type="date" formControlName="birthdate">
-        </label><br/>
-
-        <label>
-          Gender:
+        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
           <label>
-            Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
-            Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+            First Name:
+            <input type="text" formControlName="firstName">
           </label>
-        </label><br/>
+        </div>
 
-        <label>
-          Email:
-          <input type="text" formControlName="email">
-        </label><br/>
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
+          <label>
+            Phone number:
+            <input type="text" formControlName="phoneNumber">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
+          <label>
+            Allergy:
+            <input type="text" formControlName="allergy">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
+          <label>
+            Physical limitations:
+            <input type="text" formControlName="physicalLimitation">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
+          <label>
+            Gender:
+            <label>
+              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+            </label>
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
 
         <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
         <button type="button" (click)="returnForm()">Return</button>

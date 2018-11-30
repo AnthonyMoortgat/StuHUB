@@ -71,7 +71,7 @@ export class InscriptionOptionsComponent implements OnInit {
 
   /*Voorlopige code*/
   // Can be replaced when the array works
-  firstNameNumber = 0;
+  firstNameNumber = 4;
   lastNameNumber = 3;
   phoneNumberNumber = 2;
   allergyNumber = 1;

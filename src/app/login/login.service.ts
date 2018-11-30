@@ -13,11 +13,11 @@ import {NULL_INJECTOR} from '@angular/core/src/render3/component';
 export class LoginService {
 
   baseUrl = 'http://dtsl.ehb.be/~michael.de.gauquier/SP2/api';
-  logins: User[];
+  logins: User[] = new Array(0);
 
   constructor(private http: HttpClient) { }
-  /*
-  getAll(): Observable<Login[]> {
+/*
+  getAll(): Observable<User[]> {
     return this.http.get(`${this.baseUrl}/loginUser.php`).pipe(
       map((res) => {
         this.logins = res['data'];
@@ -31,14 +31,12 @@ export class LoginService {
       .pipe(map((res) => {
           this.logins.push(res['data']);
           return this.logins;
-        }),
+      }),
         catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);
-
-    // return an observable with a user friendly message
     return throwError('Error! something went wrong.');
   }
 }

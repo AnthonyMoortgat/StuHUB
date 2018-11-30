@@ -1,11 +1,4 @@
 <?php
-  /**
-   * Created by IntelliJ IDEA.
-   * User: antho
-   * Date: 07-Nov-18
-   * Time: 20:46
-   */
-
   require 'connect.php';
 
   // Get the posted data.
@@ -36,11 +29,25 @@
     $result = mysqli_query($con, $sqlRead);
 
     if (mysqli_num_rows($result) > 0) {
-      echo '<p id="fault">Logged in!</p>';
-      //location to home
+      console.log('i am here now!1');
+      http_response_code(201);
+      $login = [
+        'user_email' => $email,
+        'user_password' => $encryptPassword,
+        'user_id' => mysqli_insert_id($con)
+      ];
+      echo json_encode(['data'=>$login]);
     }
     else {
-      echo '<p id="fault"></p>';
+      console.log('i am here now!2');
+      http_response_code(201);
+      $login = [
+        'user_email' => 'invalid',
+        'user_password' => 'invalid',
+        'user_id' => 0
+      ];
+      echo json_encode(['data'=>$login]);
     }
   }
+mysqli_close($con);
 ?>

@@ -9,9 +9,9 @@
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
-    <!-- <p id="fault">E-mail or password incorrect!</p> -->
+    <p *ngIf="InvalidLogin" id="fault">E-mail or password incorrect!</p>
 
-    <!-- <p id="regSuccess">Registration successful!</p> -->
+    <p *ngIf="router.url === '/?register=true'" id="regSuccess">Registration successful!</p>
 
 
     <h2 class="form-signin-heading"><b>Login</b></h2>

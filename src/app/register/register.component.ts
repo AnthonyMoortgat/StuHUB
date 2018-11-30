@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
   register: User[];
   error = '';
   success = '';
-  // let errorMsg = false;
+  AlreadyExists = '';
 
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder /*, private router: Router */ ) { }
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router) { }
 
   ngOnInit() {
   }
@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
   addRegister(f) {
     this.error = '';
     this.success = '';
+    this.AlreadyExists = '';
     console.log(f);
 
     this.registerService.store(this.registerData)
@@ -52,15 +53,18 @@ export class RegisterComponent implements OnInit {
         (res: User[]) => {
           // Update the list
           this.register = res;
+          if (this.register[0].user_id === 0) {
+            this.AlreadyExists = 'Email already exists!!!';
+          } else {
+            // Inform the user
+            this.router.navigate(['/'], {queryParams: {register: true}});
+            this.success = 'Created successfully';
 
-          // Inform the user
-          // this.router.navigate(['/', 'login']); // werkt niet
-          this.success = 'Created successfully';
+            console.log(this.registerForm);
 
-          console.log(this.registerForm);
-
-          // Reset the form
-          this.registerForm.reset();
+            // Reset the form
+            this.registerForm.reset();
+          }
         },
         (err) => this.error = err
       );

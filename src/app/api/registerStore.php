@@ -30,8 +30,15 @@
     $result = mysqli_query($con, $sqlRead);
 
     if (mysqli_num_rows($result) > 0) {
-      $var = '*E-mail already exists!*';
-      echo "$var";
+      http_response_code(201);
+      $register = [
+        'first_name' => 'invalid', //attribute name html => variabele
+        'last_name' => 'invalid',
+        'user_email' => 'invalid',
+        'user_password' => 'invalid',
+        'user_id' => 0
+      ];
+      echo json_encode(['data'=>$register]);
     }
     else {
       if(mysqli_query($con,$sql))
@@ -69,4 +76,5 @@
       }
     }
   }
+mysqli_close($con);
 ?>

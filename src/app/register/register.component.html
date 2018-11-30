@@ -8,9 +8,9 @@
 <form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
   <div style="max-width: 400px;">
 
-    <!--<p id="fault">E-mail already used, please try again.</p>-->
-    <p *ngIf="success">Stored successfully</p>
+    <!--<p *ngIf="success">Stored successfully</p>-->
     <p *ngIf="error">There is an error</p>
+    <p *ngIf="AlreadyExists" id="fault">E-mail already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 
@@ -136,5 +136,6 @@
     <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" [disabled]="!(f.form.valid) || !(txtConfirmPassword.value === txtPassword.value)"/>
 
     <a routerLink="/" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
+    <!--[queryParams]="{register: true}"-->
   </div>
 </form>

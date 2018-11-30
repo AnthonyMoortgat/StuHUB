@@ -189,18 +189,28 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Birthdate</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.firstNameActiveChecked">First name</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.lastNameActiveChecked">Last name</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">Phone number</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.allergyActiveChecked">Allergy</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">Physical limitation</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.birthdateActiveChecked">Birthdate</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.genderActiveChecked">Gender</th>
+            <th scope="col" *ngIf="inscriptionOptionsChild.emailActiveChecked">Email</th>
             <th scope="col">InscriptionOptions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of inscription">
             <th> {{item.id}} </th>
-            <th> {{item.firstName}} </th>
-            <th> {{item.lastName}} </th>
-            <th> {{item.birthdate}} </th>
+            <th *ngIf="inscriptionOptionsChild.firstNameActiveChecked"> {{item.firstName}} </th>
+            <th *ngIf="inscriptionOptionsChild.lastNameActiveChecked"> {{item.lastName}} </th>
+            <th *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked"> {{item.phoneNumber}} </th>
+            <th *ngIf="inscriptionOptionsChild.allergyActiveChecked"> {{item.allergy}} </th>
+            <th *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked"> {{item.physicalLimitation}} </th>
+            <th *ngIf="inscriptionOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
+            <th *ngIf="inscriptionOptionsChild.genderActiveChecked"> {{item.gender}} </th>
+            <th *ngIf="inscriptionOptionsChild.emailActiveChecked"> {{item.email}} </th>
             <th> <button (click)="editInscription(item.id)">Edit</button>
              <button (click)="deleteInscription(item.id)">Delete</button> </th>
           </tr>

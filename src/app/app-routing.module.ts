@@ -8,8 +8,13 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InformationComponent } from './information/information.component';
+import { AuthService } from './authguard/auth.service';
+import { AuthGuard } from './authguard/auth.guard';
 
 const routes: Routes = [
+  {
+    path: 'home', component: InformationComponent, pathMatch: 'full' , canActivate:
+      [AuthGuard]},
   {
     path: 'register',
     component: RegisterComponent

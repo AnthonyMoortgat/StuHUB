@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 
 import {User} from './login';
 import {LoginService} from './login.service';
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../authguard/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +23,16 @@ export class LoginComponent implements OnInit {
   login: User[];
   error = '';
   success = '';
+  form;
   // InvalidLogin = '';
 
   loginData = new User(0, '', '');
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router, private auth: AuthService) {
+    this.form = formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
   }
@@ -49,6 +56,7 @@ export class LoginComponent implements OnInit {
             // this.InvalidLogin = 'Login is invalid!!!';
           } else {
             // Inform the user
+            this.auth.sendToken(this.form.email);
             this.router.navigate(['/home']);
             this.success = 'Created successfully';
 

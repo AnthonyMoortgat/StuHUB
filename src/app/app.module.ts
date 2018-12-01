@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './authguard/auth.service';
+import { AuthGuard } from './authguard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -40,7 +42,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,10 +20,11 @@ export class RegisterComponent implements OnInit {
     txtPassword: new FormControl('', Validators.required),
   });
 
+  /* register */
   register: User[];
   error = '';
   success = '';
-  AlreadyExists = '';
+  // AlreadyExists = '';
 
   registerData = new User(0, '', '', '', '');
   constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router) { }
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
   addRegister(f) {
     this.error = '';
     this.success = '';
-    this.AlreadyExists = '';
+    // this.AlreadyExists = '';
     console.log(f);
 
     this.registerService.store(this.registerData)
@@ -54,7 +55,11 @@ export class RegisterComponent implements OnInit {
           // Update the list
           this.register = res;
           if (this.register[0].user_id === 0) {
-            this.AlreadyExists = 'Email already exists!!!';
+            // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+            // this.router.navigate(['/register'], {queryParams: {register: false}}));
+            this.router.navigate(['/register'], {queryParams: {register: false}});
+            location.reload();
+            // this.AlreadyExists = 'Email already exists!!!';
           } else {
             // Inform the user
             this.router.navigate(['/'], {queryParams: {register: true}});

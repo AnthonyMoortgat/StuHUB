@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
   login: User[];
   error = '';
   success = '';
-  InvalidLogin = '';
+  // InvalidLogin = '';
 
-  loginData = new User(0, '', '', '', '');
+  loginData = new User(0, '', '');
   constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router) { }
 
   ngOnInit() {
@@ -33,16 +33,20 @@ export class LoginComponent implements OnInit {
   getLogin(f) {
     this.error = '';
     this.success = '';
-    this.InvalidLogin = '';
+    // this.InvalidLogin = '';
     console.log(f);
 
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {
-          // Update the list of cars
+          // Update the list
           this.login = res;
-          if (this.login[0].user_email === 'invalid' || this.login[0].user_password === 'invalid') {
-            this.InvalidLogin = 'Login is invalid!!!';
+          if (this.login[0].user_email === 'invalid' && this.login[0].user_password === 'invalid') {
+            // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+            // this.router.navigate(['/'], {queryParams: {login: false}}));
+            this.router.navigate(['/'], {queryParams: {login: false}});
+            location.reload();
+            // this.InvalidLogin = 'Login is invalid!!!';
           } else {
             // Inform the user
             this.router.navigate(['/home']);

@@ -27,7 +27,7 @@ export class LoginService {
   }
 */
   store(login: User): Observable<User[]> {
-    return this.http.post(`${this.baseUrl}/loginUser.php`, { data: login })
+    return this.http.post(`${this.baseUrl}/loginUser.php`, {data: login})
       .pipe(map((res) => {
           this.logins.push(res['data']);
           return this.logins;

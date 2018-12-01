@@ -9,10 +9,9 @@
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
-    <p *ngIf="InvalidLogin" id="fault">E-mail or password incorrect!</p>
+    <p *ngIf="router.url === '/?login=false'" id="fault">E-mail or password incorrect!</p>
 
     <p *ngIf="router.url === '/?register=true'" id="regSuccess">Registration successful!</p>
-
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
 
@@ -52,8 +51,6 @@
     <hr />
 
     <input type="submit" name="btnLogin" value="Login" id="btnLogin" class="btn btn-primary" [disabled]="!(f.form.valid)" />
-    <!--<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/register" *ngIf="success">-->
     <a routerLink="/register" class="btn btn-primary" style="margin-left: 1%"><b>Register</b></a>
-    <a routerLink="/home" class="btn btn-primary" style="margin-left: 1%"><b>Homepage</b></a>
   </div>
 </form>

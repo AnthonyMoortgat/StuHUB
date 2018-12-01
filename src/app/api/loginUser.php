@@ -29,17 +29,15 @@
     $result = mysqli_query($con, $sqlRead);
 
     if (mysqli_num_rows($result) > 0) {
-      console.log('i am here now!1');
       http_response_code(201);
       $login = [
-        'user_email' => $email,
-        'user_password' => $encryptPassword,
+        'user_email' => 'valid',
+        'user_password' => 'valid',
         'user_id' => mysqli_insert_id($con)
       ];
       echo json_encode(['data'=>$login]);
     }
     else {
-      console.log('i am here now!2');
       http_response_code(201);
       $login = [
         'user_email' => 'invalid',

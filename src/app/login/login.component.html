@@ -1,26 +1,16 @@
-<form *ngIf="true" [formGroup]="loginForm" (ngSubmit)="login()">
-  <div *ngIf="error">{{error}}</div>
-  <div *ngIf="success">{{success}}</div>
 
-  <label>
-    Email:
-    <input type="email" formControlName="userEmail">
-  </label><br/>
 
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label><br/>
-
-  <button type="submit" [disabled]="!loginForm.valid">Log in</button>
-</form>
-
-<!--
+  <meta charset="UTF-8">
+      <title>Login</title>
+          <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+              <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+                  <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
+  <p id="fault">E-mail or password incorrect!</p> <!--moet verschijnen na php-->
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
 
-    <p id="regSuccess">Registration successful!</p> &lt;!&ndash;moet verschijnen na php&ndash;&gt;
+    <p id="regSuccess">Registration successful!</p> <!--moet verschijnen na php-->
 
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
@@ -61,8 +51,8 @@
     <hr />
 
     <input type="submit" name="btnLogin" value="Login" id="btnLogin" class="btn btn-primary" [disabled]="!(f.form.valid)" />
-    &lt;!&ndash;<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/register" *ngIf="success">&ndash;&gt;
+    <!--<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/register" *ngIf="success">-->
     <a href="/register" class="btn btn-primary" style="margin-left: 1%"><b>Register</b></a>
     <a href="/" class="btn btn-primary" style="margin-left: 1%"><b>Homepage</b></a>
   </div>
-</form>-->
+</form>

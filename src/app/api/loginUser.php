@@ -26,15 +26,27 @@
     //Read
     $sqlRead = "SELECT user_email, user_password FROM User WHERE user_email = '$email' AND user_password = '$encryptPassword'";
 
+    $sqlFirstname = "SELECT first_name FROM User WHERE user_email = '$email'";
+    $sqlLastname = "SELECT last_name FROM User WHERE user_email = '$email'";
+
     $result = mysqli_query($con, $sqlRead);
+    $resultFN = mysqli_query($con, $sqlFirstname);
+    $resultLN = mysqli_query($con, $sqlLastname);
 
     if (mysqli_num_rows($result) > 0) {
       http_response_code(201);
-      $login = [
-        'user_email' => 'valid',
-        'user_password' => 'valid',
-        'user_id' => mysqli_insert_id($con)
-      ];
+
+      $row = mysqli_fetch_assoc($result);
+      $rowFN = mysqli_fetch_assoc($resultFN);
+      $rowLN = mysqli_fetch_assoc($resultLN);
+
+        $login = [
+          'user_email' => $row['user_email'],
+          'user_password' => 'valid',
+          'first_name' => $rowFN['first_name'],
+          'last_name' => $rowLN['last_name'],
+          'user_id' => mysqli_insert_id($con)
+        ];
       echo json_encode(['data'=>$login]);
     }
     else {

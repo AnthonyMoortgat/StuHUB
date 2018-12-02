@@ -1,8 +1,9 @@
-<meta charset="UTF-8">
+
+<!--<meta charset="UTF-8">
     <title>Register</title>
         <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
             <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
-                <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
+                <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />-->
 
 <form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
   <div style="max-width: 400px;">
@@ -128,13 +129,12 @@
            required />
     <label for="terms" style="margin-left: 1%">Accept Terms Of Use</label>
 
-    <a routerLink="./termsofuse.html" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
+    <a href="http://dtsl.ehb.be/~anthony.moortgat/SP2/termsAndConditions.html" target="_blank" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
 
     <hr />
 
     <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" [disabled]="!(f.form.valid) || !(txtConfirmPassword.value === txtPassword.value)"/>
 
-    <a routerLink="/" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
-    <!--[queryParams]="{register: true}"-->
+    <a routerLink="/login" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
   </div>
 </form>

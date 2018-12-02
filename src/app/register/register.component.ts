@@ -62,7 +62,8 @@ export class RegisterComponent implements OnInit {
             // this.AlreadyExists = 'Email already exists!!!';
           } else {
             // Inform the user
-            this.router.navigate(['/'], {queryParams: {register: true}});
+            this.router.navigate(['/login'], {queryParams: {register: true}});
+            location.reload();
             this.success = 'Created successfully';
 
             console.log(this.registerForm);

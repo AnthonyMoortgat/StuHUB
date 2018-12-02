@@ -52,13 +52,15 @@ export class LoginComponent implements OnInit {
           if (this.login[0].user_email === 'invalid' && this.login[0].user_password === 'invalid') {
             // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
             // this.router.navigate(['/'], {queryParams: {login: false}}));
-            this.router.navigate(['/'], {queryParams: {login: false}});
+            this.router.navigate(['/login'], {queryParams: {login: false}});
             location.reload();
             // this.InvalidLogin = 'Login is invalid!!!';
           } else {
             // Inform the user
-            this.auth.sendToken(this.form.email);
-            this.router.navigate(['/home']);
+            localStorage.setItem('Firstname', this.login[0].first_name);
+            localStorage.setItem('Lastname', this.login[0].last_name);
+            this.auth.sendToken(this.login[0].user_email);
+            this.router.navigate(['/']);
             this.success = 'Created successfully';
 
             console.log(this.loginForm);

@@ -20,6 +20,7 @@ import { InscriptionOptionsComponent } from './inscription/inscription-options/i
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
 import { CookieService } from 'ngx-cookie-service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CookieService } from 'ngx-cookie-service';
     LoginComponent,
     InscriptionOptionsComponent,
     InformationComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

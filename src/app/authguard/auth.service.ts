@@ -18,7 +18,9 @@ export class AuthService {
     }
     logout() {
       localStorage.removeItem('LoggedInUser');
-      this.router.navigate(['/'], {queryParams: {logout: true}});
+      localStorage.removeItem('Firstname');
+      localStorage.removeItem('Lastname');
+      this.router.navigate(['/login'], {queryParams: {logout: true}});
       location.reload();
   }
 }

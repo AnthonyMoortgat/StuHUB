@@ -21,6 +21,7 @@ import { InscriptionOptionsComponent } from './inscription/inscription-options/i
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ShowhtmlComponent } from './generate/showhtml.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CookieService } from 'ngx-cookie-service';
     InscriptionOptionsComponent,
     InformationComponent,
     RegisterComponent
+    ShowhtmlComponent
   ],
   imports: [
     BrowserModule,

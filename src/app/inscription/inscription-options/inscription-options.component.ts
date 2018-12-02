@@ -15,7 +15,7 @@ export class InscriptionOptionsComponent implements OnInit {
 
   @Input() inscriptionForm: FormGroup;
 
-  inscriptionOptions = new FormGroup({
+  inscriptionOptionsForm = new FormGroup({
     fistNameActive: new FormControl(),
     fistNameRequired: new FormControl(),
     fistNameVisible: new FormControl(),
@@ -42,9 +42,19 @@ export class InscriptionOptionsComponent implements OnInit {
     emailVisible: new FormControl()
   });
 
+  inscriptionOptionsUpdateForm = new FormGroup({
+    organisationId: new FormControl(''),
+    firstName: new FormControl(0),
+    lastName: new FormControl(0),
+    phoneNumber: new FormControl(0),
+    allergy: new FormControl(0),
+    physicalLimitation: new FormControl(0),
+    birthdate: new FormControl(0),
+    gender: new FormControl(0),
+    email: new FormControl(0)
+  });
+
   inscriptionOptionsArray: InscriptionOptions[];
-  testString: string[];
-  optionsData = new InscriptionOptions('', 4, 0, 0, 0, 0, 0, 0, 0);
 
   firstNameActiveChecked = false;
   firstNameRequiredChecked = false;
@@ -104,7 +114,100 @@ export class InscriptionOptionsComponent implements OnInit {
   }
 
   onSubmit() {
+    this.changeFormValue('Enigma');
 
+    this.inscriptionOptionsService.update(this.inscriptionOptionsUpdateForm.value)
+      .subscribe(
+        (res: InscriptionOptions[]) => {
+          this.inscriptionOptionsArray = res;
+        },
+        (err) => this.error = err
+      );
+  }
+
+  changeFormValue(organisationId) {
+    this.inscriptionOptionsUpdateForm.get('organisationId').setValue(organisationId);
+
+    if (this.firstNameActiveChecked) {
+      if (this.firstNameRequiredChecked || this.firstNameVisibleChecked) {
+        if (this.firstNameRequiredChecked && this.firstNameVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('firstName').setValue(4);
+        } else if (this.firstNameVisibleChecked) { this.inscriptionOptionsUpdateForm.get('firstName').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('firstName').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('firstName').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('firstName').setValue(0); }
+
+    if (this.lastNameActiveChecked) {
+      if (this.lastNameRequiredChecked || this.lastNameVisibleChecked) {
+        if (this.lastNameRequiredChecked && this.lastNameVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('lastName').setValue(4);
+        } else if (this.lastNameVisibleChecked) { this.inscriptionOptionsUpdateForm.get('lastName').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('lastName').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('lastName').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('lastName').setValue(0); }
+
+    if (this.phoneNumberActiveChecked) {
+      if (this.phoneNumberRequiredChecked || this.phoneNumberVisibleChecked) {
+        if (this.phoneNumberRequiredChecked && this.phoneNumberVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('phoneNumber').setValue(4);
+        } else if (this.phoneNumberVisibleChecked) { this.inscriptionOptionsUpdateForm.get('phoneNumber').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('phoneNumber').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('phoneNumber').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('phoneNumber').setValue(0); }
+
+    if (this.allergyActiveChecked) {
+      if (this.allergyRequiredChecked || this.allergyVisibleChecked) {
+        if (this.allergyRequiredChecked && this.allergyVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('allergy').setValue(4);
+        } else if (this.allergyVisibleChecked) { this.inscriptionOptionsUpdateForm.get('allergy').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('allergy').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('allergy').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('allergy').setValue(0); }
+
+    if (this.physicalLimitationActiveChecked) {
+      if (this.physicalLimitationRequiredChecked || this.physicalLimitationVisibleChecked) {
+        if (this.physicalLimitationRequiredChecked && this.physicalLimitationVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('physicalLimitation').setValue(4);
+        } else if (this.physicalLimitationVisibleChecked) { this.inscriptionOptionsUpdateForm.get('physicalLimitation').setValue(3);
+        } else {
+          this.inscriptionOptionsUpdateForm.get('physicalLimitation').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('physicalLimitation').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('physicalLimitation').setValue(0); }
+
+    if (this.birthdateActiveChecked) {
+      if (this.birthdateRequiredChecked || this.birthdateVisibleChecked) {
+        if (this.birthdateRequiredChecked && this.birthdateVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('birthdate').setValue(4);
+        } else if (this.birthdateVisibleChecked) { this.inscriptionOptionsUpdateForm.get('birthdate').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('birthdate').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('birthdate').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('birthdate').setValue(0); }
+
+    if (this.genderActiveChecked) {
+      if (this.genderRequiredChecked || this.genderVisibleChecked) {
+        if (this.genderRequiredChecked && this.genderVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('gender').setValue(4);
+        } else if (this.genderVisibleChecked) { this.inscriptionOptionsUpdateForm.get('gender').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('gender').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('gender').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('gender').setValue(0); }
+
+    if (this.emailActiveChecked) {
+      if (this.emailRequiredChecked || this.emailVisibleChecked) {
+        if (this.emailRequiredChecked && this.emailVisibleChecked) {
+          this.inscriptionOptionsUpdateForm.get('email').setValue(4);
+        } else if (this.emailVisibleChecked) { this.inscriptionOptionsUpdateForm.get('email').setValue(3); } else {
+          this.inscriptionOptionsUpdateForm.get('email').setValue(2);
+        }
+      } else { this.inscriptionOptionsUpdateForm.get('email').setValue(1); }
+    } else { this.inscriptionOptionsUpdateForm.get('email').setValue(0); }
   }
 
   changeRequirements(name, boolean) {
@@ -118,7 +221,7 @@ export class InscriptionOptionsComponent implements OnInit {
   }
 
   onChanges(): void {
-    this.inscriptionOptions.get('fistNameActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('fistNameActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.firstNameActiveChecked = false;
         this.firstNameRequiredChecked = false;
@@ -129,7 +232,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('fistNameRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('fistNameRequired').valueChanges.subscribe(val => {
       if (val === false && this.firstNameActiveChecked === true) {
         this.firstNameRequiredChecked = false;
       } else {
@@ -138,7 +241,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('firstName', this.firstNameRequiredChecked);
     });
 
-    this.inscriptionOptions.get('fistNameVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('fistNameVisible').valueChanges.subscribe(val => {
       if (val === false  && this.firstNameActiveChecked === true) {
         this.firstNameVisibleChecked = false;
       } else {
@@ -146,7 +249,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('lastNameActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('lastNameActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.lastNameActiveChecked = false;
         this.lastNameRequiredChecked = false;
@@ -157,7 +260,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('lastNameRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('lastNameRequired').valueChanges.subscribe(val => {
       if (val === false && this.lastNameActiveChecked === true) {
         this.lastNameRequiredChecked = false;
       } else {
@@ -166,7 +269,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('lastName', this.lastNameRequiredChecked);
     });
 
-    this.inscriptionOptions.get('lastNameVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('lastNameVisible').valueChanges.subscribe(val => {
       if (val === false  && this.lastNameActiveChecked === true) {
         this.lastNameVisibleChecked = false;
       } else {
@@ -174,7 +277,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('phoneNumberActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('phoneNumberActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.phoneNumberActiveChecked = false;
         this.phoneNumberRequiredChecked = false;
@@ -185,7 +288,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('phoneNumberRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('phoneNumberRequired').valueChanges.subscribe(val => {
       if (val === false && this.phoneNumberActiveChecked === true) {
         this.phoneNumberRequiredChecked = false;
       } else {
@@ -194,7 +297,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('phoneNumber', this.phoneNumberRequiredChecked);
     });
 
-    this.inscriptionOptions.get('phoneNumberVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('phoneNumberVisible').valueChanges.subscribe(val => {
       if (val === false  && this.phoneNumberActiveChecked === true) {
         this.phoneNumberVisibleChecked = false;
       } else {
@@ -202,7 +305,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('allergyActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('allergyActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.allergyActiveChecked = false;
         this.allergyRequiredChecked = false;
@@ -213,7 +316,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('allergyRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('allergyRequired').valueChanges.subscribe(val => {
       if (val === false && this.allergyActiveChecked === true) {
         this.allergyRequiredChecked = false;
       } else {
@@ -222,7 +325,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('allergy', this.allergyRequiredChecked);
     });
 
-    this.inscriptionOptions.get('allergyVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('allergyVisible').valueChanges.subscribe(val => {
       if (val === false  && this.allergyActiveChecked === true) {
         this.allergyVisibleChecked = false;
       } else {
@@ -230,7 +333,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('physicalLimitationActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('physicalLimitationActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.physicalLimitationActiveChecked = false;
         this.physicalLimitationRequiredChecked = false;
@@ -241,7 +344,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('physicalLimitationRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('physicalLimitationRequired').valueChanges.subscribe(val => {
       if (val === false && this.physicalLimitationActiveChecked === true) {
         this.physicalLimitationRequiredChecked = false;
       } else {
@@ -250,7 +353,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('physicalLimitation', this.physicalLimitationRequiredChecked);
     });
 
-    this.inscriptionOptions.get('physicalLimitationVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('physicalLimitationVisible').valueChanges.subscribe(val => {
       if (val === false  && this.physicalLimitationActiveChecked === true) {
         this.physicalLimitationVisibleChecked = false;
       } else {
@@ -258,7 +361,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('birthdateActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('birthdateActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.birthdateActiveChecked = false;
         this.birthdateRequiredChecked = false;
@@ -269,7 +372,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('birthdateRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('birthdateRequired').valueChanges.subscribe(val => {
       if (val === false && this.birthdateActiveChecked === true) {
         this.birthdateRequiredChecked = false;
       } else {
@@ -278,7 +381,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('birthdate', this.birthdateRequiredChecked);
     });
 
-    this.inscriptionOptions.get('birthdateVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('birthdateVisible').valueChanges.subscribe(val => {
       if (val === false  && this.birthdateActiveChecked === true) {
         this.birthdateVisibleChecked = false;
       } else {
@@ -286,7 +389,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('genderActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('genderActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.genderActiveChecked = false;
         this.genderRequiredChecked = false;
@@ -297,7 +400,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('genderRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('genderRequired').valueChanges.subscribe(val => {
       if (val === false && this.genderActiveChecked === true) {
         this.genderRequiredChecked = false;
       } else {
@@ -306,7 +409,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('gender', this.genderRequiredChecked);
     });
 
-    this.inscriptionOptions.get('genderVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('genderVisible').valueChanges.subscribe(val => {
       if (val === false  && this.genderActiveChecked === true) {
         this.genderVisibleChecked = false;
       } else {
@@ -314,7 +417,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('emailActive').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('emailActive').valueChanges.subscribe(val => {
       if (val === false) {
         this.emailActiveChecked = false;
         this.emailRequiredChecked = false;
@@ -325,7 +428,7 @@ export class InscriptionOptionsComponent implements OnInit {
       }
     });
 
-    this.inscriptionOptions.get('emailRequired').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('emailRequired').valueChanges.subscribe(val => {
       if (val === false && this.emailActiveChecked === true) {
         this.emailRequiredChecked = false;
       } else {
@@ -334,7 +437,7 @@ export class InscriptionOptionsComponent implements OnInit {
       this.changeRequirements('email', this.emailRequiredChecked);
     });
 
-    this.inscriptionOptions.get('emailVisible').valueChanges.subscribe(val => {
+    this.inscriptionOptionsForm.get('emailVisible').valueChanges.subscribe(val => {
       if (val === false  && this.emailActiveChecked === true) {
         this.emailVisibleChecked = false;
       } else {

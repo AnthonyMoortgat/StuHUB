@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { InscriptionOptions } from './inscriptionOptions';
+import {Inscription} from '../inscription';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,27 @@ export class InscriptionOptionsService {
         return this.inscriptionOptionsArray;
       }),
       catchError(this.handleError));
+  }
+
+  update(inscriptionOption: InscriptionOptions): Observable<InscriptionOptions[]> {
+    return this.http.put(`${this.baseUrl}/inscriptionOptionsUpdate.php`, { data: inscriptionOption })
+      .pipe(map((res) => {
+          const theInscriptionOption = this.inscriptionOptionsArray.find((item) => {
+            return +item['organisationId'] === +inscriptionOption['organisationId'];
+          });
+          if (theInscriptionOption) {
+            theInscriptionOption['firstName'] = inscriptionOption['firstName'];
+            theInscriptionOption['lastName'] = inscriptionOption['lastName'];
+            theInscriptionOption['phoneNumber'] = inscriptionOption['phoneNumber'];
+            theInscriptionOption['allergy'] = inscriptionOption['allergy'];
+            theInscriptionOption['physicalLimitation'] = inscriptionOption['physicalLimitation'];
+            theInscriptionOption['birthdate'] = inscriptionOption['birthdate'];
+            theInscriptionOption['gender'] = inscriptionOption['gender'];
+            theInscriptionOption['email'] = inscriptionOption['email'];
+          }
+          return this.inscriptionOptionsArray;
+        }),
+        catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

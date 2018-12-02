@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './authguard/auth.service';
+import { AuthGuard } from './authguard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MemberlistComponent } from './memberlist/memberlist.component';
@@ -13,6 +17,10 @@ import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
+import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
+import { InformationComponent } from './information/information.component';
+import { RegisterComponent } from './register/register.component';
+import { CookieService } from 'ngx-cookie-service';
 import { ShowhtmlComponent } from './generate/showhtml.component';
 
 @NgModule({
@@ -25,6 +33,9 @@ import { ShowhtmlComponent } from './generate/showhtml.component';
     UsersettingsComponent,
     InscriptionComponent,
     LoginComponent,
+    InscriptionOptionsComponent,
+    InformationComponent,
+    RegisterComponent
     ShowhtmlComponent
   ],
   imports: [
@@ -32,9 +43,9 @@ import { ShowhtmlComponent } from './generate/showhtml.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [CookieService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

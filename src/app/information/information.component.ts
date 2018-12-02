@@ -18,7 +18,6 @@ export class InformationComponent implements OnInit {
   }
 
   isLogged() {
-
   }
 
 }

@@ -9,7 +9,7 @@
 
     <!--<p *ngIf="success">Stored successfully</p>-->
     <p *ngIf="error">There is an error</p>
-    <p *ngIf="router.url === '/register?register=false'" id="fault">E-mail already used, please try again.</p>
+    <p *ngIf="router.url === '/register?register=false'" class="fault">E-mail already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 
@@ -92,7 +92,7 @@
         The password is required! <br/>
       </span>
       <span class="alert-danger" *ngIf="txtPassword.errors?.pattern && txtPassword.touched">
-        The password is not valid! <br/>
+        The password must consist of letters and numbers and at least 8 characters and a maximum of 20 characters! <br/>
       </span>
     </div>
 

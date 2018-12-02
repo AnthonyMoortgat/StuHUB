@@ -13,39 +13,28 @@ import { AuthGuard } from './authguard/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'home', component: InformationComponent, pathMatch: 'full' , canActivate:
-      [AuthGuard]},
-  {
-    path: 'register',
-    component: RegisterComponent
+    path: 'home', component: InformationComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
-    path: 'home',
-    component: InformationComponent
+    path: 'register', component: RegisterComponent
   },
   {
-    path: '',
-    component: LoginComponent
+    path: '', component: LoginComponent
   },
   {
-    path: 'usersettings',
-    component: UsersettingsComponent
+    path: 'usersettings', component: UsersettingsComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
-    path: 'memberlist',
-    component: MemberlistComponent
+    path: 'memberlist', component: MemberlistComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
-    path: 'debtlist',
-    component: DebtlistComponent
+    path: 'debtlist', component: DebtlistComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
-    path: 'ideabox',
-    component: IdeaboxComponent
+    path: 'ideabox', component: IdeaboxComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
-    path: 'inscription',
-    component: InscriptionComponent
+    path: 'inscription', component: InscriptionComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
 ];
 

@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
   // InvalidLogin = '';
 
   loginData = new User(0, '', '');
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router, private auth: AuthService) {
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router, private auth: AuthService,
+              private cookieService: CookieService) {
     this.form = formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]

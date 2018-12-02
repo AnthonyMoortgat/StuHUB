@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
+import { InscriptionOptionsComponent } from './inscription-options/inscription-options.component';
 
 import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-inscription',
@@ -10,16 +13,18 @@ import { InscriptionService } from '../inscription.service';
   styleUrls: ['./inscription.component.scss']
 })
 export class InscriptionComponent implements OnInit {
+  @ViewChild(InscriptionOptionsComponent) inscriptionOptionsChild;
+
   inscriptionForm = new FormGroup({
     id: new FormControl(0),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
-    allergy: new FormControl('', Validators.required),
-    physicalLimitation: new FormControl('', Validators.required),
-    birthdate: new FormControl(new Date(), Validators.required),
-    gender: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required)
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    allergy: new FormControl(''),
+    physicalLimitation: new FormControl(''),
+    birthdate: new FormControl(new Date()),
+    gender: new FormControl(''),
+    email: new FormControl('')
   });
 
   /* inscription */

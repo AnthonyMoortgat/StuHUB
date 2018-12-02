@@ -36,19 +36,6 @@ export class LoginComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.loginService.store(this.loginData)
-      .subscribe(
-        (res: User[]) => {
-          // Update the list of cars
-          this.login = res;
 
-          // Inform the user
-          this.success = 'Created successfully';
-
-          // Reset the form
-          f.reset();
-        },
-        (err) => this.error = err
-      );
   }
 }

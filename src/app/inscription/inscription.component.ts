@@ -17,14 +17,14 @@ export class InscriptionComponent implements OnInit {
 
   inscriptionForm = new FormGroup({
     id: new FormControl(0),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
-    allergy: new FormControl('', Validators.required),
-    physicalLimitation: new FormControl('', Validators.required),
-    birthdate: new FormControl(new Date(), Validators.required),
-    gender: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required)
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    allergy: new FormControl(''),
+    physicalLimitation: new FormControl(''),
+    birthdate: new FormControl(new Date()),
+    gender: new FormControl(''),
+    email: new FormControl('')
   });
 
   /* inscription */

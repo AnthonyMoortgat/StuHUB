@@ -1,7 +1,7 @@
-<nav>
+<nav *ngIf="auth.isLoggednIn()">
   <ul>
     <li>
-      <a routerLink="" routerLinkActive="activated">
+      <a routerLink="home" routerLinkActive="activated">
         <i class="material-icons">home</i>
       </a>
       <a routerLink="usersettings" routerLinkActive="activated">
@@ -19,9 +19,11 @@
       <a routerLink="inscription" routerLinkActive="activated">
         <i class="material-icons">person_add</i>
       </a>
-      <a routerLink="login" routerLinkActive="deactivated">
+      <a *ngIf="auth.isLoggednIn()" (click)="auth.logout()" routerLink="" routerLinkActive="deactivated">
         <i class="material-icons">logout</i>
       </a>
     </li>
   </ul>
 </nav>
+
+<!-- *ngIf="router.url != '/' && router.url != '/?login=false' && router.url != '/?register=true' && router.url != '/register' && router.url != '/register?register=false'" -->

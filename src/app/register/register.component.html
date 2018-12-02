@@ -7,7 +7,9 @@
 <form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
   <div style="max-width: 400px;">
 
-    <p *ngIf="" id="fault">E-mail already used, please try again.</p>
+    <!--<p *ngIf="success">Stored successfully</p>-->
+    <p *ngIf="error">There is an error</p>
+    <p *ngIf="router.url === '/register?register=false'" class="fault">E-mail already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 
@@ -90,7 +92,7 @@
         The password is required! <br/>
       </span>
       <span class="alert-danger" *ngIf="txtPassword.errors?.pattern && txtPassword.touched">
-        The password is not valid! <br/>
+        The password must consist of letters and numbers and at least 8 characters and a maximum of 20 characters! <br/>
       </span>
     </div>
 
@@ -126,12 +128,13 @@
            required />
     <label for="terms" style="margin-left: 1%">Accept Terms Of Use</label>
 
-    <a href="./termsofuse.html" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
+    <a routerLink="./termsofuse.html" style="margin-left: 1%">Read</a> <!--link werk nog niet-->
 
     <hr />
 
     <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" [disabled]="!(f.form.valid) || !(txtConfirmPassword.value === txtPassword.value)"/>
 
-    <a href="/login" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
+    <a routerLink="/" class="btn btn-primary" style="margin-left: 1%"><b>Cancel</b></a>
+    <!--[queryParams]="{register: true}"-->
   </div>
 </form>

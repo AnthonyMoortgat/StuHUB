@@ -1,4 +1,10 @@
 export class User {
+  user_id: number;
+  txtFirstname?: string;
+  txtLastname?: string;
+  txtEmail?: string;
+  txtPassword?: string;
+
   constructor(
     user_id: number,
     first_name?: string,

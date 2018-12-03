@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {User} from './register';
 import {RegisterService} from './register.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../authguard/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -27,9 +28,17 @@ export class RegisterComponent implements OnInit {
   // AlreadyExists = '';
 
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router) { }
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
+    this.whileLoggedIn();
+  }
+
+  whileLoggedIn() { // kijken of cookie bestaat, indien cookie bestaat kan er niet naar registerpage worden gegaan
+    if (this.auth.isLoggednIn() === true) {
+      this.router.navigate(['/']);
+    }
   }
   /*
   getRegister(): void {

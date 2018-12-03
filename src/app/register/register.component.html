@@ -120,6 +120,24 @@
 
     <br />
 
+    <label style="margin-left: 1%">Which Organisation:<br>
+    <input name="organisation"
+           type="radio"
+           [(ngModel)]="registerData.organisation"
+           #terms="ngModel"
+           value="Enigma"
+           required /> Enigma
+      <br>
+    <input name="organisation"
+           type="radio"
+           [(ngModel)]="registerData.organisation"
+           #terms="ngModel"
+           value="BOJ"
+           required /> BOJ
+    </label>
+
+    <br />
+
     <input name="terms"
            id="terms"
            type="checkbox"

@@ -36,6 +36,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.whileLoggedIn();
+  }
+
+  whileLoggedIn() { // kijken of cookie bestaat, indien cookie bestaat kan er niet naar loginpage worden gegaan
+    if (this.auth.isLoggednIn() === true) {
+      this.router.navigate(['/']);
+    }
   }
 
   getLogin(f) {

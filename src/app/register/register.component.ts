@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
     txtLastname: new FormControl('', Validators.required),
     txtEmail: new FormControl('', Validators.required),
     txtPassword: new FormControl('', Validators.required),
+    txtOrgname: new FormControl('', Validators.required),
   });
 
   /* register */
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
   success = '';
   // AlreadyExists = '';
 
-  registerData = new User(0, '', '', '', '');
+  registerData = new User(0, '', '', '', '', '');
   constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router,
               private auth: AuthService) { }
 

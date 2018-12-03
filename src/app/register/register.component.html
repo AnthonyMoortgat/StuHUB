@@ -74,6 +74,24 @@
 
     <br />
 
+    <!--Organisation name-->
+    <div class="form-group">
+      <label for="txtOrgname">Organisation name</label>
+      <input name="txtOrgname"
+             type="text"
+             id="txtOrgname"
+             class="form-control"
+             [(ngModel)]="registerData.txtOrgname"
+             #txtOrgname="ngModel"
+             placeholder="Enter Organisation Name"
+             required />
+      <span class="alert-danger" *ngIf="txtOrgname.errors?.required && txtOrgname.touched">
+        The organisation name is required!
+      </span>
+    </div>
+
+    <br />
+
     <!--Password-->
     <div class="form-group">
     <label for="txtPassword">Password</label>
@@ -117,24 +135,6 @@
         Passwords do not match! <br/>
       </span>
     </div>
-
-    <br />
-
-    <label style="margin-left: 1%">Which Organisation:<br>
-    <input name="organisation"
-           type="radio"
-           [(ngModel)]="registerData.organisation"
-           #terms="ngModel"
-           value="Enigma"
-           required /> Enigma
-      <br>
-    <input name="organisation"
-           type="radio"
-           [(ngModel)]="registerData.organisation"
-           #terms="ngModel"
-           value="BOJ"
-           required /> BOJ
-    </label>
 
     <br />
 

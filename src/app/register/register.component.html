@@ -11,6 +11,7 @@
     <!--<p *ngIf="success">Stored successfully</p>-->
     <p *ngIf="error">There is an error</p>
     <p *ngIf="router.url === '/register?register=false'" class="fault">E-mail already used, please try again.</p>
+    <p *ngIf="router.url === '/register?orgname=false'" class="fault">Org. name already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 

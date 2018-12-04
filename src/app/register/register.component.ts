@@ -64,12 +64,13 @@ export class RegisterComponent implements OnInit {
         (res: User[]) => {
           // Update the list
           this.register = res;
-          if (this.register[0].user_id === 0) {
-            // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-            // this.router.navigate(['/register'], {queryParams: {register: false}}));
+          if (this.register[0].user_id === 0 && this.register[0].user_email === 'invalid') {
             this.router.navigate(['/register'], {queryParams: {register: false}});
             location.reload();
             // this.AlreadyExists = 'Email already exists!!!';
+          } else if (this.register[0].user_id === 0 && this.register[0].org_name === 'invalidOrg') {
+            this.router.navigate(['/register'], {queryParams: {orgname: false}});
+            location.reload();
           } else {
             // Inform the user
             this.router.navigate(['/login'], {queryParams: {register: true}});

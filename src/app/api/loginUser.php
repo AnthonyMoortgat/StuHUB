@@ -21,7 +21,7 @@
     $email = mysqli_real_escape_string($con, trim($request->data->email));
 
     $password = mysqli_real_escape_string($con, trim($request->data->password));
-    $encryptPassword = md5($password);
+    $encryptPassword = hash('sha256', $password);
 
     //Read
     $sqlRead = "SELECT user_email, user_password FROM User WHERE user_email = '$email' AND user_password = '$encryptPassword'";

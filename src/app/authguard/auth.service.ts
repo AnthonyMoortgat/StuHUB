@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cookieService: CookieService) { }
     sendToken(token: string) {
-      localStorage.setItem('LoggedInUser', token);
+      sessionStorage.setItem('LoggedInUser', token);
     }
     getToken() {
-      return localStorage.getItem('LoggedInUser');
+      return sessionStorage.getItem('LoggedInUser');
     }
     isLoggednIn() {
       return this.getToken() !== null;
     }
     logout() {
-      localStorage.removeItem('LoggedInUser');
-      localStorage.removeItem('Firstname');
-      localStorage.removeItem('Lastname');
-      localStorage.removeItem('Orgname');
+      sessionStorage.removeItem('LoggedInUser');
+      sessionStorage.removeItem('Firstname');
+      sessionStorage.removeItem('Lastname');
+      sessionStorage.removeItem('Orgname');
+
       this.router.navigate(['/login'], {queryParams: {logout: true}});
       location.reload();
   }

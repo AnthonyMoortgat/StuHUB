@@ -2,9 +2,9 @@ export class User {
   user_id: number;
   txtFirstname?: string;
   txtLastname?: string;
-  txtEmail?: string;
+  user_email?: string;
   txtPassword?: string;
-  txtOrgname?: string;
+  org_name?: string;
 
   constructor(
     user_id: number,

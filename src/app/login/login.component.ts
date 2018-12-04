@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   error = '';
   success = '';
   form;
+
   // InvalidLogin = '';
 
   loginData = new User(0, '', '');
@@ -64,9 +65,9 @@ export class LoginComponent implements OnInit {
             // this.InvalidLogin = 'Login is invalid!!!';
           } else {
             // Inform the user
-            localStorage.setItem('Firstname', this.login[0].first_name);
-            localStorage.setItem('Lastname', this.login[0].last_name);
-            localStorage.setItem('Orgname', this.login[0].org_name);
+            sessionStorage.setItem('Firstname', this.login[0].first_name);
+            sessionStorage.setItem('Lastname', this.login[0].last_name);
+            sessionStorage.setItem('Orgname', this.login[0].org_name);
             this.auth.sendToken(this.login[0].user_email);
             this.router.navigate(['/']);
             this.success = 'Created successfully';

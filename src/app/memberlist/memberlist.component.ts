@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
+import {MemberlistOptionService} from './mermberlist-options/memberlist-option.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import {MemberlistService} from './memberlist.service';
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit {
+  @ViewChild(MemberlistOptionComponent)
   member = new FormGroup( {
     id : new FormControl(0),
     firstName: new FormControl('', Validators.required),

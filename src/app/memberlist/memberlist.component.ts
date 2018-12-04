@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
-
 
 
 @Component({
@@ -12,6 +11,16 @@ import {MemberlistService} from './memberlist.service';
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit {
+  member = new FormGroup( {
+    id : new FormControl(0),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    rol: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    birthdate: new FormControl('', Validators.required),
+    }
+  );
+
   members: Member[];
   error = '';
   success = '';

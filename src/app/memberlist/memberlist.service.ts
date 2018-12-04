@@ -37,7 +37,7 @@ export class MemberlistService {
   delete(id: number): Observable<Member[]> {
       const  params = new HttpParams().set('id', id.toString());
 
-    return this.http.delete(`${this.baseUrl}/delete`, { params: params })
+    return this.http.delete(`${this.baseUrl}/memberlistDelete.php`, { params: params })
       .pipe(map(res => {
           const filteredMembers = this.members.filter((member) => {
             return +member['id'] !== +id;

@@ -44,7 +44,7 @@
       </div>
 
       <div>
-        <p>Birthday</p>
+        <p>Birthdate</p>
         <label class="switch">
           <input type="checkbox">
           <span class="slider round"></span>
@@ -156,10 +156,7 @@
   <!-- DATA -->
   <div>
     <a data-toggle="collapse" data-target="#data"><h2>Data</h2></a>
-    <div id="data" class="coll  apse">
-      <div *ngIf="error">{{error}}</div>
-      <div *ngIf="success">{{success}}</div>
-
+    <div id="data" class="collapse">
       <table class="table table-striped">
         <thead>
         <tr>
@@ -172,7 +169,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of member">
+        <tr *ngFor="let item of members">
           <th> {{item.id}} </th>
           <th> {{item.firstName}} </th>
           <th> {{item.lastName}} </th>

@@ -22,6 +22,7 @@ import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ShowhtmlComponent } from './generate/showhtml.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     InformationComponent,
     RegisterComponent,
     PageNotFoundComponent
+    ShowhtmlComponent
   ],
   imports: [
     BrowserModule,

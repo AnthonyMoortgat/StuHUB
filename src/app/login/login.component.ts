@@ -24,6 +24,7 @@ loginForm = new FormGroup({
   error = '';
   success = '';
   form;
+
   // InvalidLogin = '';
 
   loginData = new User(0, '', '');
@@ -36,6 +37,13 @@ loginForm = new FormGroup({
   }
 
   ngOnInit() {
+    this.whileLoggedIn();
+  }
+
+  whileLoggedIn() { // kijken of cookie bestaat, indien cookie bestaat kan er niet naar loginpage worden gegaan
+    if (this.auth.isLoggednIn() === true) {
+      this.router.navigate(['/']);
+    }
   }
 
   getLogin(f) {
@@ -52,13 +60,16 @@ loginForm = new FormGroup({
           if (this.login[0].user_email === 'invalid' && this.login[0].user_password === 'invalid') {
             // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
             // this.router.navigate(['/'], {queryParams: {login: false}}));
-            this.router.navigate(['/'], {queryParams: {login: false}});
+            this.router.navigate(['/login'], {queryParams: {login: false}});
             location.reload();
             // this.InvalidLogin = 'Login is invalid!!!';
           } else {
             // Inform the user
-            this.auth.sendToken(this.form.email);
-            this.router.navigate(['/home']);
+            sessionStorage.setItem('Firstname', this.login[0].first_name);
+            sessionStorage.setItem('Lastname', this.login[0].last_name);
+            sessionStorage.setItem('Orgname', this.login[0].org_name);
+            this.auth.sendToken(this.login[0].user_email);
+            this.router.navigate(['/']);
             this.success = 'Created successfully';
 
             console.log(this.loginForm);

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {User} from './register';
 import {RegisterService} from './register.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../authguard/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
     txtLastname: new FormControl('', Validators.required),
     txtEmail: new FormControl('', Validators.required),
     txtPassword: new FormControl('', Validators.required),
+    txtOrgname: new FormControl('', Validators.required),
   });
 
   /* register */
@@ -26,10 +28,18 @@ export class RegisterComponent implements OnInit {
   success = '';
   // AlreadyExists = '';
 
-  registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router) { }
+  registerData = new User(0, '', '', '', '', '');
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, public router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
+    this.whileLoggedIn();
+  }
+
+  whileLoggedIn() { // kijken of cookie bestaat, indien cookie bestaat kan er niet naar registerpage worden gegaan
+    if (this.auth.isLoggednIn() === true) {
+      this.router.navigate(['/']);
+    }
   }
   /*
   getRegister(): void {
@@ -54,15 +64,17 @@ export class RegisterComponent implements OnInit {
         (res: User[]) => {
           // Update the list
           this.register = res;
-          if (this.register[0].user_id === 0) {
-            // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-            // this.router.navigate(['/register'], {queryParams: {register: false}}));
+          if (this.register[0].user_id === 0 && this.register[0].user_email === 'invalid') {
             this.router.navigate(['/register'], {queryParams: {register: false}});
             location.reload();
             // this.AlreadyExists = 'Email already exists!!!';
+          } else if (this.register[0].user_id === 0 && this.register[0].org_name === 'invalidOrg') {
+            this.router.navigate(['/register'], {queryParams: {orgname: false}});
+            location.reload();
           } else {
             // Inform the user
-            this.router.navigate(['/'], {queryParams: {register: true}});
+            this.router.navigate(['/login'], {queryParams: {register: true}});
+            location.reload();
             this.success = 'Created successfully';
 
             console.log(this.registerForm);

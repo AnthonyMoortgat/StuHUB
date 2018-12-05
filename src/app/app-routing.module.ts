@@ -10,16 +10,17 @@ import { RegisterComponent } from './register/register.component';
 import { InformationComponent } from './information/information.component';
 import { AuthService } from './authguard/auth.service';
 import { AuthGuard } from './authguard/auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
-    path: 'home', component: InformationComponent, pathMatch: 'full' , canActivate: [AuthGuard]
+    path: '', component: InformationComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
   {
     path: 'register', component: RegisterComponent
   },
   {
-    path: '', component: LoginComponent
+    path: 'login', component: LoginComponent
   },
   {
     path: 'usersettings', component: UsersettingsComponent, pathMatch: 'full' , canActivate: [AuthGuard]
@@ -36,6 +37,9 @@ const routes: Routes = [
   {
     path: 'inscription', component: InscriptionComponent, pathMatch: 'full' , canActivate: [AuthGuard]
   },
+  {
+    path: '**', component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

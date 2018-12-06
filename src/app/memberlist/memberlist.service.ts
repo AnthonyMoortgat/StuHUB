@@ -27,13 +27,6 @@ export class MemberlistService {
       catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse) {
-    console.log(error);
-
-    // return an observable with a user friendly message
-    return throwError('Error! something went wrong.');
-  }
-
   delete(id: number): Observable<Member[]> {
       const  params = new HttpParams().set('id', id.toString());
 
@@ -54,5 +47,29 @@ export class MemberlistService {
           return this.members;
         }),
         catchError(this.handleError));
+  }
+  update(member: Member): Observable<Member[]> {
+    return this.http.put(`${this.baseUrl}/testUpdate.php`, { data: member})
+      .pipe(map((res) => {
+          const theMember = this.members.find((item) => {
+            return +item['id'] === +member['id'];
+          });
+          if (theMember) {
+            theMember['firstName'] = member['firstName'];
+            theMember['lastName'] = member['lastName'];
+            theMember['rol'] = member['rol'];
+            theMember['email'] = member['email'];
+            theMember['birthdate'] = member['birthdate'];
+          }
+          return this.members;
+        }),
+        catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.log(error);
+
+    // return an observable with a user friendly message
+    return throwError('Error! something went wrong.');
   }
 }

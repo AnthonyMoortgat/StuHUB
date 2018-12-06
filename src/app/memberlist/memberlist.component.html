@@ -3,61 +3,8 @@
   <div>
     <a data-toggle="collapse" data-target="#options"><h2>Memberlist Options</h2></a>
     <div id="options" class="collapse">
-      <div>
-        <p>Active</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Visible</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>First Name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Last name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Role</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Birthdate</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Email</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
+      <app-memberlist-options
+        [memberlistForm]="memberlistForm"></app-memberlist-options>
     </div>
   </div>
 
@@ -67,120 +14,181 @@
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
-      <div id="theForm">
-        <form #f="ngForm" name="theForm" (submit)="addMember(f)">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text"
-                   class="form-control"
-                   name="firstName"
-                   [(ngModel)]="memberlistData.firstName"
-                   #memberlistFirstName="ngModel"
-                   required
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="memberlistFirstName.errors?.required && memberlistFirstName.touched">
-        The first name is required
-      </span>
-            <span class="help-block danger" *ngIf="memberlistFirstName.errors?.pattern && memberlistFirstName.touched">
-        The first name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
+      <!-- First name veld met checks: is het active?  -->
 
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text"
-                   class="form-control"
-                   name="lastName"
-                   required
-                   [(ngModel)]="memberlistData.lastName"
-                   #memberlistLastName="ngModel"
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="memberlistLastName.errors?.required && memberlistLastName.touched">
-        The last name is required
-      </span>
-            <span class="help-block danger" *ngIf="memberlistLastName.errors?.pattern && memberlistLastName.touched">
-        The last name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
+      <form *ngIf="!edit" [formGroup]="memberlistForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="memberlistOptionsChild.firstNameActiveChecked">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
 
-          <div class="form-group">
-            <label>Role</label>
-            <input type="text"
-                   class="form-control"
-                   name="Rol"
-                   [(ngModel)]="memberlistData.rol"
-                   #memberlistRole="ngModel"
-                   required>
-            <span class="help-block danger" *ngIf="memberlistRole.errors?.required && memberlistRole.touched">
-        The role  is required
-      </span>
-            <span class="help-block danger" *ngIf="memberlistRole.errors?.pattern && memberlistRole.touched">
-        The role can only contain the letters a-z or A-Z
-      </span>
-          </div>
-          <div class="form-group">
-            <label>Birthdate</label>
-            <input type="date"
-                   class="form-control"
-                   name="birthdate"
-                   [(ngModel)]="memberlistData.birthdate"
-                   #memberlistBirthDate="ngModel"
-                   required>
-            <span class="help-block danger" *ngIf="memberlistBirthDate.errors?.required && memberlistBirthDate.touched">
-        The date is required
-      </span>
-          </div>
+        <br/>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email"
-                   class="form-control"
-                   name="email"
-                   required
-                   [(ngModel)]="memberlistData.email"
-                   #memberlistEmail="ngModel">
-            <span class="help-block danger" *ngIf="memberlistEmail.errors?.required && memberlistEmail.touched">
-        The email is required
-      </span>
-          </div>
-          <button
-            class="btn btn-primary btn-sm"
-            [disabled]="f.invalid">Add</button>
-        </form>
-      </div>
+        <div *ngIf="memberlistOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.rolActiveChecked">
+          <label>
+            Role:
+            <input type="text" formControlName="rol" >
+          </label>
+        </div>
+
+        <br/>
+
+
+        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+
+        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
+
+        <button type="submit" [disabled]="!memberlistForm.valid">Add memberlist</button>
+      </form>
+
+      <form *ngIf="edit" [formGroup]="memberlistForm" (ngSubmit)="updateMemberlist()">
+        <div *ngIf="memberlistOptionsChild.firstNameActiveChecked">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.rolActiveChecked">
+          <label>
+            Role:
+            <input type="text" formControlName="rol" >
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
+
+        <button type="submit" [disabled]="!memberlistForm.valid">Edit memberlist</button>
+        <button type="button" (click)="returnForm()">Return</button>
+      </form>
+
     </div>
   </div>
 
   <hr/>
 
-  <!-- DATA -->
+  <!-- GEGEVENS -->
   <div>
-    <a data-toggle="collapse" data-target="#data"><h2>Data</h2></a>
-    <div id="data" class="collapse">
+    <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
+    <div id="data" class="coll  apse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
+
       <table class="table table-striped">
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Role</th>
-          <th scope="col">Birthdate</th>
-          <th scope="col">Options</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.firstNameActiveChecked">First name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameActiveChecked">Last name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.rolActiveChecked">Role</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.emailActiveChecked">Email</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.birthdateActiveChecked">Birthdate</th>
+
+          <th scope="col">Memberlist Options</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let item of members">
           <th> {{item.id}} </th>
-          <th> {{item.firstName}} </th>
-          <th> {{item.lastName}} </th>
-          <th> {{item.rol}} </th>
-          <th> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.firstNameActiveChecked"> {{item.firstName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameActiveChecked"> {{item.lastName}} </th>
+          <th *ngIf="memberlistOptionsChild.rolActiveChecked"> {{item.rol}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.emailActiveChecked"> {{item.email}} </th>
+          <th> <button (click)="editMemberlist(item.id)">Edit</button>
+            <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
         </tr>
         </tbody>
       </table>
+    </div>
+  </div>
 
+  <hr>
+
+  <div>
+    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
+    <div id="preview" class="collapse">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.firstNameVisibleChecked">First name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameVisibleChecked">Last name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameVisibleChecked">Role</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.emailVisibleChecked">Email</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.birthdateVisibleChecked">Birthdate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of members">
+          <th> {{item.id}} </th>
+          <th *ngIf="memberlistOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.rol}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.emailVisibleChecked"> {{item.email}} </th>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
 
 </div>
+
+

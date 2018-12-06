@@ -23,7 +23,7 @@ export class MemberlistOptionService {
         return this.memberlistOptionsArray;
       }),
       catchError(this.handleError));
-}
+  }
   update(memberlistOption: MemberlistOptions): Observable<MemberlistOptions[]> {
     return this.http.put(`${this.baseUrl}/memberlistOptionsUpdate.php`, { data: memberlistOption })
       .pipe(map((res) => {

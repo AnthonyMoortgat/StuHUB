@@ -1,9 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+import {MemberlistOptionService} from './memberlist-options/memberlist-option.service';
+
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
-import {MemberlistOptionService} from './mermberlist-options/memberlist-option.service';
+
+import {Inscription} from '../inscription/inscription';
 
 
 @Component({
@@ -12,8 +15,9 @@ import {MemberlistOptionService} from './mermberlist-options/memberlist-option.s
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit {
-  @ViewChild(MemberlistOptionComponent)
-  member = new FormGroup( {
+  @ViewChild(MemberlistOptionService) memberlistOptionsChild;
+
+  memberlistForm = new FormGroup( {
     id : new FormControl(0),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -28,6 +32,11 @@ export class MemberlistComponent implements OnInit {
   success = '';
 
   memberlistData = new Member(0, '', '', '', '', new Date());
+
+  edit = false;
+  editID: number;
+
+
   constructor(private memberlistService: MemberlistService, private formBuilder: FormBuilder) {
   }
 
@@ -64,7 +73,21 @@ export class MemberlistComponent implements OnInit {
       );
   }
 
-  editMemberlist(): void {
+  editMemberlist(id): void {
+
+    this.editID = id;
+    this.edit = true;
+
+    const memberlistEditIndex = this.members.findIndex(w => w.id === id);
+    const inscriptionEditForm = this.members[memberlistEditIndex];
+
+    const membersEdit = this.members.filter(x => x.id === id);
+
+    this.memberlistForm.get('firstName').setValue(inscriptionEditForm.firstName);
+    this.memberlistForm.get('lastName').setValue(inscriptionEditForm.lastName);
+    this.memberlistForm.get('gender').setValue(inscriptionEditForm.rol);
+    this.memberlistForm.get('email').setValue(inscriptionEditForm.email);
+    this.memberlistForm.get('birthdate').setValue(inscriptionEditForm.birthdate);
 
   }
 
@@ -80,4 +103,36 @@ export class MemberlistComponent implements OnInit {
       (err) => this.error = err
     );
     }
+
+  updateMemberlist() {
+    this.error = '';
+    this.success = '';
+
+    this.memberlistForm.get('id').setValue(this.editID);
+
+    this.memberlistService.update(this.memberlistForm.value)
+      .subscribe(
+        (res: Member[]) => {
+          // Update the list of members
+          this.members = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          this.memberlistForm.reset();
+
+          // Return
+          this.returnForm();
+        },
+        (err) => this.error = err
+      );
+  }
+
+  returnForm() {
+    this.edit = false;
+    this.editID = null;
+    this.memberlistForm.reset();
+  }
+
 }

@@ -1,15 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
-import {MemberlistOptions} from './memberlistOptions';
-import {MemberlistService} from '../memberlist.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MemberlistOptionService} from './memberlist-option.service';
-import {InscriptionOptions} from '../../inscription/inscription-options/inscriptionOptions';
+import {MemberlistOptions} from './MemberlistOptions';
 
 @Component({
-  selector: 'app-mermberlist-options',
-  templateUrl: './mermberlist-options.component.html',
-  styleUrls: ['./mermberlist-options.component.scss']
+  selector: 'app-memberlist-options',
+  templateUrl: './memberlist-options.component.html',
+  styleUrls: ['./memberlist-options.component.scss']
 })
 export class MermberlistOptionsComponent implements OnInit {
 
@@ -75,7 +72,7 @@ export class MermberlistOptionsComponent implements OnInit {
   }
   getOptions(): void {
     this.memberlistOptionsService.getAll().subscribe(
-      (res: InscriptionOptions[]) => {
+      (res: MemberlistOptions[]) => {
         this.memberlistOptionsArray = res;
       },
       (err) => {

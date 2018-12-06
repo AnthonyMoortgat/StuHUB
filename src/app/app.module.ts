@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
-import { MermberlistOptionsComponent } from './memberlist/mermberlist-options/mermberlist-options.component';
+import { MermberlistOptionsComponent } from './memberlist/memberlist-options/memberlist-options.component';
 
 @NgModule({
   declarations: [

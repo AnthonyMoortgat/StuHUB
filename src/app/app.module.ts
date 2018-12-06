@@ -35,7 +35,7 @@ import { ShowhtmlComponent } from './generate/showhtml.component';
     LoginComponent,
     InscriptionOptionsComponent,
     InformationComponent,
-    RegisterComponent
+    RegisterComponent,
     ShowhtmlComponent
   ],
   imports: [

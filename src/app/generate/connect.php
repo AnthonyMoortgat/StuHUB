@@ -1,10 +1,9 @@
 <?php
-
 // db credentials
 define('DB_HOST', 'dt5.ehb.be');
 define('DB_USER', '1819SP2_DB');
 define('DB_PASS', 'eixpbwz');
-define('DB_NAME', '1819SP2_Org1');
+define('DB_NAME', '1819SP2_Options');
 
 // Connect with the database.
 function connect()

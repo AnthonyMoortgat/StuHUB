@@ -45,7 +45,7 @@
         <br/>
 
 
-        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
+        <div *ngIf="memberlistOptionsChild.birthdateActiveChecked">
           <label>
             Birthdate:
             <input type="date" formControlName="birthdate">
@@ -55,7 +55,7 @@
         <br/>
 
 
-        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
+        <div *ngIf="memberlistOptionsChild.emailActiveChecked">
           <label>
             Email:
             <input type="text" formControlName="email">
@@ -128,7 +128,6 @@
     <div id="data" class="coll  apse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
-
       <table class="table table-striped">
         <thead>
         <tr>

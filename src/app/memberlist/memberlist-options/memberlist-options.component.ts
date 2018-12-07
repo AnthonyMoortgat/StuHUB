@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 import {MemberlistOptionService} from './memberlist-option.service';
 import {MemberlistOptions} from './MemberlistOptions';
 
@@ -292,10 +293,6 @@ export class MermberlistOptionsComponent implements OnInit {
   }
   changeOptionCheckboxes() {
 
-
-    // const incriptionEditIndex = this.inscriptionOptionsArray.findIndex(w => w.organisationId === 'Enigma');
-    // const inscriptionOptionsValues = this.inscriptionOptionsArray[0];
-    // console.log(inscriptionOptionsValues);
 
     switch (this.firstNameNumber) {
       case 0:

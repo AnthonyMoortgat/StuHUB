@@ -5,8 +5,6 @@ import {Observable, throwError } from 'rxjs';
 import {map, catchError } from 'rxjs/operators';
 
 import {Member} from './member';
-import {Inscription} from '../inscription/inscription';
-
 
 @Injectable({
   providedIn: 'root'

@@ -27,15 +27,15 @@ export class MemberlistOptionService {
   update(memberlistOption: MemberlistOptions): Observable<MemberlistOptions[]> {
     return this.http.put(`${this.baseUrl}/memberlistOptionsUpdate.php`, { data: memberlistOption })
       .pipe(map((res) => {
-          const theInscriptionOption = this.memberlistOptionsArray.find((item) => {
+          const theMemberlistOption = this.memberlistOptionsArray.find((item) => {
             return +item['organisationId'] === +memberlistOption['organisationId'];
           });
-          if (theInscriptionOption) {
-            theInscriptionOption['firstName'] = memberlistOption['firstName'];
-            theInscriptionOption['lastName'] = memberlistOption['lastName'];
-            theInscriptionOption['rol'] = memberlistOption['phoneNumber'];
-            theInscriptionOption['email'] = memberlistOption['allergy'];
-            theInscriptionOption['birthdate'] = memberlistOption['birthdate'];
+          if (theMemberlistOption) {
+            theMemberlistOption['firstName'] = memberlistOption['firstName'];
+            theMemberlistOption['lastName'] = memberlistOption['lastName'];
+            theMemberlistOption['rol'] = memberlistOption['phoneNumber'];
+            theMemberlistOption['email'] = memberlistOption['allergy'];
+            theMemberlistOption['birthdate'] = memberlistOption['birthdate'];
           }
           return this.memberlistOptionsArray;
         }),

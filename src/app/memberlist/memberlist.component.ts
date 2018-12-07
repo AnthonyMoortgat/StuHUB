@@ -1,12 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {MemberlistOptionService} from './memberlist-options/memberlist-option.service';
+import {MermberlistOptionsComponent} from './memberlist-options/memberlist-options.component';
 
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
-
-import {Inscription} from '../inscription/inscription';
 
 
 @Component({
@@ -15,7 +13,7 @@ import {Inscription} from '../inscription/inscription';
   styleUrls: ['./memberlist.component.scss']
 })
 export class MemberlistComponent implements OnInit {
-  @ViewChild(MemberlistOptionService) memberlistOptionsChild;
+  @ViewChild(MermberlistOptionsComponent) memberlistOptionsChild;
 
   memberlistForm = new FormGroup( {
     id : new FormControl(0),
@@ -79,15 +77,15 @@ export class MemberlistComponent implements OnInit {
     this.edit = true;
 
     const memberlistEditIndex = this.members.findIndex(w => w.id === id);
-    const inscriptionEditForm = this.members[memberlistEditIndex];
+    const memberlistnEditForm = this.members[memberlistEditIndex];
 
     const membersEdit = this.members.filter(x => x.id === id);
 
-    this.memberlistForm.get('firstName').setValue(inscriptionEditForm.firstName);
-    this.memberlistForm.get('lastName').setValue(inscriptionEditForm.lastName);
-    this.memberlistForm.get('gender').setValue(inscriptionEditForm.rol);
-    this.memberlistForm.get('email').setValue(inscriptionEditForm.email);
-    this.memberlistForm.get('birthdate').setValue(inscriptionEditForm.birthdate);
+    this.memberlistForm.get('firstName').setValue(memberlistnEditForm.firstName);
+    this.memberlistForm.get('lastName').setValue(memberlistnEditForm.lastName);
+    this.memberlistForm.get('rol').setValue(memberlistnEditForm.rol);
+    this.memberlistForm.get('email').setValue(memberlistnEditForm.email);
+    this.memberlistForm.get('birthdate').setValue(memberlistnEditForm.birthdate);
 
   }
 

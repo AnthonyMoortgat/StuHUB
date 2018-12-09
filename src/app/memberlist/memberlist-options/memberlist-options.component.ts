@@ -210,6 +210,33 @@ export class MermberlistOptionsComponent implements OnInit {
         this.lastNameVisibleChecked = true;
       }
     });
+    this.memberlistOptionsForm.get('rolActive').valueChanges.subscribe(val => {
+      if (val === false  && this.rolActiveChecked === true) {
+        this.rolActiveChecked = false;
+        this.rolRequiredChecked = false;
+        this.rolVisibleChecked = false;
+        this.changeRequirements('rol', this.rolRequiredChecked);
+      } else {
+        this.rolActiveChecked = true;
+      }
+    });
+
+    this.memberlistOptionsForm.get('rolRequired').valueChanges.subscribe(val => {
+      if (val === false  && this.rolRequiredChecked === true) {
+        this.rolRequiredChecked = false;
+      } else {
+        this.rolRequiredChecked = true;
+      }
+      this.changeRequirements('rol', this.rolRequiredChecked);
+    });
+
+    this.memberlistOptionsForm.get('rolVisible').valueChanges.subscribe(val => {
+      if (val === false  && this.rolVisibleChecked === true) {
+        this.rolVisibleChecked = false;
+      } else {
+        this.rolVisibleChecked = true;
+      }
+    });
 
     this.memberlistOptionsForm.get('birthdateActive').valueChanges.subscribe(val => {
       if (val === false) {
@@ -267,29 +294,6 @@ export class MermberlistOptionsComponent implements OnInit {
       }
     });
 
-    this.memberlistOptionsForm.get('rolActive').valueChanges.subscribe(val => {
-      if (val === false  && this.rolActiveChecked === true) {
-        this.rolActiveChecked = false;
-      } else {
-        this.rolActiveChecked = true;
-      }
-    });
-
-    this.memberlistOptionsForm.get('rolRequired').valueChanges.subscribe(val => {
-      if (val === false  && this.rolRequiredChecked === true) {
-        this.rolRequiredChecked = false;
-      } else {
-        this.rolRequiredChecked = true;
-      }
-    });
-
-    this.memberlistOptionsForm.get('rolVisible').valueChanges.subscribe(val => {
-      if (val === false  && this.rolVisibleChecked === true) {
-        this.rolVisibleChecked = false;
-      } else {
-        this.rolVisibleChecked = true;
-      }
-    });
   }
   changeOptionCheckboxes() {
 

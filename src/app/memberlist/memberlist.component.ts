@@ -5,6 +5,7 @@ import {MermberlistOptionsComponent} from './memberlist-options/memberlist-optio
 
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
+import {Inscription} from '../inscription/inscription';
 
 
 @Component({
@@ -42,16 +43,17 @@ export class MemberlistComponent implements OnInit {
   ngOnInit() {
     this.getMembers();
   }
-    getMembers(): void {
-      this.memberlistService.getAll().subscribe(
-        (res: Member[]) => {
-          this.members = res;
-        },
-        (err) => {
-          this.error = err;
-        }
-      );
-    }
+
+  getMembers(): void {
+    this.memberlistService.getAll().subscribe(
+      (res: Member[]) => {
+        this.members = res;
+      },
+      (err) => {
+        this.error = err;
+      }
+    );
+  }
 
   addMember(form) {
     this.error = '';
@@ -131,6 +133,26 @@ export class MemberlistComponent implements OnInit {
     this.edit = false;
     this.editID = null;
     this.memberlistForm.reset();
+  }
+
+  onSubmit() {
+    this.error = '';
+    this.success = '';
+
+    this.memberlistService.store(this.memberlistForm.value)
+      .subscribe(
+        (res: Inscription[]) => {
+          // Update the list of members
+          this.members = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          this.memberlistForm.reset();
+        },
+        (err) => this.error = err
+      );
   }
 
 }

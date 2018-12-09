@@ -10,9 +10,9 @@
 
   <hr>
 
-  <!-- INPUT -->
+  <!-- Registration -->
   <div>
-    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
+    <a data-toggle="collapse" data-target="#input"><h2>Registration</h2></a>
     <div id="input" class="collapse">
       <!-- First name veld met checks: is het active?  -->
 
@@ -64,7 +64,7 @@
 
         <br/>
 
-        <button type="submit" [disabled]="!memberlistForm.valid">Add memberlist</button>
+        <button type="submit" [disabled]="!memberlistForm.valid">Add member</button>
       </form>
 
       <form *ngIf="edit" [formGroup]="memberlistForm" (ngSubmit)="updateMemberlist()">
@@ -113,8 +113,8 @@
 
         <br/>
 
-        <button type="submit" [disabled]="!memberlistForm.valid">Edit memberlist</button>
-        <button type="button" (click)="returnForm()">Return</button>
+        <button type="submit" [disabled]="!memberlistForm.valid">Submit</button>
+        <button type="button" (click)="returnForm()">Clear</button>
       </form>
 
     </div>
@@ -122,7 +122,7 @@
 
   <hr/>
 
-  <!-- GEGEVENS -->
+  <!-- DATA -->
   <div>
     <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
     <div id="data" class="coll  apse">

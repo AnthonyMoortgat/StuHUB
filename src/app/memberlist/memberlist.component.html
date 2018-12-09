@@ -137,7 +137,6 @@
           <th scope="col" *ngIf="memberlistOptionsChild.rolActiveChecked">Role</th>
           <th scope="col" *ngIf="memberlistOptionsChild.emailActiveChecked">Email</th>
           <th scope="col" *ngIf="memberlistOptionsChild.birthdateActiveChecked">Birthdate</th>
-
           <th scope="col">Memberlist Options</th>
         </tr>
         </thead>
@@ -147,8 +146,8 @@
           <th *ngIf="memberlistOptionsChild.firstNameActiveChecked"> {{item.firstName}} </th>
           <th *ngIf="memberlistOptionsChild.lastNameActiveChecked"> {{item.lastName}} </th>
           <th *ngIf="memberlistOptionsChild.rolActiveChecked"> {{item.rol}} </th>
-          <th *ngIf="memberlistOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
           <th *ngIf="memberlistOptionsChild.emailActiveChecked"> {{item.email}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
           <th> <button (click)="editMemberlist(item.id)">Edit</button>
             <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
         </tr>

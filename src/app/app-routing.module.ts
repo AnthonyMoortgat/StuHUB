@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IdeaboxComponent } from './ideabox/ideabox.component';
+
 import { MemberlistComponent } from './memberlist/memberlist.component';
 import { DebtlistComponent } from './debtlist/debtlist.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component';

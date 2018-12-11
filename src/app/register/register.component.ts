@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import {User} from './register';
-import {RegisterService} from './register.service';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class RegisterComponent implements OnInit {
   // let errorMsg = false;
 
   registerData = new User(0, '', '', '', '');
-  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, private router: Router ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router ) { }
 
   ngOnInit() {
   }
@@ -34,7 +33,7 @@ export class RegisterComponent implements OnInit {
       }
     );
   }*/
-
+/*
   addRegister(f) {
     this.error = '';
     this.success = '';
@@ -55,5 +54,5 @@ export class RegisterComponent implements OnInit {
         },
         (err) => this.error = err
       );
-  }
+  }*/
 }

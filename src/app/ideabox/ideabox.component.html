@@ -1,160 +1,161 @@
 
 <div>
   <!-- Options -->
+
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>Options</h2></a>
+    <a data-toggle="collapse" data-target="#options"><h2>Ideabox-Options</h2></a>
     <div id="options" class="collapse">
-      <div>
-        <p>Activated?</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Visible?</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Last name</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div>
-        <p>Email</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <p>Anonyme senders</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-
-      <p>Allow upload images</p>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-
-      <p>Subject List</p>
-      <label class="switch">
-        <span class="slider round"></span>
-      </label>
-
-
-
+      <app-ideabox-option
+        [ideaboxForm]="ideaboxForm"></app-ideabox-option>
     </div>
   </div>
+  <hr/>
 
-  <hr>
 
   <!-- INPUT -->
+
+
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
-      <div id="theForm">
-        <form #f="ngForm" name="theForm" (submit)="addIdea(f)">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text"
-                   class="form-control"
-                   name="firstName"
-                   [(ngModel)]="ideaData.firstName"
-                   #ideaFirstName="ngModel"
-                   required
-                   pattern="^[a-zA-Z]+$">
-            <span class="help-block danger" *ngIf="ideaFirstName.errors?.required && ideaFirstName.touched">
-        The first name is required
-      </span>
-            <span class="help-block danger" *ngIf="ideaFirstName.errors?.pattern && ideaFirstName.touched">
-        The first name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
+      <form *ngIf="!edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
+          <label>
+            Subject :
+            <input type="text" formControlName="subject">
+          </label>
+        </div>
 
-          <div class="form-group">
-            <label>LastName</label>
-            <input type="text"
-                   class="form-control"
-                   name="lastName"
-                   required
-                   [(ngModel)]="ideaData.lastName"
-                   #ideaLastName="ngModel">
-            <span class="help-block danger" *ngIf="ideaLastName.errors?.required && ideaLastName.touched">
-        The last name is required
-      </span>
-            <span class="help-block danger" *ngIf="ideaLastName.errors?.pattern && ideaLastName.touched">
-        The last name name can only contain the letters a-z or A-Z
-      </span>
-          </div>
+        <br/>
 
-          <div class="form-group">
-            <label>Subject Idea</label>
-            <input type="text"
-                   class="form-control"
-                   name="subject"
-                   required
-                   [(ngModel)]="ideaData.subjectIdea"
-                   #subjectIdea="ngModel">
-            <span class="help-block danger" *ngIf="subjectIdea.errors?.required && subjectIdea.touched">
-        The subject idea is required
-      </span>
-            <span class="help-block danger" *ngIf="subjectIdea.errors?.pattern && subjectIdea.touched">
-        The subject idea can only contain the letters a-z or A-Z
-      </span>
-          </div>
+        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
+          <label>
+            Idea:
+            <input type="text" formControlName="idea">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
+          <label>
+              firstname :
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
+          <label>
+            Lastname :
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
+          <label>
+            E-mail:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
 
 
-
-          <div class="form-group">
-            <label>idea</label>
-            <input type="text"
-                   class="form-control"
-                   name="idea"
-                   required
-                   [(ngModel)]="ideaData.idea"
-                   #idea="ngModel">
-            <span class="help-block danger" *ngIf="idea.errors?.required && idea.touched">
-        The idea is required
-      </span>
-            <span class="help-block danger" *ngIf="idea.errors?.pattern && idea.touched">
-        The idea can only contain the letters a-z or A-Z
-      </span>
-          </div>
+        <button type="submit" [disabled]="!ideaboxForm.valid">Add idea</button>
+      </form>
 
 
 
 
 
-          <button
-            class="btn btn-primary btn-sm"
-            [disabled]="f.invalid">Add</button>
-        </form>
-      </div>
+
+
+      <!--<form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
+        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
+          <label>
+            Phone number:
+            <input type="text" formControlName="phoneNumber">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
+          <label>
+            Allergy:
+            <input type="text" formControlName="allergy">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
+          <label>
+            Physical limitations:
+            <input type="text" formControlName="physicalLimitation">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
+          <label>
+            Gender:
+            <label>
+              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
+              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
+            </label>
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
+
+        <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
+        <button type="button" (click)="returnForm()">Return</button>
+      </form>
+-->
     </div>
   </div>
-
-  <hr/>
-
 
 
 

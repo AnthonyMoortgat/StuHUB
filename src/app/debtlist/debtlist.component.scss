@@ -1,6 +1,6 @@
 .lButton{
    margin-bottom: 1em;
-   margin-right: 1em;
+   margin-right: 0.75em;
    width: 6.2em;
  }
 .rButton{
@@ -9,7 +9,15 @@
 }
 
 .mainButton{
-  width: 10.8em;
+  width: 10.5em;
 }
-th{
+.container{
+  width:83em;
+  margin-left: 0em;
+  margin-right: 0em;
+  padding-right: 0;
+}
+
+.collapse{
+  width: 83em;
 }

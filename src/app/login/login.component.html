@@ -1,17 +1,11 @@
-  <meta charset="UTF-8">
-      <title>Login</title>
-          <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
-              <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
-                  <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
-
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
-    <p *ngIf="router.url === '/?login=false'" class="fault">E-mail or password incorrect!</p>
+    <p *ngIf="router.url === '/login?login=false'" class="fault">E-mail or password incorrect!</p>
 
-    <p *ngIf="router.url === '/?register=true'" class="good">Registration successful!</p>
+    <p *ngIf="router.url === '/login?register=true'" class="good">Registration successful!</p>
 
-    <p *ngIf="router.url === '/?logout=true'" class="good">You are successfully logged out!</p>
+    <p *ngIf="router.url === '/login?logout=true'" class="good">You are successfully logged out!</p>
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
 

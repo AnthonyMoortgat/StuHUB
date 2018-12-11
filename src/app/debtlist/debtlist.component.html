@@ -4,9 +4,6 @@
     <a data-toggle="collapse" data-target="#debtlist">
       <h2>Debtlist</h2></a>
     <div id="debtlist" class="collapse">
-      <div *ngIf="error">{{error}}</div>
-      <div *ngIf="success">{{success}}</div>
-
       <button class="btn btn-secondary lButton" (click)="nameSort()">Name</button>
       <button class="btn btn-secondary rButton" (click)="debtSort()">Debt</button>
 
@@ -25,10 +22,12 @@
           <td>{{debtor.company}}</td>
           <td>{{debtor.memberRole}}</td>
           <td>{{debtor.debt}}</td>
-          <td> <button (click)="editDebtor(debtor.memberName)">Edit debt</button>
+          <td> <button class="btn btn-secondary debtButton" (click)="editDebtor(debtor.memberName)">Edit debt</button>
         </tr>
         </tbody>
       </table>
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
     </div>
   </div>
 
@@ -39,15 +38,13 @@
     <a data-toggle="collapse" data-target="#changeDebt"><h2>Change debt</h2></a>
     <div id="changeDebt" class="collapse">
 
-      <form class="form-group" [formGroup]="debtorForm">
-
-        <div>
+      <form [formGroup]="debtorForm">
           <div class="form-row">
             <div class="col-md-6">
               <label for="memberName">Name:</label><br/>
               <input type="text" id="memberName" formControlName="memberName" class="form-control" readonly><br/>
             </div>
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
               <label for="company">Company:</label><br/>
               <input type="text" id="company" formControlName="company" class="form-control" readonly><br/>
             </div>
@@ -62,15 +59,13 @@
               <input type="text" id="memberRole" formControlName="memberRole" class="form-control" readonly><br/>
             </div>
           </div>
-        </div>
       </form>
       <br/>
-      <form class="form-group" [formGroup]="debtChange" >
+      <form [formGroup]="debtChange" >
         <div class="form-row">
             <div class="col-md-2">
             <label for="amount">Amount:</label><br/>
             <input type="number" id="amount" formControlName="amount" class="form-control"><br/>
-
             <button class="btn btn-secondary lButton" type="button" [disabled]="!debtChange.valid" (click)="addAmount(debtorForm.get('memberName').value)">Add</button>
             <button class="btn btn-secondary rButton" type="button" [disabled]="!debtChange.valid" (click)="retractAmount(debtorForm.get('memberName').value)">Retract</button>
           </div>

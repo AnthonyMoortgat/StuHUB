@@ -68,97 +68,65 @@
         <button type="submit" [disabled]="!ideaboxForm.valid">Add idea</button>
       </form>
 
-
-
-
-
-
-
-      <!--<form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
-        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
+      <form *ngIf="edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
           <label>
-            First Name:
+            Subject :
+            <input type="text" formControlName="subject">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
+          <label>
+            Idea:
+            <input type="text" formControlName="idea">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
+          <label>
+            firstname :
             <input type="text" formControlName="firstName">
           </label>
         </div>
 
         <br/>
 
-        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
           <label>
-            Last Name:
+            Lastname :
             <input type="text" formControlName="lastName">
           </label>
         </div>
 
         <br/>
 
-        <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
+        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
           <label>
-            Phone number:
-            <input type="text" formControlName="phoneNumber">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
-          <label>
-            Allergy:
-            <input type="text" formControlName="allergy">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
-          <label>
-            Physical limitations:
-            <input type="text" formControlName="physicalLimitation">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
-          <label>
-            Birthdate:
-            <input type="date" formControlName="birthdate">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
-          <label>
-            Gender:
-            <label>
-              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
-              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
-            </label>
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
-          <label>
-            Email:
+            E-mail:
             <input type="text" formControlName="email">
           </label>
         </div>
 
         <br/>
 
-        <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
+
+        <button type="submit" [disabled]="!ideaboxForm.valid">Edit idea</button>
         <button type="button" (click)="returnForm()">Return</button>
       </form>
--->
+
+
+
     </div>
   </div>
 
 
 
+<hr/>
 
 
 
@@ -176,19 +144,22 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Idea</th>
+          <th scope="col" *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">Subject</th>
+          <th scope="col" *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">Idea</th>
+          <th scope="col" *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">First</th>
+          <th scope="col" *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">Last</th>
+          <th scope="col" *ngIf="ideaboxOptionsChild.emailOptionActiveChk">Email</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let item of idea">
           <th> {{item.id}} </th>
-          <th> {{item.firstName}} </th>
-          <th> {{item.lastName}} </th>
-          <th> {{item.subjectIdea}} </th>
-          <th> {{item.idea}} </th>
+          <th *ngIf="ideaboxOptionsChild.subjectOptionActiveChk"> {{item.subject}} </th>
+          <th *ngIf="ideaboxOptionsChild.ideaOptionActiveChk"> {{item.idea}} </th>
+          <th *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk"> {{item.firstName}} </th>
+          <th *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk"> {{item.lastName}} </th>
+          <th *ngIf="ideaboxOptionsChild.emailOptionActiveChk"> {{item.email}} </th>
+          <th><button (click)="editIdea(item.id)">Edit</button> <button (click)="deleteIdea(item.idea)">Delete</button> </th>
         </tr>
         </tbody>
       </table>

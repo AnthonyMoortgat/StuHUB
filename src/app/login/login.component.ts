@@ -51,7 +51,6 @@ loginForm = new FormGroup({
     this.success = '';
     // this.InvalidLogin = '';
     console.log(f);
-
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {

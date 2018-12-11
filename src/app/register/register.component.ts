@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
       }
     );
   }*/
-
+/*
   addRegister(f) {
     this.error = '';
     this.success = '';
@@ -85,5 +85,5 @@ export class RegisterComponent implements OnInit {
         },
         (err) => this.error = err
       );
-  }
+  }*/
 }

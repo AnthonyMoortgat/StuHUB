@@ -12,7 +12,7 @@ import { MemberlistOptions } from './memberlistOptions';
 })
 export class MemberlistOptionService {
 
-  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API/options';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/drilon/options';
   memberlistOptionsArray: MemberlistOptions[];
 
   constructor(private http: HttpClient) { }

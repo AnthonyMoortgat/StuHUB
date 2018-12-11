@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test website SP2</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function addHtml(str)
+    {
+      if (str.length == 0)
+      {
+        document.getElementById("generateHtmlDiv").innerHTML = "";
+        return;
+      } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function()
+        {
+          if (this.readyState == 4 && this.status == 200)
+          {
+            document.getElementById("generateHtmlDiv").innerHTML = this.responseText;
+          }
+        };
+        xmlhttp.open("GET", "indexv6.php" + str, true);
+        xmlhttp.send();
+      }
+    }
+  </script>
+</head>
+<body>
+<div id="generateHtmlDiv">
+
+</div>
+<button type="button" onclick="addHtml('Token')">Click hier</button>
+</body>
+</html>

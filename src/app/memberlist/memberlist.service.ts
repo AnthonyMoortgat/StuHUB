@@ -47,7 +47,7 @@ export class MemberlistService {
         catchError(this.handleError));
   }
   update(member: Member): Observable<Member[]> {
-    return this.http.put(`${this.baseUrl}/testUpdate.php`, { data: member})
+    return this.http.put(`${this.baseUrl}/memberlistUpdate.php`, { data: member})
       .pipe(map((res) => {
           const theMember = this.members.find((item) => {
             return +item['id'] === +member['id'];

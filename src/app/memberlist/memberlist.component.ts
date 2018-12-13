@@ -5,8 +5,6 @@ import {MermberlistOptionsComponent} from './memberlist-options/memberlist-optio
 
 import {Member} from './member';
 import {MemberlistService} from './memberlist.service';
-import {Inscription} from '../inscription/inscription';
-
 
 @Component({
   selector: 'app-memberlist',
@@ -141,7 +139,7 @@ export class MemberlistComponent implements OnInit {
 
     this.memberlistService.store(this.memberlistForm.value)
       .subscribe(
-        (res: Inscription[]) => {
+        (res: Member[]) => {
           // Update the list of members
           this.members = res;
 

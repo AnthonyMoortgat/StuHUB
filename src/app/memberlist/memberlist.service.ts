@@ -12,7 +12,7 @@ import {Member} from './member';
 export class MemberlistService {
 
   baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API';
-  members: Member[];
+  members: Member[] = new Array(0);
 
     constructor(private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class MemberlistService {
     return this.http.delete(`${this.baseUrl}/memberlistDelete.php`, { params: params })
       .pipe(map(res => {
           const filteredMembers = this.members.filter((member) => {
-            return +member['id'] !== +id;
+            return member['id'] !== id;
           });
           return this.members = filteredMembers;
         }),

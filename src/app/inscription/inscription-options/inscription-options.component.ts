@@ -98,7 +98,6 @@ export class InscriptionOptionsComponent implements OnInit {
 
   ngOnInit() {
     this.getOptions();
-    this.changeOptionCheckboxes();
     this.onChanges();
   }
 
@@ -106,6 +105,7 @@ export class InscriptionOptionsComponent implements OnInit {
     this.inscriptionOptionsService.getAll().subscribe(
       (res: InscriptionOptions[]) => {
         this.inscriptionOptionsArray = res;
+        this.changeVarDb();
       },
       (err) => {
         this.error = err;
@@ -447,12 +447,6 @@ export class InscriptionOptionsComponent implements OnInit {
   }
 
   changeOptionCheckboxes() {
-
-
-    // const incriptionEditIndex = this.inscriptionOptionsArray.findIndex(w => w.organisationId === 'Enigma');
-    // const inscriptionOptionsValues = this.inscriptionOptionsArray[0];
-    // console.log(inscriptionOptionsValues);
-
     switch (this.firstNameNumber) {
       case 0:
         break;
@@ -668,5 +662,18 @@ export class InscriptionOptionsComponent implements OnInit {
         this.changeRequirements('email', this.emailRequiredChecked);
         break;
     }
+  }
+
+  changeVarDb() {
+    this.firstNameNumber = +this.inscriptionOptionsArray[0]['firstName'];
+    this.lastNameNumber = +this.inscriptionOptionsArray[0]['lastName'];
+    this.phoneNumberNumber = +this.inscriptionOptionsArray[0]['phoneNumber'];
+    this.allergyNumber = +this.inscriptionOptionsArray[0]['allergy'];
+    this.physicalLimitationNumber = +this.inscriptionOptionsArray[0]['physicalLimitation'];
+    this.birthdateNumber = +this.inscriptionOptionsArray[0]['birthdate'];
+    this.genderNumber = +this.inscriptionOptionsArray[0]['gender'];
+    this.emailNumber = +this.inscriptionOptionsArray[0]['email'];
+
+    this.changeOptionCheckboxes();
   }
 }

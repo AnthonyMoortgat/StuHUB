@@ -6,6 +6,7 @@ import {User} from './login';
 import {LoginService} from './login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../authguard/auth.service';
+import {Inscription} from '../inscription/inscription';
 
 @Component({
   selector: 'app-login',

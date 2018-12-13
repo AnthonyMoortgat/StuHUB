@@ -12,7 +12,8 @@ import {AuthService} from '../authguard/auth.service';
 export class InformationComponent implements OnInit {
   private router: Router;
   firstname = sessionStorage.getItem('Firstname');
-  lastname = sessionStorage.getItem('Lastname');
+  lastname = sessionStorage.getItem('Lastname')
+  userID = sessionStorage.getItem('Orgname');
 
   constructor(private auth: AuthService) { }
 

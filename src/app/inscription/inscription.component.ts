@@ -52,7 +52,7 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionService.getAll().subscribe(
       (res: Inscription[]) => {
         this.inscription = res;
-      },
+        },
       (err) => {
         this.error = err;
       }

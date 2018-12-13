@@ -19,7 +19,10 @@ export class InscriptionService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Inscription[]> {
-    return this.http.get(`${this.baseUrl}/inscriptionList.php`).pipe(
+    const dbName = sessionStorage.getItem('Orgname');
+    const params = new HttpParams().set('id', dbName);
+
+    return this.http.get(`${this.baseUrl}/inscriptionList.php`, {params: params}).pipe(
       map((res) => {
         this.inscriptions = res['data'];
         return this.inscriptions;

@@ -6,7 +6,6 @@ import {User} from './login';
 import {LoginService} from './login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../authguard/auth.service';
-import {Inscription} from '../inscription/inscription';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ import {Inscription} from '../inscription/inscription';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-loginForm = new FormGroup({
+  loginForm = new FormGroup({
     id: new FormControl(0),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -52,6 +51,7 @@ loginForm = new FormGroup({
     this.success = '';
     // this.InvalidLogin = '';
     console.log(f);
+
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {

@@ -96,6 +96,8 @@ export class InscriptionOptionsComponent implements OnInit {
 
   constructor(private inscriptionOptionsService: InscriptionOptionsService) { }
 
+  userID = sessionStorage.getItem('Orgname');
+
   ngOnInit() {
     this.getOptions();
     this.onChanges();
@@ -114,7 +116,7 @@ export class InscriptionOptionsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.changeFormValue('Enigma');
+    this.changeFormValue(this.userID);
 
     this.inscriptionOptionsService.update(this.inscriptionOptionsUpdateForm.value)
       .subscribe(

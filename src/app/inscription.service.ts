@@ -5,8 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { Inscription } from './inscription/inscription';
-import {NULL_INJECTOR} from '@angular/core/src/render3/component';
-import {QueryEncoder} from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +53,6 @@ export class InscriptionService {
 
   update(inscription: Inscription): Observable<Inscription[]> {
     const params = new HttpParams().set('id', this.userID);
-
-    console.log(inscription);
 
     return this.http.put(`${this.baseUrl}/inscriptionUpdate.php`, { data: inscription }, {params})
       .pipe(map((res) => {

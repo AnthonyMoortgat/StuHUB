@@ -12,10 +12,11 @@ import {DebtlistService} from './debtlist.service';
 })
 export class DebtlistComponent implements OnInit {
   debtorForm = new FormGroup({
-    memberName: new FormControl(''),
+    id: new FormControl(''),
+    memberName: new FormControl('', Validators.required),
     company: new FormControl('', Validators.required),
     debt: new FormControl('', Validators.required),
-    memberRole: new FormControl('', Validators.required)
+    memberRole: new FormControl('')
 
   });
 
@@ -30,12 +31,11 @@ export class DebtlistComponent implements OnInit {
   sortName = true;
   staySorted = null;
 
-  debtlistData = new Debtor('', '', 0, '');
-  debtlistUpdateData = new Debtor('', '', 0, '');
-
   edit = false;
   editName: string;
   debtorEditIndex = null;
+
+  editId: number;
 
   constructor(private debtlistService: DebtlistService, private formBuilder: FormBuilder) {
   }
@@ -60,7 +60,7 @@ export class DebtlistComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.debtorForm.get('memberName').setValue(this.editName);
+    this.debtorForm.get('id').setValue(this.editId);
 
     this.debtlistService.update(this.debtorForm.value)
       .subscribe(
@@ -75,45 +75,21 @@ export class DebtlistComponent implements OnInit {
       );
   }
 
-  /*updateDeptor2() {
-    this.error = '';
-    this.success = '';
-
-    this.debtorForm.get('memberName2').setValue(this.editName);
-
-    this.debtlistService.update2(this.debtorForm2.value)
-      .subscribe(
-        (res: Debtor[]) => {
-          this.debtors2 = res;
-          this.success = 'Updated successfully';
-          this.debtorForm2.reset();
-          this.returnForm2();
-          this.getDebtor2();
-        },
-        (err) => this.error = err
-      );
-  }*/
-
   returnForm() {
     this.edit = false;
     this.editName = null;
     this.debtorForm.reset();
   }
 
-  /*returnForm2() {
-    this.edit = false;
-    this.editName = null;
-    this.debtorForm2.reset();
-  }*/
+  editDebtor(memberId): void {
+    this.editId = memberId;
 
-  editDebtor(memberName): void {
-
-    this.editName = memberName;
     this.edit = true;
 
-    this.debtorEditIndex = this.debtors.findIndex(w => w.memberName === memberName);
+    this.debtorEditIndex = this.debtors.findIndex(w => w.id === memberId);
     const debtorEditForm = this.debtors[this.debtorEditIndex];
 
+    // this.debtorForm.get('id').setValue(debtorEditForm.id);
     this.debtorForm.get('memberName').setValue(debtorEditForm.memberName);
     this.debtorForm.get('company').setValue(debtorEditForm.company);
     this.debtorForm.get('memberRole').setValue(debtorEditForm.memberRole);

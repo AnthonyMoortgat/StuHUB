@@ -29,7 +29,7 @@ export class DebtlistService {
     return this.http.put(`${this.baseUrl}/debtlistUpdate.php`, { data: debtor })
       .pipe(map((res) => {
           const theDebtor = this.debtors.find((item) => {
-            return +item['memberName'] === +debtor['memberName'];
+            return +item['id'] === +debtor['id'];
           });
           if (theDebtor) {
             theDebtor['memberName'] = debtor['memberName'];

@@ -1,9 +1,33 @@
 <div>
-  <!-- InscriptionOptions -->
+  <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>InscriptionOptions</h2></a>
-    <div id="options" class="collapse">
+    <a data-toggle="collapse" data-target="#data"><h2>Your Profile</h2></a>
+    <div id="data" class="collapse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
 
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" >First name</th>
+          <th scope="col" >Last name</th>
+          <th scope="col" >E-mail</th>
+          <th scope="col" >Organisation name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of usersettings">
+          <th> {{item.user_id}} </th>
+          <th> {{item.first_name}} </th>
+          <th> {{item.last_name}} </th>
+          <th> {{item.user_email}} </th>
+          <th> Org </th>
+          <th> <button (click)="editUser(item.user_id)" data-toggle="collapse" data-target="#input">Edit Profile</button>
+            <button>Delete</button> </th>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -11,28 +35,91 @@
 
   <!-- INPUT -->
   <div>
-    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
+      <a data-toggle="collapse" data-target="#input"><h2>Update Profile</h2></a>
 
+      <form [formGroup]="usersettingsForm" (ngSubmit)="updateUser()">
+
+        <hr/>
+
+        <label>
+          First Name:
+          <input type="text" formControlName="first_name">
+        </label>
+
+        <br/>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="last_name">
+        </label>
+
+        <br/>
+
+        <label>
+          E-mail:
+          <input type="text" formControlName="user_email">
+        </label>
+
+        <br/>
+
+        <label>
+          Organisation:
+          <input type="text" formControlName="org_name">
+        </label>
+
+        <br/><br/>
+
+        <button type="submit" [disabled]="!usersettingsForm.valid" data-toggle="collapse" data-target="#input">Update profile</button>
+      </form>
+
+      <hr/>
+
+    </div>
+  </div>
+
+
+  <!-- Change Password -->
+  <div>
+    <a data-toggle="collapse" data-target="#changePass"><h2>Change Password</h2></a>
+    <div id="changePass" class="collapse">
+      <form [formGroup]="usersettingsForm" (ngSubmit)="updatePassUser()">
+
+        <hr/>
+
+        <label>
+          New Password:
+          <input type="password" name="new_password">
+          <!--<input name="newPassword"
+                 type="password"
+                 id="newPassword"
+                 title="Password must contain: Minimum 8 characters and maximum 20 characters atleast 1 Alphabet and 1 Number"
+                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"
+                 [(ngModel)]="usersettingsData.newPass"
+                 #newPass="ngModel"
+                 minlength="8"
+                 maxlength="20"
+                 required />-->
+        </label>
+
+        <!--<span class="alert-danger" *ngIf="newPass.errors?.pattern && newPass.touched">
+            The password must consist of letters and numbers and at least 8 characters and a maximum of 20 characters! <br/>
+        </span>-->
+
+        <br/>
+
+        <label>
+          Confirm Password:
+          <input type="password">
+        </label>
+
+        <br/><br/>
+
+        <button type="submit" [disabled]="!usersettingsForm.valid">Change Password</button>
+      </form>
     </div>
   </div>
 
   <hr/>
 
-  <!-- GEGEVENS -->
-  <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
-    <div id="gegevens" class="collapse">
-
-    </div>
-  </div>
-
-  <hr>
-
-  <div>
-    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
-    <div id="preview" class="collapse">
-
-    </div>
-  </div>
 </div>

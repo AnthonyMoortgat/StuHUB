@@ -22,6 +22,7 @@ export class AuthService {
       sessionStorage.removeItem('Firstname');
       sessionStorage.removeItem('Lastname');
       sessionStorage.removeItem('Orgname');
+      sessionStorage.removeItem('DBname');
 
       this.router.navigate(['/login'], {queryParams: {logout: true}});
       location.reload();

@@ -7,7 +7,6 @@ import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
 import {forEach} from '@angular/router/src/utils/collection';
 
-import { DbName } from '../DbName';
 import {HttpParams} from '@angular/common/http';
 
 @Component({

@@ -11,7 +11,7 @@ import { Ideabox } from './ideabox';
 })
 export class IdeaboxService {
 
-  baseUrl = 'http://dtsl.ehb.be/~anas.ahraoui/api';
+  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API/ideabox';
   ideaboxes: Ideabox[];
 
   constructor(private http: HttpClient) { }
@@ -29,7 +29,7 @@ export class IdeaboxService {
 
 
   store(ideabox: Ideabox): Observable<Ideabox[]> {
-    return this.http.post(`${this.baseUrl}/ideaboxStore`, { data: ideabox })
+    return this.http.post(`${this.baseUrl}/ideaboxStore.php`, { data: ideabox })
       .pipe(map((res) => {
           this.ideaboxes.push(res['data']);
           return this.ideaboxes;
@@ -51,7 +51,7 @@ export class IdeaboxService {
 
 
   update(idea: Ideabox): Observable<Ideabox[]> {
-    return this.http.put(`${this.baseUrl}/testUpdate.php`, { data: idea })
+    return this.http.put(`${this.baseUrl}/ideaboxUpdate.php`, { data: idea })
       .pipe(map((res) => {
           const theIdea = this.ideaboxes.find((item) => {
             return +item['id'] === +idea['id'];
@@ -72,7 +72,7 @@ export class IdeaboxService {
     const params = new HttpParams()
       .set('id', id.toString());
 
-    return this.http.delete(`${this.baseUrl}/inscriptionDelete.php`, { params: params })
+    return this.http.delete(`${this.baseUrl}/ideaboxDelete.php`, { params: params })
       .pipe(map(res => {
           const theIdeas = this.ideaboxes.filter((ideaA) => {
             return +ideaA['id'] !== +id;

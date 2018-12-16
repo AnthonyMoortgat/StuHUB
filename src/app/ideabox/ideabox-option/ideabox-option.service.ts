@@ -9,7 +9,7 @@ import {Ideabox} from '../ideabox';
   providedIn: 'root'
 })
 export class IdeaboxOptionService {
-  baseUrl = 'http://dtsl.ehb.be/~anas.ahraoui/api/options';
+  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/api/ideabox';
   ideaboxOptionsArray: IdeaboxOption[];
 
 

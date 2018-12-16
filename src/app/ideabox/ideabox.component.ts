@@ -18,8 +18,8 @@ export class IdeaboxComponent implements OnInit {
     id: new FormControl(0),
     subject: new FormControl(''),
     idea: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
     email: new FormControl('')
   });
 
@@ -119,7 +119,7 @@ export class IdeaboxComponent implements OnInit {
     const ideaboxEditIndex = this.idea.findIndex(w => w.id === id);
     const ideaboxEditForm = this.idea[ideaboxEditIndex];
 
-    const inscriptionEdit = this.idea.filter(x => x.id === id);
+    const ideaboxEdit = this.idea.filter(x => x.id === id);
 
     this.ideaboxForm.get('subject').setValue(ideaboxEditForm.subject);
     this.ideaboxForm.get('idea').setValue(ideaboxEditForm.idea);

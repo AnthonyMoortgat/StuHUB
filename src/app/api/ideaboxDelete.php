@@ -1,6 +1,7 @@
 <?php
 
-
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: multipart/form-data;charset=UTF-8;");
 require 'connect.php';
 
 // Extract, validate and sanitize the id.
@@ -22,4 +23,5 @@ else
 {
   return http_response_code(422);
 }
+mysqli_close($con);
 ?>

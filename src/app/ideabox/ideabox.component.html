@@ -175,60 +175,56 @@
     <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
     <div id="preview" class="collapse">
 
+      <form *ngIf="!edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
+          <label>
+            Subject :
+            <input type="text" formControlName="subject">
+          </label>
+        </div>
 
-        <form action="#LinkNaarDB na het klikken op SubmitButton#" id="dvActivation" style="display: none" id="formIdeaModule">
+        <br/>
 
+        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
+          <label>
+            Idea:
+            <input type="text" formControlName="idea">
+          </label>
+        </div>
 
+        <br/>
 
-          <!-- Name -->
-          <div class="form-group" >
-            Name:<br/>
-            <input  type="text">
-          </div>
+        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
+          <label>
+            firstname :
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
 
+        <br/>
 
+        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
+          <label>
+            Lastname :
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
 
+        <br/>
 
-          <!-- Subject -->
-          <div class="form-group" >
-            Random Subject:<br/>
-            <input  type="text">
-          </div>
-          <div style="display: none">
+        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
+          <label>
+            E-mail:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
 
-
-            <p>Subject: </p>
-
-            <select>
-              <option value=""></option>
-              <option value="Update">Update</option>
-              <option value="Idea">Idea</option>
-              <option value="Bad experiences">Bad experiences</option>
-            </select>
-
-          </div>
-
-
-
-          <!-- Idea -->
-          <div class="form-group">
-            Idea:<br/>
-            <textarea rows="20" cols="80">  </textarea>
-          </div>
-
-
-          <!-- Images -->
-
-          <div class="form-group" style="display: none">
-            <br>
-            Select an image: <input type="file" name="myImage"><br><br>
-          </div>
-          <div ><p>Uploading images is not allowed</p></div>
+        <br/>
 
 
+        <button type="submit" [disabled]="!ideaboxForm.valid">Add idea</button>
+      </form>
 
-          <input type="submit" value="Send" class="button">
-        </form>
 
 
     </div>

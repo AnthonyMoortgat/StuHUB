@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: multipart/form-data;charset=UTF-8;");
+
 require 'connect.php';
 
 // Get the posted data.
@@ -38,4 +41,5 @@ if(isset($postdata) && !empty($postdata))
 
 
 }
+mysqli_close($con);
 ?>

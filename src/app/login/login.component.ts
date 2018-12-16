@@ -50,8 +50,6 @@ export class LoginComponent implements OnInit {
     this.error = '';
     this.success = '';
     // this.InvalidLogin = '';
-    console.log(f);
-
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {

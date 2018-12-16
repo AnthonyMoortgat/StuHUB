@@ -1,29 +1,158 @@
 <div>
-  <!-- InscriptionOptions -->
+  <!-- Memberlist Options -->
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>InscriptionOptions</h2></a>
+    <a data-toggle="collapse" data-target="#options"><h2>Memberlist options</h2></a>
     <div id="options" class="collapse">
-
+      <app-memberlist-options
+        [memberlistForm]="memberlistForm"></app-memberlist-options>
     </div>
   </div>
 
   <hr>
 
-  <!-- INPUT -->
+  <!-- Registration -->
   <div>
-    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
+    <a data-toggle="collapse" data-target="#input"><h2>Registration</h2></a>
     <div id="input" class="collapse">
+      <!-- First name veld met checks: is het active?  -->
+
+      <form *ngIf="!edit" [formGroup]="memberlistForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="memberlistOptionsChild.firstNameActiveChecked">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.rolActiveChecked">
+          <label>
+            Role:
+            <input type="text" formControlName="rol" >
+          </label>
+        </div>
+
+        <br/>
+
+
+        <div *ngIf="memberlistOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+
+        <div *ngIf="memberlistOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
+
+        <button type="submit" [disabled]="!memberlistForm.valid">Add member</button>
+      </form>
+
+      <form *ngIf="edit" [formGroup]="memberlistForm" (ngSubmit)="updateMemberlist()">
+        <div *ngIf="memberlistOptionsChild.firstNameActiveChecked">
+          <label>
+            First Name:
+            <input type="text" formControlName="firstName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.lastNameActiveChecked">
+          <label>
+            Last Name:
+            <input type="text" formControlName="lastName">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.rolActiveChecked">
+          <label>
+            Role:
+            <input type="text" formControlName="rol" >
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.birthdateActiveChecked">
+          <label>
+            Birthdate:
+            <input type="date" formControlName="birthdate">
+          </label>
+        </div>
+
+        <br/>
+
+        <div *ngIf="memberlistOptionsChild.emailActiveChecked">
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+
+        <br/>
+
+        <button type="submit" [disabled]="!memberlistForm.valid">Submit</button>
+        <button type="button" (click)="returnForm()">Clear</button>
+      </form>
 
     </div>
   </div>
 
   <hr/>
 
-  <!-- GEGEVENS -->
+  <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
-    <div id="gegevens" class="collapse">
-
+    <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
+    <div id="data" class="coll  apse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.firstNameActiveChecked">First name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameActiveChecked">Last name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.rolActiveChecked">Role</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.emailActiveChecked">Email</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.birthdateActiveChecked">Birthdate</th>
+          <th scope="col">Memberlist Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of members">
+          <th> {{item.id}} </th>
+          <th *ngIf="memberlistOptionsChild.firstNameActiveChecked"> {{item.firstName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameActiveChecked"> {{item.lastName}} </th>
+          <th *ngIf="memberlistOptionsChild.rolActiveChecked"> {{item.rol}} </th>
+          <th *ngIf="memberlistOptionsChild.emailActiveChecked"> {{item.email}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
+          <th> <button (click)="editMemberlist(item.id)">Edit</button>
+            <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -32,7 +161,32 @@
   <div>
     <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
     <div id="preview" class="collapse">
-
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.firstNameVisibleChecked">First name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameVisibleChecked">Last name</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.lastNameVisibleChecked">Role</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.emailVisibleChecked">Email</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.birthdateVisibleChecked">Birthdate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of members">
+          <th> {{item.id}} </th>
+          <th *ngIf="memberlistOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </th>
+          <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.rol}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.emailVisibleChecked"> {{item.email}} </th>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
+
 </div>
+
+

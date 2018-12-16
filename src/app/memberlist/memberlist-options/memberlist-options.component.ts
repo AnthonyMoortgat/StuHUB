@@ -28,7 +28,10 @@ export class MermberlistOptionsComponent implements OnInit {
     emailVisible: new FormControl(),
     birthdateActive: new FormControl(),
     birthdateRequired: new FormControl(),
-    birthdateVisible: new FormControl()
+    birthdateVisible: new FormControl(),
+    organisationActive: new FormControl(),
+    organisationRequired: new FormControl(),
+    organisationVisible: new FormControl()
   });
 
   memberlistOptionsUpdateForm = new FormGroup({
@@ -37,7 +40,8 @@ export class MermberlistOptionsComponent implements OnInit {
     lastName: new FormControl(0),
     rol: new FormControl(0),
     email: new FormControl(0),
-    birthdate: new FormControl(0)
+    birthdate: new FormControl(0),
+    organisation: new FormControl(0)
   });
 
   memberlistOptionsArray: MemberlistOptions[];
@@ -56,12 +60,16 @@ export class MermberlistOptionsComponent implements OnInit {
   birthdateActiveChecked = false;
   birthdateRequiredChecked = false;
   birthdateVisibleChecked = false;
-  // Can be replaced when the array works
+  organisationActiveChecked = false;
+  organisationRequiredChecked = false;
+  organisationVisibleChecked = false;
+
   firstNameNumber = 4;
   lastNameNumber = 3;
   birthdateNumber = 4;
   rolnumber = 1;
   emailNumber = 2;
+  organisationNumber = 3;
 
   error = '';
   constructor(private memberlistOptionsService: MemberlistOptionService) { }
@@ -81,6 +89,7 @@ export class MermberlistOptionsComponent implements OnInit {
       }
     );
   }
+
   onSubmit() {
     this.changeFormValue('Enigma');
 
@@ -92,6 +101,7 @@ export class MermberlistOptionsComponent implements OnInit {
         (err) => this.error = err
       );
   }
+
   changeFormValue(organisationId) {
     this.memberlistOptionsUpdateForm.get('organisationId').setValue(organisationId);
 
@@ -144,7 +154,18 @@ export class MermberlistOptionsComponent implements OnInit {
         }
       } else { this.memberlistOptionsUpdateForm.get('rol').setValue(1); }
     } else { this.memberlistOptionsUpdateForm.get('rol').setValue(0); }
+
+    if (this.organisationActiveChecked) {
+      if (this.organisationRequiredChecked || this.organisationVisibleChecked) {
+        if (this.organisationRequiredChecked && this.organisationVisibleChecked) {
+          this.memberlistOptionsUpdateForm.get('organisation').setValue(4);
+        } else if (this.organisationVisibleChecked) { this.memberlistOptionsUpdateForm.get('organisation').setValue(3); } else {
+          this.memberlistOptionsUpdateForm.get('organisation').setValue(2);
+        }
+      } else { this.memberlistOptionsUpdateForm.get('organisation').setValue(1); }
+    } else { this.memberlistOptionsUpdateForm.get('organisation').setValue(0); }
   }
+
   changeRequirements(name, boolean) {
     if (boolean) {
       this.memberlistForm.controls[name].setValidators(Validators.required);
@@ -154,6 +175,7 @@ export class MermberlistOptionsComponent implements OnInit {
       this.memberlistForm.controls[name].updateValueAndValidity();
     }
   }
+
   onChanges(): void {
     this.memberlistOptionsForm.get('fistNameActive').valueChanges.subscribe(val => {
       if (val === false) {
@@ -294,10 +316,37 @@ export class MermberlistOptionsComponent implements OnInit {
       }
     });
 
+    this.memberlistOptionsForm.get('organisationActive').valueChanges.subscribe(val => {
+      if (val === false) {
+        this.organisationActiveChecked = false;
+        this.organisationRequiredChecked = false;
+        this.organisationVisibleChecked = false;
+        this.changeRequirements('organisation', this.organisationRequiredChecked);
+      } else {
+        this.organisationActiveChecked = true;
+      }
+    });
+
+    this.memberlistOptionsForm.get('organisationRequired').valueChanges.subscribe(val => {
+      if (val === false && this.organisationActiveChecked === true) {
+        this.organisationRequiredChecked = false;
+      } else {
+        this.organisationRequiredChecked = true;
+      }
+      this.changeRequirements('organisation', this.organisationRequiredChecked);
+    });
+
+    this.memberlistOptionsForm.get('organisationVisible').valueChanges.subscribe(val => {
+      if (val === false  && this.organisationActiveChecked === true) {
+        this.organisationVisibleChecked = false;
+      } else {
+        this.organisationVisibleChecked = true;
+      }
+    });
+
   }
+
   changeOptionCheckboxes() {
-
-
     switch (this.firstNameNumber) {
       case 0:
         break;
@@ -428,6 +477,33 @@ export class MermberlistOptionsComponent implements OnInit {
         this.rolRequiredChecked = true;
         this.rolVisibleChecked = true;
         this.changeRequirements('email', this.rolRequiredChecked);
+        break;
+    }
+
+    switch (this.organisationNumber) {
+      case 0:
+        break;
+
+      case 1:
+        this.organisationActiveChecked = true;
+        break;
+
+      case 2:
+        this.organisationActiveChecked = true;
+        this.organisationRequiredChecked = true;
+        this.changeRequirements('organisation', this.organisationRequiredChecked);
+        break;
+
+      case 3:
+        this.organisationActiveChecked = true;
+        this.organisationVisibleChecked = true;
+        break;
+
+      case 4:
+        this.organisationActiveChecked = true;
+        this.organisationRequiredChecked = true;
+        this.organisationVisibleChecked = true;
+        this.changeRequirements('organisation', this.organisationRequiredChecked);
         break;
     }
   }

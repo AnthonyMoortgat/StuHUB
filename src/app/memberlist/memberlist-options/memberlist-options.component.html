@@ -48,6 +48,22 @@
   </div>
 
   <div>
+    <p>Birthdate</p>
+    <label class="switch">
+      <input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <input type="checkbox" formControlName="birthdateRequired" value="true" [checked]="birthdateRequiredChecked" >
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <div>
     <p>Email</p>
     <label class="switch">
       <input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >
@@ -63,19 +79,18 @@
     </label>
   </div>
 
-
   <div>
-    <p>Birthdate</p>
+    <p>Organisation</p>
     <label class="switch">
-      <input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >
+      <input type="checkbox" formControlName="organisationActive" value="true" [checked]="organisationActiveChecked" >
       <span class="slider round"></span>
     </label>
     <label class="switch">
-      <input type="checkbox" formControlName="birthdateRequired" value="true" [checked]="birthdateRequiredChecked" >
+      <input type="checkbox" formControlName="organisationRequired" value="true" [checked]="organisationRequiredChecked" >
       <span class="slider round"></span>
     </label>
     <label class="switch">
-      <input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >
+      <input type="checkbox" formControlName="organisationVisible" value="true" [checked]="organisationVisibleChecked" >
       <span class="slider round"></span>
     </label>
   </div>

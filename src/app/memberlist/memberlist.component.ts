@@ -16,11 +16,12 @@ export class MemberlistComponent implements OnInit {
 
   memberlistForm = new FormGroup( {
     id : new FormControl(0),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    rol: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    birthdate: new FormControl('', Validators.required),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    rol: new FormControl(''),
+    email: new FormControl(''),
+    birthdate: new FormControl(new Date()),
+    organisation: new FormControl(''),
     }
   );
 
@@ -28,7 +29,7 @@ export class MemberlistComponent implements OnInit {
   error = '';
   success = '';
 
-  memberlistData = new Member(0, '', '', '', '', new Date());
+  memberlistData = new Member(0, '', '', '', '', new Date(), '');
 
   edit = false;
   editID: number;

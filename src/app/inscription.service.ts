@@ -32,8 +32,8 @@ export class InscriptionService {
   store(inscription: Inscription): Observable<Inscription[]> {
     const params = new HttpParams().set('id', this.userID);
 
-    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription }, {params})
-      .pipe(map((res) => {
+    return this.http.post(`${this.baseUrl}/inscriptionStore.php`, { data: inscription }, {params}).pipe(
+      map((res) => {
           this.inscriptions.push(res['data']);
           return this.inscriptions;
         }),
@@ -69,10 +69,10 @@ export class InscriptionService {
 
     return this.http.delete(`${this.baseUrl}/inscriptionDelete.php`, { params: params })
       .pipe(map(res => {
-          const filteredCars = this.inscriptions.filter((car) => {
-            return +car['id'] !== +id;
+          const filteredInscription = this.inscriptions.filter((inscription) => {
+            return +inscription['id'] !== +id;
           });
-          return this.inscriptions = filteredCars;
+          return this.inscriptions = filteredInscription;
         }),
         catchError(this.handleError));
   }

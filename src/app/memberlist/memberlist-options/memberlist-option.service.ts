@@ -12,12 +12,17 @@ import { MemberlistOptions } from './memberlistOptions';
 })
 export class MemberlistOptionService {
 
-  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API/Options';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/Memberlist/Options';
   memberlistOptionsArray: MemberlistOptions[];
 
   constructor(private http: HttpClient) { }
+
+  userID = sessionStorage.getItem('Orgname');
+
   getAll(): Observable<MemberlistOptions[]> {
-    return this.http.get(`${this.baseUrl}/memberlistOptionsGetAll.php`).pipe(
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.get(`${this.baseUrl}/memberlistOptionsGetAll.php`, {params: params}).pipe(
       map((res) => {
         this.memberlistOptionsArray = res['data'];
         return this.memberlistOptionsArray;
@@ -25,7 +30,9 @@ export class MemberlistOptionService {
       catchError(this.handleError));
   }
   update(memberlistOption: MemberlistOptions): Observable<MemberlistOptions[]> {
-    return this.http.put(`${this.baseUrl}/memberlistOptionsUpdate.php`, { data: memberlistOption })
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.put(`${this.baseUrl}/memberlistOptionsUpdate.php`, { data: memberlistOption }, {params: params})
       .pipe(map((res) => {
           const theMemberlistOption = this.memberlistOptionsArray.find((item) => {
             return +item['organisationId'] === +memberlistOption['organisationId'];

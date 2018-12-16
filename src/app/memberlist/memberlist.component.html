@@ -64,6 +64,15 @@
 
         <br/>
 
+        <div *ngIf="memberlistOptionsChild.organisationActiveChecked">
+          <label>
+            Organisation:
+            <input type="text" formControlName="organisation">
+          </label>
+        </div>
+
+        <br/>
+
         <button type="submit" [disabled]="!memberlistForm.valid">Add member</button>
       </form>
 
@@ -113,6 +122,15 @@
 
         <br/>
 
+        <div *ngIf="memberlistOptionsChild.organisationActiveChecked">
+          <label>
+            Organisation:
+            <input type="text" formControlName="organisation">
+          </label>
+        </div>
+
+        <br/>
+
         <button type="submit" [disabled]="!memberlistForm.valid">Submit</button>
         <button type="button" (click)="returnForm()">Clear</button>
       </form>
@@ -124,7 +142,7 @@
 
   <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Data</h2></a>
+    <a data-toggle="collapse" data-target="#data"><h2>Data</h2></a>
     <div id="data" class="coll  apse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
@@ -137,6 +155,7 @@
           <th scope="col" *ngIf="memberlistOptionsChild.rolActiveChecked">Role</th>
           <th scope="col" *ngIf="memberlistOptionsChild.emailActiveChecked">Email</th>
           <th scope="col" *ngIf="memberlistOptionsChild.birthdateActiveChecked">Birthdate</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.birthdateActiveChecked">Organisation</th>
           <th scope="col">Memberlist Options</th>
         </tr>
         </thead>
@@ -148,6 +167,7 @@
           <th *ngIf="memberlistOptionsChild.rolActiveChecked"> {{item.rol}} </th>
           <th *ngIf="memberlistOptionsChild.emailActiveChecked"> {{item.email}} </th>
           <th *ngIf="memberlistOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.organisationActiveChecked"> {{item.organisation}} </th>
           <th> <button (click)="editMemberlist(item.id)">Edit</button>
             <button (click)="deleteMemberlist(item.id)">Delete</button> </th>
         </tr>
@@ -170,6 +190,7 @@
           <th scope="col" *ngIf="memberlistOptionsChild.lastNameVisibleChecked">Role</th>
           <th scope="col" *ngIf="memberlistOptionsChild.emailVisibleChecked">Email</th>
           <th scope="col" *ngIf="memberlistOptionsChild.birthdateVisibleChecked">Birthdate</th>
+          <th scope="col" *ngIf="memberlistOptionsChild.organisationVisibleChecked">Organisation</th>
         </tr>
         </thead>
         <tbody>
@@ -178,8 +199,9 @@
           <th *ngIf="memberlistOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </th>
           <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </th>
           <th *ngIf="memberlistOptionsChild.lastNameVisibleChecked"> {{item.rol}} </th>
-          <th *ngIf="memberlistOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
           <th *ngIf="memberlistOptionsChild.emailVisibleChecked"> {{item.email}} </th>
+          <th *ngIf="memberlistOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
+          <th *ngIf="memberlistOptionsChild.organisationVisibleChecked"> {{item.organisation}} </th>
         </tr>
         </tbody>
       </table>

@@ -9,22 +9,22 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col" >First name</th>
           <th scope="col" >Last name</th>
           <th scope="col" >E-mail</th>
           <th scope="col" >Organisation name</th>
+          <th scope="col" >Edit</th>
+          <th scope="col" >Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let item of usersettings">
-          <th> {{item.user_id}} </th>
-          <th> {{item.first_name}} </th>
-          <th> {{item.last_name}} </th>
-          <th> {{item.user_email}} </th>
-          <th> Org </th>
-          <th> <button (click)="editUser(item.user_id)" data-toggle="collapse" data-target="#input">Edit Profile</button>
-            <button>Delete</button> </th>
+          <td> {{item.first_name}} </td>
+          <td> {{item.last_name}} </td>
+          <td> {{item.user_email}} </td>
+          <td> {{item.org_name}} </td>
+          <td> <button (click)="editUser(item.user_id)" data-toggle="collapse" data-target="#input">Edit Profile</button> </td>
+          <td> <button data-toggle="collapse" data-target="#del">Delete account</button> </td>
         </tr>
         </tbody>
       </table>
@@ -43,34 +43,41 @@
         <hr/>
 
         <label>
-          First Name:
+          First Name:<br/>
           <input type="text" formControlName="first_name">
         </label>
 
         <br/>
 
         <label>
-          Last Name:
+          Last Name:<br/>
           <input type="text" formControlName="last_name">
         </label>
 
         <br/>
 
         <label>
-          E-mail:
+          E-mail:<br/>
           <input type="text" formControlName="user_email">
         </label>
 
         <br/>
 
         <label>
-          Organisation:
+          Organisation:<br/>
           <input type="text" formControlName="org_name">
+        </label>
+
+        <br/>
+
+        <label>
+          Give your password:<br/>
+          <input type="password">
         </label>
 
         <br/><br/>
 
-        <button type="submit" [disabled]="!usersettingsForm.valid" data-toggle="collapse" data-target="#input">Update profile</button>
+        <button class="btn btn-primary btn-lg mainButton" type="submit" [disabled]="!usersettingsForm.valid" data-toggle="collapse" data-target="#input">Update Profile</button>
       </form>
 
       <hr/>
@@ -88,38 +95,56 @@
         <hr/>
 
         <label>
-          New Password:
-          <input type="password" name="new_password">
-          <!--<input name="newPassword"
-                 type="password"
-                 id="newPassword"
-                 title="Password must contain: Minimum 8 characters and maximum 20 characters atleast 1 Alphabet and 1 Number"
-                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"
-                 [(ngModel)]="usersettingsData.newPass"
-                 #newPass="ngModel"
-                 minlength="8"
-                 maxlength="20"
-                 required />-->
+          Old password:<br/>
+          <input type="password">
         </label>
-
-        <!--<span class="alert-danger" *ngIf="newPass.errors?.pattern && newPass.touched">
-            The password must consist of letters and numbers and at least 8 characters and a maximum of 20 characters! <br/>
-        </span>-->
 
         <br/>
 
         <label>
-          Confirm Password:
+          New Password:<br/>
+          <input type="password" formControlName="new_password">
+        </label>
+
+        <br/>
+
+        <label>
+          Confirm Password:<br/>
           <input type="password">
         </label>
 
         <br/><br/>
 
-        <button type="submit" [disabled]="!usersettingsForm.valid">Change Password</button>
+        <button class="btn btn-primary btn-lg mainButton" type="submit" [disabled]="!usersettingsForm.valid">Change Password</button>
       </form>
     </div>
   </div>
 
   <hr/>
+
+
+  <!-- DELETE Account -->
+  <div>
+    <div id="del" class="collapse">
+      <a data-toggle="collapse" data-target="#del"><h2>Delete your Account</h2></a>
+
+      <form [formGroup]="usersettingsForm" (ngSubmit)="deleteUser()">
+
+        <hr/>
+
+        <label>
+          Give your password:<br/>
+          <input type="password">
+        </label>
+
+        <br/><br/>
+        <p>There is no way back!</p>
+        <button class="btn btn-danger btn-lg mainButton" type="submit" [disabled]="!usersettingsForm.valid">Delete Account</button>
+      </form>
+
+      <hr/>
+
+    </div>
+  </div>
 
 </div>

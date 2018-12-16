@@ -27,4 +27,24 @@ export class AuthService {
       this.router.navigate(['/login'], {queryParams: {logout: true}});
       location.reload();
   }
+  logoutAfterSettings() {
+    sessionStorage.removeItem('LoggedInUser');
+    sessionStorage.removeItem('Firstname');
+    sessionStorage.removeItem('Lastname');
+    sessionStorage.removeItem('Orgname');
+    sessionStorage.removeItem('DBname');
+
+    this.router.navigate(['/login'], {queryParams: {usersettingsSaved: true}});
+    location.reload();
+  }
+  logoutAfterDelete() {
+    sessionStorage.removeItem('LoggedInUser');
+    sessionStorage.removeItem('Firstname');
+    sessionStorage.removeItem('Lastname');
+    sessionStorage.removeItem('Orgname');
+    sessionStorage.removeItem('DBname');
+
+    this.router.navigate(['/login'], {queryParams: {accountDeleted: true}});
+    location.reload();
+  }
 }

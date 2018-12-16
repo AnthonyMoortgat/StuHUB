@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { User } from './usersettings';
 import { UsersettingsService } from './usersettings.service';
+import { AuthService } from '../authguard/auth.service';
 
 @Component({
   selector: 'app-usersettings',
@@ -17,6 +18,7 @@ export class UsersettingsComponent implements OnInit {
     last_name: new FormControl(''),
     user_email: new FormControl(''),
     user_password: new FormControl(''),
+    new_password: new FormControl(''),
     org_name: new FormControl(''),
     db_name: new FormControl(''),
   });
@@ -26,12 +28,12 @@ export class UsersettingsComponent implements OnInit {
   error = '';
   success = '';
 
-  usersettingsData = new User(0, '', '', '', '', '', '');
+  usersettingsData = new User(0, '', '', '', '', '', '', '');
 
   // edit = false;
   editID: number;
 
-  constructor(private usersettingsService: UsersettingsService, private formbuilder: FormBuilder) {
+  constructor(private usersettingsService: UsersettingsService, private formbuilder: FormBuilder, private auth: AuthService) {
   }
 
   ngOnInit() {
@@ -69,6 +71,7 @@ export class UsersettingsComponent implements OnInit {
         },
         (err) => this.error = err
       );
+    this.auth.logoutAfterSettings();
   }
 
   updatePassUser() {
@@ -91,6 +94,7 @@ export class UsersettingsComponent implements OnInit {
         },
         (err) => this.error = err
       );
+    this.auth.logoutAfterSettings();
   }
 
   editUser(id): void {
@@ -109,5 +113,20 @@ export class UsersettingsComponent implements OnInit {
     this.usersettingsForm.get('user_password').setValue(userEditForm.user_password);
     this.usersettingsForm.get('org_name').setValue(userEditForm.org_name);
     this.usersettingsForm.get('db_name').setValue(userEditForm.db_name);
+  }
+
+  deleteUser(): void {
+    this.success = '';
+    this.error   = '';
+
+    this.usersettingsService.delete(this.usersettingsForm.value)
+      .subscribe(
+        (res: User[]) => {
+          this.usersettings = res;
+          this.success = 'Deleted successfully';
+        },
+        (err) => this.error = err
+      );
+    this.auth.logoutAfterDelete();
   }
 }

@@ -31,8 +31,8 @@
     $encryptPassword = hash('sha256', $password);
 
     //Store
-    $sql = "INSERT INTO `User`(`user_id`,`first_name`,`last_name`, `user_email` , `user_password` , `org_name`) 
-  VALUES (null,'{$firstnameCap}','{$lastname}','{$email}','{$encryptPassword}','{$encryptOrgname}')";
+    $sql = "INSERT INTO `User`(`user_id`,`first_name`,`last_name`, `user_email` , `user_password` , `org_name`, `full_org_name`) 
+  VALUES (null,'{$firstnameCap}','{$lastname}','{$email}','{$encryptPassword}','{$encryptOrgname}', '{$orgnameCap}')";
 
     //Read
     $sqlRead = "SELECT first_name, last_name, user_email, user_password, org_name FROM User WHERE user_email = '$email'";

@@ -4,10 +4,9 @@ include_once 'connectAPI.php';
 // Get the posted data.
 $postdata = file_get_contents("php://input");
 
-//$orgname = $_GET['orgname'];
-$orgname = 1;
+$orgname = $_GET['org'];
 
-if($orgname != 2) {
+if($orgname != '') {
   if(isset($postdata) && !empty($postdata)) {
     $con = ConnectAPI::getInstance();
     $conn = $con->getConnect();
@@ -25,8 +24,7 @@ if($orgname != 2) {
 
 
     $sqlUpdatePass = "UPDATE `User` SET `user_password`='{$encrypt_new_password}'
-   WHERE `org_name` = '{$org_name}'";
-
+   WHERE `org_name` = '$orgname'";
 
     if ($conn->query($sqlUpdatePass)) {
       http_response_code(204);

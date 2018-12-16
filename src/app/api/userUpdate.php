@@ -4,10 +4,9 @@ include_once 'connectAPI.php';
 // Get the posted data.
 $postdata = file_get_contents("php://input");
 
-//$orgname = $_GET['orgname'];
-$orgname = 1;
+$orgname = $_GET['org'];
 
-if($orgname != 2) {
+if($orgname != '') {
   if(isset($postdata) && !empty($postdata)) {
     $con = ConnectAPI::getInstance();
     $conn = $con->getConnect();
@@ -21,18 +20,23 @@ if($orgname != 2) {
     $last_name = mysqli_real_escape_string($conn, trim($request->data->last_name));
     $user_email = mysqli_real_escape_string($conn, trim($request->data->user_email));
     $user_password = mysqli_real_escape_string($conn, trim($request->data->user_password));
-    $org_name = mysqli_real_escape_string($conn, trim($request->data->org_name));
+
+    $full_org_name = mysqli_real_escape_string($conn, trim($request->data->org_name));
+    $org_name = hash('sha256', $full_org_name);
+
+
     $db_name = mysqli_real_escape_string($conn, trim($request->data->db_name));
 
     $sqlUpdateUser = "UPDATE `User` SET `first_name`='{$first_name}',
   `last_name`='{$last_name}',
   `user_email`='{$user_email}',
-  `org_name`='{$org_name}'
-   WHERE `org_name` = '{$org_name}'";
+  `org_name`='{$org_name}',
+  `full_org_name`='{$full_org_name}'
+   WHERE `org_name` = '$orgname'";
 
     $sqlUpdateDBaccess = "UPDATE `DBaccess` SET `org_name`='{$org_name}',
   `db_name`='{$db_name}'
-   WHERE `org_name` = '{$org_name}'";
+   WHERE `org_name` = '$orgname'";
 
     if ($conn->query($sqlUpdateUser) && $conn->query($sqlUpdateDBaccess)) {
       http_response_code(204);

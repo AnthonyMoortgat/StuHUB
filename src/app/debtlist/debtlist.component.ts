@@ -90,6 +90,7 @@ export class DebtlistComponent implements OnInit {
     const debtorEditForm = this.debtors[this.debtorEditIndex];
 
     // this.debtorForm.get('id').setValue(debtorEditForm.id);
+    this.debtorForm.get('id').setValue(debtorEditForm.id);
     this.debtorForm.get('memberName').setValue(debtorEditForm.memberName);
     this.debtorForm.get('company').setValue(debtorEditForm.company);
     this.debtorForm.get('memberRole').setValue(debtorEditForm.memberRole);

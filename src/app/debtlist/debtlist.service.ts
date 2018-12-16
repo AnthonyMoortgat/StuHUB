@@ -11,13 +11,17 @@ import { Debtor} from './debtlist';
 })
 export class DebtlistService {
 
-  baseUrl = 'http://dtsl.ehb.be/~kenneth.de.temmerman/SP2/api';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/Debtlist';
   debtors: Debtor[];
 
   constructor(private http: HttpClient) { }
 
+  userID = sessionStorage.getItem('Orgname');
+
   getAll(): Observable<Debtor[]> {
-    return this.http.get(`${this.baseUrl}/debtlistList.php`).pipe(
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.get(`${this.baseUrl}/debtlistGetAll.php`, {params: params}).pipe(
       map((res) => {
         this.debtors = res['data'];
         return this.debtors;
@@ -26,7 +30,9 @@ export class DebtlistService {
   }
 
   update(debtor: Debtor): Observable<Debtor[]> {
-    return this.http.put(`${this.baseUrl}/debtlistUpdate.php`, { data: debtor })
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.put(`${this.baseUrl}/debtlistUpdate.php`, { data: debtor }, {params: params})
       .pipe(map((res) => {
           const theDebtor = this.debtors.find((item) => {
             return +item['id'] === +debtor['id'];

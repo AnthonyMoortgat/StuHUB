@@ -29,17 +29,6 @@ export class InscriptionService {
     catchError(this.handleError));
   }
 
-  getInscriptionWithId(id): Observable<Inscription[]> {
-    const params = new HttpParams().set('id', id);
-
-    return this.http.get(`${this.baseUrl}/inscriptionGetWithID.php`, {params: params}).pipe(
-      map((res) => {
-        this.inscriptions = res['data'];
-        return this.inscriptions;
-      }),
-      catchError(this.handleError));
-  }
-
   store(inscription: Inscription): Observable<Inscription[]> {
     const params = new HttpParams().set('id', this.userID);
 

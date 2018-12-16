@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import {User} from './register';
-// import {RegisterService} from './register.service';
-
 
 @Component({
   selector: 'app-register',

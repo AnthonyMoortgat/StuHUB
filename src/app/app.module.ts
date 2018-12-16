@@ -37,7 +37,7 @@ import { ShowhtmlComponent } from './generate/showhtml.component';
     InscriptionOptionsComponent,
     InformationComponent,
     RegisterComponent,
-    MermberlistOptionsComponent
+    MermberlistOptionsComponent,
     PageNotFoundComponent,
     ShowhtmlComponent
   ],

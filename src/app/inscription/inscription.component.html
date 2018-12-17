@@ -14,163 +14,132 @@
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Add inscription</h2></a>
     <div id="input" class="collapse">
+
       <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
-          <label>
-            First Name:
-            <input type="text" formControlName="firstName">
-          </label>
+        <div class="form-row">
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
+              <label for="iFirstname">First Name:</label><br/>
+              <input type="text" id="iFirstname" formControlName="firstName" class="form-control">
+            <br/>
+          </div>
+
+          <div class="form-group col-md-6">
+            <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+              <label for="iLastName">Last Name:</label><br/>
+                <input type="text" id="iLastName" formControlName="lastName" class="form-control">
+              <br/>
+            </div>
+          </div>
         </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
-          <label>
-            Last Name:
-            <input type="text" formControlName="lastName">
-          </label>
-        </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
-          <label>
-            Phone number:
-            <input type="text" formControlName="phoneNumber">
-          </label>
+          <label for="iPhoneNumber">Phone number:</label><br/>
+            <input type="text" id="iPhoneNumber" formControlName="phoneNumber" class="form-control">
+          <br/>
         </div>
 
-        <br/>
+        <div class="form-row">
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.allergyActiveChecked">
+            <label for="iAllergy">Allergies:</label><br/>
+              <input type="text" id="iAllergy" formControlName="allergy" class="form-control">
+            <br/>
+          </div>
 
-        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
-          <label>
-            Allergy:
-            <input type="text" formControlName="allergy">
-          </label>
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
+            <label for="iPhysicalLimitation">Physical limitations:</label><br/>
+              <input type="text" id="iPhysicalLimitation" formControlName="physicalLimitation" class="form-control">
+            <br/>
+          </div>
         </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
-          <label>
-            Physical limitations:
-            <input type="text" formControlName="physicalLimitation">
-          </label>
-        </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
-          <label>
-            Birthdate:
-            <input type="date" formControlName="birthdate">
-          </label>
+          <label for="iBirthdate">Birthdate:</label><br/>
+            <input type="date" id="iBirthdate" formControlName="birthdate" class="form-control">
+          <br/>
         </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
-          <label>
-            Gender:
-            <label>
-              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
-              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
-            </label>
-          </label>
+          <label for="iGender">Gender:</label>
+            <div id="iGender">
+              <input type="radio" id="iMan" formControlName="gender" name="gender" value="Man">
+              <label for="iMan">Man </label><br/>
+              <input type="radio" id="iWoman" formControlName="gender" name="gender" value="Woman">
+              <label for="iWoman">Woman </label>
+            </div>
+          <br/>
         </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
-          <label>
-            Email:
-            <input type="text" formControlName="email">
-          </label>
+          <label for="iEmail">Email:</label><br/>
+            <input type="text" id="iEmail" formControlName="email" class="form-control">
+          <br/>
         </div>
-
-        <br/>
-
-        <button type="submit" [disabled]="!inscriptionForm.valid">Add inscription</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!inscriptionForm.valid">Add inscription</button>
       </form>
 
+
       <form *ngIf="edit" [formGroup]="inscriptionForm" (ngSubmit)="updateInscription()">
-        <div *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
-          <label>
-            First Name:
-            <input type="text" formControlName="firstName">
-          </label>
+        <div class="form-row">
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.firstNameActiveChecked">
+            <label for="firstname">First Name:</label><br/>
+            <input type="text" id="firstname" formControlName="firstName" class="form-control">
+            <br/>
+          </div>
+
+          <div class="form-group col-md-6">
+            <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+              <label for="lastName">Last Name:</label><br/>
+              <input type="text" id="lastName" formControlName="lastName" class="form-control">
+              <br/>
+            </div>
+          </div>
         </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
-          <label>
-            Last Name:
-            <input type="text" formControlName="lastName">
-          </label>
-        </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
-          <label>
-            Phone number:
-            <input type="text" formControlName="phoneNumber">
-          </label>
+          <label for="phoneNumber">Phone number:</label><br/>
+          <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+          <br/>
         </div>
 
-        <br/>
+        <div class="form-row">
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.allergyActiveChecked">
+            <label for="allergy">Allergies:</label><br/>
+            <input type="text" id="allergy" formControlName="allergy" class="form-control">
+            <br/>
+          </div>
 
-        <div *ngIf="inscriptionOptionsChild.allergyActiveChecked">
-          <label>
-            Allergy:
-            <input type="text" formControlName="allergy">
-          </label>
+          <div class="col-md-6" *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
+            <label for="physicalLimitation">Physical limitations:</label><br/>
+            <input type="text" id="physicalLimitation" formControlName="physicalLimitation" class="form-control">
+            <br/>
+          </div>
         </div>
-
-        <br/>
-
-        <div *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked">
-          <label>
-            Physical limitations:
-            <input type="text" formControlName="physicalLimitation">
-          </label>
-        </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.birthdateActiveChecked">
-          <label>
-            Birthdate:
-            <input type="date" formControlName="birthdate">
-          </label>
+          <label for="birthdate">Birthdate:</label><br/>
+          <input type="date" id="birthdate" formControlName="birthdate" class="form-control">
+          <br/>
         </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.genderActiveChecked">
-          <label>
-            Gender:
-            <label>
-              Man: <input type="radio" formControlName="gender" name="gender" value="Man"> <br/>
-              Woman: <input type="radio" formControlName="gender" name="gender" value="Woman">
-            </label>
-          </label>
+          <label for="gender">Gender:</label>
+          <div id="gender">
+            <input type="radio" id="man" formControlName="gender" name="gender" value="Man">
+            <label for="man">Man </label><br/>
+            <input type="radio" id="woman" formControlName="gender" name="gender" value="Woman">
+            <label for="woman">Woman </label>
+          </div>
+          <br/>
         </div>
-
-        <br/>
 
         <div *ngIf="inscriptionOptionsChild.emailActiveChecked">
-          <label>
-            Email:
-            <input type="text" formControlName="email">
-          </label>
+          <label for="email">Email:</label><br/>
+          <input type="text" id="email" formControlName="email" class="form-control">
+          <br/>
         </div>
 
-        <br/>
-
-        <button type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
-        <button type="button" (click)="returnForm()">Return</button>
+        <button class="btn btn-primary editButton" type="submit" [disabled]="!inscriptionForm.valid">Edit inscription</button>
+        <button class="btn btn-secondary returnButton" type="button" (click)="returnForm()">Return</button>
       </form>
 
     </div>
@@ -185,7 +154,7 @@
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
 
-      <table class="table table-striped">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -202,17 +171,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of inscription">
-            <th> {{item.id}} </th>
-            <th *ngIf="inscriptionOptionsChild.firstNameActiveChecked"> {{item.firstName}} </th>
-            <th *ngIf="inscriptionOptionsChild.lastNameActiveChecked"> {{item.lastName}} </th>
-            <th *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked"> {{item.phoneNumber}} </th>
-            <th *ngIf="inscriptionOptionsChild.allergyActiveChecked"> {{item.allergy}} </th>
-            <th *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked"> {{item.physicalLimitation}} </th>
-            <th *ngIf="inscriptionOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </th>
-            <th *ngIf="inscriptionOptionsChild.genderActiveChecked"> {{item.gender}} </th>
-            <th *ngIf="inscriptionOptionsChild.emailActiveChecked"> {{item.email}} </th>
-            <th> <button (click)="editInscription(item.id)">Edit</button>
-             <button (click)="deleteInscription(item.id)">Delete</button> </th>
+            <td> {{item.id}} </td>
+            <td *ngIf="inscriptionOptionsChild.firstNameActiveChecked"> {{item.firstName}} </td>
+            <td *ngIf="inscriptionOptionsChild.lastNameActiveChecked"> {{item.lastName}} </td>
+            <td *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked"> {{item.phoneNumber}} </td>
+            <td *ngIf="inscriptionOptionsChild.allergyActiveChecked"> {{item.allergy}} </td>
+            <td *ngIf="inscriptionOptionsChild.physicalLimitationActiveChecked"> {{item.physicalLimitation}} </td>
+            <td *ngIf="inscriptionOptionsChild.birthdateActiveChecked"> {{item.birthdate}} </td>
+            <td *ngIf="inscriptionOptionsChild.genderActiveChecked"> {{item.gender}} </td>
+            <td *ngIf="inscriptionOptionsChild.emailActiveChecked"> {{item.email}} </td>
+            <td> <button class="btn btn-secondary formButton" (click)="editInscription(item.id)">Edit</button>
+             <button class="btn btn-secondary formButton"(click)="deleteInscription(item.id)">Delete</button> </td>
           </tr>
         </tbody>
       </table>
@@ -224,7 +193,7 @@
   <div>
     <a data-toggle="collapse" data-target="#preview"><h2>Website preview</h2></a>
     <div id="preview" class="collapse">
-      <table class="table table-striped">
+      <table class="table table-striped table-hover">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -240,15 +209,15 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of inscription">
-          <th> {{item.id}} </th>
-          <th *ngIf="inscriptionOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </th>
-          <th *ngIf="inscriptionOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </th>
-          <th *ngIf="inscriptionOptionsChild.phoneNumberVisibleChecked"> {{item.phoneNumber}} </th>
-          <th *ngIf="inscriptionOptionsChild.allergyVisibleChecked"> {{item.allergy}} </th>
-          <th *ngIf="inscriptionOptionsChild.physicalLimitationVisibleChecked"> {{item.physicalLimitation}} </th>
-          <th *ngIf="inscriptionOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </th>
-          <th *ngIf="inscriptionOptionsChild.genderVisibleChecked"> {{item.gender}} </th>
-          <th *ngIf="inscriptionOptionsChild.emailVisibleChecked"> {{item.email}} </th>
+          <td> {{item.id}} </td>
+          <td *ngIf="inscriptionOptionsChild.firstNameVisibleChecked"> {{item.firstName}} </td>
+          <td *ngIf="inscriptionOptionsChild.lastNameVisibleChecked"> {{item.lastName}} </td>
+          <td *ngIf="inscriptionOptionsChild.phoneNumberVisibleChecked"> {{item.phoneNumber}} </td>
+          <td *ngIf="inscriptionOptionsChild.allergyVisibleChecked"> {{item.allergy}} </td>
+          <td *ngIf="inscriptionOptionsChild.physicalLimitationVisibleChecked"> {{item.physicalLimitation}} </td>
+          <td *ngIf="inscriptionOptionsChild.birthdateVisibleChecked"> {{item.birthdate}} </td>
+          <td *ngIf="inscriptionOptionsChild.genderVisibleChecked"> {{item.gender}} </td>
+          <td *ngIf="inscriptionOptionsChild.emailVisibleChecked"> {{item.email}} </td>
         </tr>
         </tbody>
       </table>

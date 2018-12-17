@@ -41,9 +41,7 @@
     <a data-toggle="collapse" data-target="#changeDebt"><h2>Change debt</h2></a>
     <div id="changeDebt" class="collapse">
 
-      <form class="form-group" [formGroup]="debtorForm">
-
-        <div>
+      <form [formGroup]="debtorForm">
           <div class="form-row">
             <div class="col-md-6">
               <label for="memberName">Name:</label><br/>
@@ -64,15 +62,13 @@
               <input type="text" id="memberRole" formControlName="memberRole" class="form-control" readonly><br/>
             </div>
           </div>
-        </div>
       </form>
       <br/>
-      <form class="form-group" [formGroup]="debtChange" >
+      <form [formGroup]="debtChange" >
         <div class="form-row">
             <div class="col-md-2">
             <label for="amount">Amount:</label><br/>
             <input type="number" id="amount" formControlName="amount" class="form-control"><br/>
-
             <button class="btn btn-secondary lButton" type="button" [disabled]="!debtChange.valid" (click)="addAmount(debtorForm.get('memberName').value)">Add</button>
             <button class="btn btn-secondary rButton" type="button" [disabled]="!debtChange.valid" (click)="retractAmount(debtorForm.get('memberName').value)">Retract</button>
           </div>

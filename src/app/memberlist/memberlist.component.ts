@@ -87,6 +87,7 @@ export class MemberlistComponent implements OnInit {
     this.memberlistForm.get('rol').setValue(memberlistnEditForm.rol);
     this.memberlistForm.get('email').setValue(memberlistnEditForm.email);
     this.memberlistForm.get('birthdate').setValue(memberlistnEditForm.birthdate);
+    this.memberlistForm.get('organisation').setValue(memberlistnEditForm.organisation);
 
   }
 

@@ -55,17 +55,22 @@ export class MemberlistService {
   }
 
   update(member: Member): Observable<Member[]> {
-    return this.http.put(`${this.baseUrl}/memberlistUpdate.php`, { data: member})
+    const params = new HttpParams().set('id', this.userID);
+
+
+    return this.http.put(`${this.baseUrl}/memberlistUpdate.php`, { data: member}, {params: params})
       .pipe(map((res) => {
           const theMember = this.members.find((item) => {
             return +item['id'] === +member['id'];
           });
           if (theMember) {
+            theMember['id'] = member['id'];
             theMember['firstName'] = member['firstName'];
             theMember['lastName'] = member['lastName'];
             theMember['rol'] = member['rol'];
             theMember['email'] = member['email'];
             theMember['birthdate'] = member['birthdate'];
+            theMember['organisation'] = member['organisation'];
           }
           return this.members;
         }),

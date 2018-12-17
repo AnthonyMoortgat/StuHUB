@@ -5,7 +5,6 @@ import { InscriptionOptionsComponent } from './inscription-options/inscription-o
 
 import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-inscription',
@@ -52,7 +51,7 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionService.getAll().subscribe(
       (res: Inscription[]) => {
         this.inscription = res;
-      },
+        },
       (err) => {
         this.error = err;
       }
@@ -62,7 +61,6 @@ export class InscriptionComponent implements OnInit {
   addInscription(f) {
     this.error = '';
     this.success = '';
-    console.log(f);
 
     this.inscriptionService.store(this.inscriptionData)
       .subscribe(

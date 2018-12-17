@@ -1,7 +1,7 @@
 <div>
   <!-- InscriptionOptions -->
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>InscriptionOptions</h2></a>
+    <a data-toggle="collapse" data-target="#options"><h2>Inscription Options</h2></a>
     <div id="options" class="collapse">
       <app-inscription-options
       [inscriptionForm]="inscriptionForm"></app-inscription-options>
@@ -12,7 +12,7 @@
 
   <!-- INPUT -->
   <div>
-    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
+    <a data-toggle="collapse" data-target="#input"><h2>Add inscription</h2></a>
     <div id="input" class="collapse">
 
       <form *ngIf="!edit" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
@@ -149,7 +149,7 @@
 
   <!-- GEGEVENS -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
+    <a data-toggle="collapse" data-target="#gegevens"><h2>All the inscriptions</h2></a>
     <div id="gegevens" class="collapse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
@@ -191,7 +191,7 @@
   <hr>
 
   <div>
-    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
+    <a data-toggle="collapse" data-target="#preview"><h2>Website preview</h2></a>
     <div id="preview" class="collapse">
       <table class="table table-striped table-hover">
         <thead>

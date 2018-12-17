@@ -13,7 +13,7 @@ import { AuthService } from '../authguard/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-loginForm = new FormGroup({
+  loginForm = new FormGroup({
     id: new FormControl(0),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -50,7 +50,6 @@ loginForm = new FormGroup({
     this.error = '';
     this.success = '';
     // this.InvalidLogin = '';
-    console.log(f);
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {

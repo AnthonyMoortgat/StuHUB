@@ -16,15 +16,15 @@ if(isset($postdata) && !empty($postdata))
   $id = mysqli_real_escape_string($con, trim($request->data->id));
   $subject = mysqli_real_escape_string($con, trim($request->data->subject));
   $idea = mysqli_real_escape_string($con, trim($request->data->idea));
-  $firstName = mysqli_real_escape_string($con, trim($request->data->firstname));
-  $lastName = mysqli_real_escape_string($con, trim($request->data->lastname));
+  $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
+  $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
   $email = mysqli_real_escape_string($con, trim($request->data->email));
 
 
 
 
-  $sql = "UPDATE `ideabox` SET `firstname`='{$firstname}',
-         `lastname`='{$lastname}',
+  $sql = "UPDATE `ideabox` SET `firstName`='{$firstName}',
+         `lastName`='{$lastName}',
           `email`='{$email}',
           `subject`='{$subject}',
           `idea`='{$idea}',
@@ -41,5 +41,7 @@ if(isset($postdata) && !empty($postdata))
 
 
 }
+
 mysqli_close($con);
+
 ?>

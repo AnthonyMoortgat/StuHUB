@@ -1,7 +1,7 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: multipart/form-data;charset=UTF-8;");
+//header("Access-Control-Allow-Origin: *");
+//header("Content-Type: multipart/form-data;charset=UTF-8;");
 
 require 'connect.php';
 
@@ -11,14 +11,14 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata))
 {
   // Extract the data.
-  $request = json_decode($postdata);
+  $postdata = json_decode($postdata);
 
-  // Sanitize.
-  $subject = mysqli_real_escape_string($con, trim($request->data->subject));
-  $idea = mysqli_real_escape_string($con, trim($request->data->idea));
-  $firstName = mysqli_real_escape_string($con, trim($request->data->firstName));
-  $lastName = mysqli_real_escape_string($con, trim($request->data->lastName));
-  $email = mysqli_real_escape_string($con, trim($request->data->email));
+  Sanitize.
+  $subject = mysqli_real_escape_string($con, trim($post->data->subject));
+  $idea = mysqli_real_escape_string($con, trim($post->data->idea));
+  $firstName = mysqli_real_escape_string($con, trim($post->data->firstName));
+  $lastName = mysqli_real_escape_string($con, trim($post->data->lastName));
+  $email = mysqli_real_escape_string($con, trim($post->data->email));
 
 
 
@@ -45,3 +45,5 @@ VALUES (null,'{$subject}','{$idea}','{$firstName}','{$lastName}','{$email}'";
   }
 }
 mysqli_close($con);
+
+?>

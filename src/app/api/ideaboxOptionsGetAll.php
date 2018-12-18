@@ -5,17 +5,17 @@ header("Content-Type: multipart/form-data;charset=UTF-8;");
 
 
 
-require 'connect.php';
+require 'connectOptions.php.php';
 
 $ideaboxOptions = [];
-$sql = "SELECT organisationId, subject, , idea , firstName, lastName, email FROM ideaboxOption WHERE organisationID = 'Enigma'";
+$sql = "SELECT organisationID, subject, , idea , firstName, lastName, email FROM ideaboxOption WHERE organisationID = 'Enigma'";
 
 if($result = mysqli_query($con,$sql))
 {
   $cr = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-    $ideaboxOptions[$cr]['id']    = $row['organisationId'];
+    $ideaboxOptions[$cr]['organisationID']    = $row['organisationID'];
     $ideaboxOptions[$cr]['subject'] = $row['subject'];
     $ideaboxOptions[$cr]['idea'] = $row['idea'];
     $ideaboxOptions[$cr]['firstName'] = $row['firstName'];
@@ -32,3 +32,4 @@ else
 }
 
 mysqli_close($con);
+?>

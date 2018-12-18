@@ -1,7 +1,7 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: multipart/form-data;charset=UTF-8;");
+//header("Access-Control-Allow-Origin: *");
+//header("Content-Type: multipart/form-data;charset=UTF-8;");
 
 
 

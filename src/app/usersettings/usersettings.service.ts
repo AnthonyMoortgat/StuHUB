@@ -34,7 +34,7 @@ export class UsersettingsService {
     return this.http.put(`${this.baseUrl}/userUpdate.php`, { data: user }, {params: params})
       .pipe(map((res) => {
           const theUser = this.usersettings.find((item) => {
-            return +item['id'] === +user['id'];
+            return +item['user_id'] === +user['user_id'];
           });
           if (theUser) {
             theUser['first_name'] = user['first_name'];
@@ -55,7 +55,7 @@ export class UsersettingsService {
     return this.http.put(`${this.baseUrl}/userPassUpdate.php`, { data: user }, {params: params})
       .pipe(map((res) => {
           const theUser = this.usersettings.find((item) => {
-            return +item['id'] === +user['id'];
+            return +item['user_id'] === +user['user_id'];
           });
           if (theUser) {
             theUser['first_name'] = user['first_name'];
@@ -74,11 +74,14 @@ export class UsersettingsService {
   delete(user: User): Observable<User[]> {
     const params = new HttpParams().set('org', this.orgname);
 
-    return this.http.delete(`${this.baseUrl}/userDelete.php`, { params: params })
+    return this.http.put(`${this.baseUrl}/userDelete.php`, { data: user }, { params: params })
       .pipe(map(res => {
-          const filteredUsers = this.usersettings.find((item) => {
-            return +item['id'] === +user['id'];
+          const theUser = this.usersettings.find((item) => {
+            return +item['user_id'] === +user['user_id'];
           });
+          if (theUser) {
+            theUser['user_password'] = user['user_password'];
+          }
           return this.usersettings;
         }),
         catchError(this.handleError));

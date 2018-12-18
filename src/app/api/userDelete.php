@@ -8,26 +8,52 @@
 
 include_once 'connectAPI.php';
 
-// Extract, validate and sanitize the id.
+// Get the posted data.
+$postdata = file_get_contents("php://input");
+
 $orgname = $_GET['org'];
 
 if($orgname != '')
 {
-  $con = ConnectAPI::getInstance();
-  $conn = $con->getConnect();
+  if(isset($postdata) && !empty($postdata)) {
+    $con = ConnectAPI::getInstance();
+    $conn = $con->getConnect();
 
+    $pass = [];
 
-  // Delete.
-  $sqlDeleteUser = "DELETE FROM `User` WHERE `org_name` ='{$orgname}' LIMIT 1";
-  $sqlDeleteDB = "DELETE FROM `DBaccess` WHERE `org_name` ='{$orgname}' LIMIT 1";
+    // Extract the data.
+    $request = json_decode($postdata);
 
-  if($conn->query($sqlDeleteUser) && $conn->query($sqlDeleteDB))
-  {
-    http_response_code(204);
-  }
-  else
-  {
-    return http_response_code(422);
+    $user_password = mysqli_real_escape_string($conn, trim($request->data->user_password));
+    $encrypt_user_password = hash('sha256', $user_password);
+
+    // Delete.
+    $sqlDeleteUser = "DELETE FROM `User` WHERE `org_name` ='{$orgname}' LIMIT 1";
+    $sqlDeleteDB = "DELETE FROM `DBaccess` WHERE `org_name` ='{$orgname}' LIMIT 1";
+
+    //get password
+    $sqlGetPass = "SELECT `user_password` FROM `User`
+                   WHERE `org_name` = '$orgname' AND `user_password` = '$encrypt_user_password'";
+
+    $resultGetPass = $conn->query($sqlGetPass);
+
+    if ($resultGetPass->num_rows > 0) {
+      http_response_code(204);
+      $conn->query($sqlDeleteUser);
+      $conn->query($sqlDeleteDB);
+
+      $pass[0]['user_password'] = 'valid';
+      echo json_encode(['data'=>$pass]);
+    }
+    else if ($resultGetPass->num_rows <= 0){
+      http_response_code(204);
+
+      $pass[0]['user_password'] = 'invalid';
+      echo json_encode(['data'=>$pass]);
+    }
+    else {
+      return http_response_code(422);
+    }
   }
   $conn->close();
 }

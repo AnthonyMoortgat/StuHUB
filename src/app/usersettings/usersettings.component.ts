@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from './usersettings';
 import { UsersettingsService } from './usersettings.service';
 import { AuthService } from '../authguard/auth.service';
+import {ValidateFn} from 'codelyzer/walkerFactory/walkerFn';
 
 @Component({
   selector: 'app-usersettings',
@@ -12,15 +14,22 @@ import { AuthService } from '../authguard/auth.service';
 })
 export class UsersettingsComponent implements OnInit {
 
-  usersettingsForm = new FormGroup({
+  usersettingsForm1 = new FormGroup({
     user_id: new FormControl(0),
-    first_name: new FormControl(''),
-    last_name: new FormControl(''),
-    user_email: new FormControl(''),
-    user_password: new FormControl(''),
-    new_password: new FormControl(''),
-    org_name: new FormControl(''),
-    db_name: new FormControl(''),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    user_email: new FormControl('', [Validators.email, Validators.required]),
+    org_name: new FormControl('', Validators.required)
+  });
+
+  usersettingsForm2 = new FormGroup({
+    user_id: new FormControl(0),
+    user_password: new FormControl('', Validators.required),
+    new_password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[0-9]).{8,20}')])
+  });
+
+  usersettingsForm3 = new FormGroup({
+    user_password: new FormControl('', Validators.required),
   });
 
   /* usersettings */
@@ -28,12 +37,13 @@ export class UsersettingsComponent implements OnInit {
   error = '';
   success = '';
 
-  usersettingsData = new User(0, '', '', '', '', '', '', '');
+  usersettingsData = new User(0, '', '', '', '', '', '', '', '');
 
   // edit = false;
   editID: number;
 
-  constructor(private usersettingsService: UsersettingsService, private formbuilder: FormBuilder, private auth: AuthService) {
+  constructor(private usersettingsService: UsersettingsService, private formbuilder: FormBuilder, private auth: AuthService,
+              public router: Router) {
   }
 
   ngOnInit() {
@@ -55,9 +65,9 @@ export class UsersettingsComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.usersettingsForm.get('user_id').setValue(this.editID);
+    this.usersettingsForm1.get('user_id').setValue(this.editID);
 
-    this.usersettingsService.update(this.usersettingsForm.value)
+    this.usersettingsService.update(this.usersettingsForm1.value)
       .subscribe(
         (res: User[]) => {
           // Update the user
@@ -67,7 +77,7 @@ export class UsersettingsComponent implements OnInit {
           this.success = 'Updated successfully';
 
           // Reset the form
-          this.usersettingsForm.reset();
+          this.usersettingsForm1.reset();
         },
         (err) => this.error = err
       );
@@ -78,9 +88,9 @@ export class UsersettingsComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.usersettingsForm.get('user_id').setValue(this.editID);
+    this.usersettingsForm2.get('user_id').setValue(this.editID);
 
-    this.usersettingsService.updatePass(this.usersettingsForm.value)
+    this.usersettingsService.updatePass(this.usersettingsForm2.value)
       .subscribe(
         (res: User[]) => {
           // Update the user
@@ -90,7 +100,7 @@ export class UsersettingsComponent implements OnInit {
           this.success = 'Updated successfully';
 
           // Reset the form
-          this.usersettingsForm.reset();
+          this.usersettingsForm2.reset();
         },
         (err) => this.error = err
       );
@@ -107,19 +117,17 @@ export class UsersettingsComponent implements OnInit {
 
     const userEdit = this.usersettings.filter(x => x.user_id === id);
 
-    this.usersettingsForm.get('first_name').setValue(userEditForm.first_name);
-    this.usersettingsForm.get('last_name').setValue(userEditForm.last_name);
-    this.usersettingsForm.get('user_email').setValue(userEditForm.user_email);
-    this.usersettingsForm.get('user_password').setValue(userEditForm.user_password);
-    this.usersettingsForm.get('org_name').setValue(userEditForm.org_name);
-    this.usersettingsForm.get('db_name').setValue(userEditForm.db_name);
+    this.usersettingsForm1.get('first_name').setValue(userEditForm.first_name);
+    this.usersettingsForm1.get('last_name').setValue(userEditForm.last_name);
+    this.usersettingsForm1.get('user_email').setValue(userEditForm.user_email);
+    this.usersettingsForm1.get('org_name').setValue(userEditForm.org_name);
   }
 
   deleteUser(): void {
     this.success = '';
     this.error   = '';
 
-    this.usersettingsService.delete(this.usersettingsForm.value)
+    this.usersettingsService.delete(this.usersettingsForm3.value)
       .subscribe(
         (res: User[]) => {
           this.usersettings = res;

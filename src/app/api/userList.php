@@ -11,11 +11,9 @@ if($orgname != '') {
   $con = ConnectAPI::getInstance();
   $conn = $con->getConnect();
 
-  //$conn->select_db('1819SP2_DBlogin');
-
   $user = [];
 
-  $sql = "SELECT u.user_id, u.first_name, u.last_name, u.user_email, u.user_password, u.full_org_name, d.db_name 
+  $sql = "SELECT u.user_id, u.first_name, u.last_name, u.user_email, u.full_org_name, d.db_name 
           FROM User u JOIN DBaccess d ON(u.org_name = d.org_name) WHERE d.org_name = '$orgname'";
   $result = $conn->query($sql);
 
@@ -27,7 +25,6 @@ if($orgname != '') {
     $user[0]['first_name'] = $row['first_name'];
     $user[0]['last_name'] = $row['last_name'];
     $user[0]['user_email'] = $row['user_email'];
-    $user[0]['user_password'] = $row['user_password'];
     $user[0]['org_name'] = $row['full_org_name'];
     $user[0]['db_name'] = $row['db_name'];
 

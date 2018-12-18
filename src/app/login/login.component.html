@@ -7,9 +7,9 @@
 
     <p *ngIf="router.url === '/login?logout=true'" class="alert alert-success">You are successfully logged out!</p>
 
-    <p *ngIf="router.url === '/login?usersettingsSaved=true'" class="alert alert-info">Your account settings are changed! Please re login to your account.</p>
+    <p *ngIf="router.url === '/login?usersettingsSaved=true'" class="alert alert-info">Your account settings are successfully changed!</p>
 
-    <p *ngIf="router.url === '/login?accountDeleted=true'" class="alert alert-info">Your account has been deleted.</p>
+    <p *ngIf="router.url === '/login?accountDeleted=true'" class="alert alert-warning">Your account has been deleted.</p>
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
 

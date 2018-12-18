@@ -41,17 +41,6 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-  /*
-  getRegister(): void {
-    this.registerService.getAll().subscribe(
-      (res: User[]) => {
-        this.register = res;
-      },
-      (err) => {
-        this.error = err;
-      }
-    );
-  }*/
 
   addRegister(f) {
     this.error = '';

@@ -77,10 +77,10 @@ export class IdeaboxOptionComponent implements OnInit {
 
 
 subjectNum = 4;
-ideaNum = 0;
-firstNameNum = 0;
-lastnameNum = 0;
-emailNum = 0;
+ideaNum = 3;
+firstNameNum = 4;
+lastnameNum = 3;
+emailNum = 1;
 
   error = '';
 

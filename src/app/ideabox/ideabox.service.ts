@@ -12,7 +12,7 @@ import { Ideabox } from './ideabox';
 export class IdeaboxService {
 
   baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API/ideabox';
-  ideaboxes: Ideabox[];
+  ideaboxes: Ideabox[] = new Array(0);
 
   constructor(private http: HttpClient) { }
 
@@ -69,15 +69,14 @@ export class IdeaboxService {
   }
 
   delete(id: number): Observable<Ideabox[]> {
-    const params = new HttpParams()
-      .set('id', id.toString());
+    const params = new HttpParams().set('id', id.toString());
 
     return this.http.delete(`${this.baseUrl}/ideaboxDelete.php`, { params: params })
       .pipe(map(res => {
-          const theIdeas = this.ideaboxes.filter((ideaA) => {
-            return +ideaA['id'] !== +id;
+          const theFiltredIdeas = this.ideaboxes.filter((ideaA) => {
+            return ideaA['id'] !== id;
           });
-          return this.ideaboxes = theIdeas;
+          return this.ideaboxes = theFiltredIdeas;
         }),
         catchError(this.handleError));
   }

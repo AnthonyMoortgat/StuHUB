@@ -3,11 +3,11 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import {IdeaboxOption} from './ideabox-option';
-import {Ideabox} from '../ideabox';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class IdeaboxOptionService {
   baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/api/ideabox';
   ideaboxOptionsArray: IdeaboxOption[];

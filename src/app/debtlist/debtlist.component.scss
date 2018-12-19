@@ -11,13 +11,17 @@
 .mainButton{
   width: 10.5em;
 }
-.container{
-  width:83em;
+.container {
+  max-width:83em;
   margin-left: 0em;
   margin-right: 0em;
   padding-right: 0;
 }
+table {
+  max-width: 82em;
+}
 
-.collapse{
-  width: 83em;
+.debtButton{
+  margin-right: 1em;
+  width: 8em;
 }

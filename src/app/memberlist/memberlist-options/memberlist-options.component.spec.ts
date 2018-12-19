@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberlistComponent } from './memberlist.component';
+import { MemberlistOptionsComponent } from './memberlist-options.component';
 
-describe('MemberlistComponent', () => {
-  let component: MemberlistComponent;
-  let fixture: ComponentFixture<MemberlistComponent>;
+describe('MemberlistOptionsComponent', () => {
+  let component: MemberlistOptionsComponent;
+  let fixture: ComponentFixture<MemberlistOptionsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberlistComponent ]
+      declarations: [ MemberlistOptionsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-
-    fixture = TestBed.createComponent(MemberlistComponent);
+    fixture = TestBed.createComponent(MemberlistOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +23,3 @@ describe('MemberlistComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

@@ -10,7 +10,7 @@ describe('IdeaboxComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ IdeaboxComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

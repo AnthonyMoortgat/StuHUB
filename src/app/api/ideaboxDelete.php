@@ -1,11 +1,7 @@
 <?php
-/**
-    * Created by IntelliJ IDEA.
-    * User: antho
-    * Date: 11-Nov-18
-    * Time: 12:12
-    */
 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: multipart/form-data;charset=UTF-8;");
 require 'connect.php';
 
 // Extract, validate and sanitize the id.
@@ -17,7 +13,7 @@ if(!$id)
 }
 
 // Delete.
-$sql = "DELETE FROM `Inscription` WHERE `id` ='{$id}' LIMIT 1";
+$sql = "DELETE FROM `ideabox` WHERE `id` ='{$id}' LIMIT 1";
 
 if(mysqli_query($con, $sql))
 {
@@ -27,3 +23,5 @@ else
 {
   return http_response_code(422);
 }
+mysqli_close($con);
+?>

@@ -10,7 +10,6 @@ import {Member} from './member';
   providedIn: 'root'
 })
 export class MemberlistService {
-
   baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/Memberlist';
   members: Member[] = new Array(0);
 

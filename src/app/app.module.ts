@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionOptionsComponent } from './inscription/inscription-options/inscription-options.component';
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
+import { IdeaboxOptionComponent } from './ideabox/ideabox-option/ideabox-option.component';
 import { MermberlistOptionsComponent } from './memberlist/memberlist-options/memberlist-options.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -37,6 +38,7 @@ import { ShowhtmlComponent } from './generate/showhtml.component';
     InscriptionOptionsComponent,
     InformationComponent,
     RegisterComponent,
+    IdeaboxOptionComponent
     MermberlistOptionsComponent,
     PageNotFoundComponent,
     ShowhtmlComponent

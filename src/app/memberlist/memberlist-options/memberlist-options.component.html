@@ -1,100 +1,237 @@
 <form [formGroup]="memberlistOptionsForm" (ngSubmit)="onSubmit()">
-  <div>
-    <p>First name</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="fistNameActive" value="true" [checked]="firstNameActiveChecked">
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="fistNameRequired" value="true" [checked]="firstNameRequiredChecked">
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="fistNameVisible" value="true" [checked]="firstNameVisibleChecked">
-      <span class="slider round"></span>
-    </label>
-  </div>
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Active</th>
+      <th>Required</th>
+      <th>Visible</th>
+    </tr>
+    <tr>
+      <th>First name</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="fistNameActive" value="true" [checked]="firstNameActiveChecked">
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="fistNameRequired" value="true" [checked]="firstNameRequiredChecked">
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="fistNameVisible" value="true" [checked]="firstNameVisibleChecked">
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>Last name</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="lastNameActive" value="true" [checked]="lastNameActiveChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="lastNameRequired" value="true" [checked]="lastNameRequiredChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="lastNameVisible" value="true" [checked]="lastNameVisibleChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>Role</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="rolActive" value="true" [checked]="rolActiveChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="rolRequired" value="true" [checked]="rolRequiredChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="rolVisible" value="true" [checked]="rolVisibleChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>Date of birth</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="birthdateRequired" value="true" [checked]="birthdateRequiredChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="emailRequired" value="true" [checked]="emailRequiredChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="emailVisible" value="true" [checked]="emailVisibleChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>Organisation</th>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="organisationActive" value="true" [checked]="organisationActiveChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="organisationRequired" value="true" [checked]="organisationRequiredChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" formControlName="organisationVisible" value="true" [checked]="organisationVisibleChecked" >
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+    <tr>
+  </table>
 
-  <div>
-    <p>Last name</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="lastNameActive" value="true" [checked]="lastNameActiveChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="lastNameRequired" value="true" [checked]="lastNameRequiredChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="lastNameVisible" value="true" [checked]="lastNameVisibleChecked" >
-      <span class="slider round"></span>
-    </label>
-  </div>
 
-  <div>
-    <p>Role</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="rolActive" value="true" [checked]="rolActiveChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="rolRequired" value="true" [checked]="rolRequiredChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="rolVisible" value="true" [checked]="rolVisibleChecked" >
-      <span class="slider round"></span>
-    </label>
-  </div>
+  <!--<div>-->
+    <!--<p>First name</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="fistNameActive" value="true" [checked]="firstNameActiveChecked">-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="fistNameRequired" value="true" [checked]="firstNameRequiredChecked">-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="fistNameVisible" value="true" [checked]="firstNameVisibleChecked">-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
 
-  <div>
-    <p>Birthdate</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="birthdateRequired" value="true" [checked]="birthdateRequiredChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >
-      <span class="slider round"></span>
-    </label>
-  </div>
+  <!--<div>-->
+    <!--<p>Last name</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="lastNameActive" value="true" [checked]="lastNameActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="lastNameRequired" value="true" [checked]="lastNameRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="lastNameVisible" value="true" [checked]="lastNameVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
 
-  <div>
-    <p>Email</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="emailRequired" value="true" [checked]="emailRequiredChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="emailVisible" value="true" [checked]="emailVisibleChecked" >
-      <span class="slider round"></span>
-    </label>
-  </div>
+  <!--<div>-->
+    <!--<p>Role</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="rolActive" value="true" [checked]="rolActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="rolRequired" value="true" [checked]="rolRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="rolVisible" value="true" [checked]="rolVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
 
-  <div>
-    <p>Organisation</p>
-    <label class="switch">
-      <input type="checkbox" formControlName="organisationActive" value="true" [checked]="organisationActiveChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="organisationRequired" value="true" [checked]="organisationRequiredChecked" >
-      <span class="slider round"></span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" formControlName="organisationVisible" value="true" [checked]="organisationVisibleChecked" >
-      <span class="slider round"></span>
-    </label>
-  </div>
+  <!--<div>-->
+    <!--<p>Birthdate</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="birthdateRequired" value="true" [checked]="birthdateRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
+
+  <!--<div>-->
+    <!--<p>Email</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailRequired" value="true" [checked]="emailRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailVisible" value="true" [checked]="emailVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
+
+  <!--<div>-->
+    <!--<p>Organisation</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="organisationActive" value="true" [checked]="organisationActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="organisationRequired" value="true" [checked]="organisationRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="organisationVisible" value="true" [checked]="organisationVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
 
 
-  <button type="submit">Change options</button>
+  <button class="btn btn-primary" type="submit">Change options</button>
 </form>

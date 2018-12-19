@@ -10,7 +10,7 @@ describe('DebtlistComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DebtlistComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

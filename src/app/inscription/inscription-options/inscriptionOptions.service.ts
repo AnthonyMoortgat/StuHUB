@@ -16,8 +16,13 @@ export class InscriptionOptionsService {
   inscriptionOptionsArray: InscriptionOptions[];
 
   constructor(private http: HttpClient) { }
+
+  userID = sessionStorage.getItem('Orgname');
+
   getAll(): Observable<InscriptionOptions[]> {
-    return this.http.get(`${this.baseUrl}/inscriptionOptionsGetAll.php`).pipe(
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.get(`${this.baseUrl}/inscriptionOptionsGetAll.php`, {params}).pipe(
       map((res) => {
         this.inscriptionOptionsArray = res['data'];
         return this.inscriptionOptionsArray;
@@ -26,7 +31,9 @@ export class InscriptionOptionsService {
   }
 
   update(inscriptionOption: InscriptionOptions): Observable<InscriptionOptions[]> {
-    return this.http.put(`${this.baseUrl}/inscriptionOptionsUpdate.php`, { data: inscriptionOption })
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.put(`${this.baseUrl}/inscriptionOptionsUpdate.php`, { data: inscriptionOption }, {params})
       .pipe(map((res) => {
           const theInscriptionOption = this.inscriptionOptionsArray.find((item) => {
             return +item['organisationId'] === +inscriptionOption['organisationId'];

@@ -10,14 +10,17 @@ import {Member} from './member';
   providedIn: 'root'
 })
 export class MemberlistService {
-
-  baseUrl = 'http://dtsl.ehb.be/~drilon.kryeziu/API';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/Memberlist';
   members: Member[] = new Array(0);
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    getAll(): Observable<Member[]> {
-    return this.http.get(`${this.baseUrl}/memberlistList.php`).pipe(
+  userID = sessionStorage.getItem('Orgname');
+
+  getAll(): Observable<Member[]> {
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.get(`${this.baseUrl}/memberlistGetAll.php`, {params: params}).pipe(
       map((res) => {
         this.members = res['data'];
         return this.members;
@@ -26,7 +29,7 @@ export class MemberlistService {
   }
 
   delete(id: number): Observable<Member[]> {
-      const  params = new HttpParams().set('id', id.toString());
+    const  params = new HttpParams().set('idMember', id.toString()).set('id', this.userID);
 
     return this.http.delete(`${this.baseUrl}/memberlistDelete.php`, { params: params })
       .pipe(map(res => {
@@ -39,25 +42,33 @@ export class MemberlistService {
   }
 
   store(member: Member): Observable<Member[]> {
-    return this.http.post(`${this.baseUrl}/memberlistStore.php`, { data: member })
+    const params = new HttpParams().set('id', this.userID);
+
+    return this.http.post(`${this.baseUrl}/memberlistStore.php`, { data: member}, {params: params})
       .pipe(map((res) => {
-          this.members.push(res['data']);
-          return this.members;
-        }),
+        this.members.push(res['data']);
+        return this.members;
+      }),
         catchError(this.handleError));
   }
+
   update(member: Member): Observable<Member[]> {
-    return this.http.put(`${this.baseUrl}/memberlistUpdate.php`, { data: member})
+    const params = new HttpParams().set('id', this.userID);
+
+
+    return this.http.put(`${this.baseUrl}/memberlistUpdate.php`, { data: member}, {params: params})
       .pipe(map((res) => {
           const theMember = this.members.find((item) => {
             return +item['id'] === +member['id'];
           });
           if (theMember) {
+            theMember['id'] = member['id'];
             theMember['firstName'] = member['firstName'];
             theMember['lastName'] = member['lastName'];
             theMember['rol'] = member['rol'];
             theMember['email'] = member['email'];
             theMember['birthdate'] = member['birthdate'];
+            theMember['organisation'] = member['organisation'];
           }
           return this.members;
         }),

@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './authguard/auth.service';
+import { AuthGuard } from './authguard/auth.guard';
 
-import { AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MemberlistComponent } from './memberlist/memberlist.component';
@@ -17,6 +20,10 @@ import { InscriptionOptionsComponent } from './inscription/inscription-options/i
 import { InformationComponent } from './information/information.component';
 import { RegisterComponent } from './register/register.component';
 import { IdeaboxOptionComponent } from './ideabox/ideabox-option/ideabox-option.component';
+import { MermberlistOptionsComponent } from './memberlist/memberlist-options/memberlist-options.component';
+import { CookieService } from 'ngx-cookie-service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ShowhtmlComponent } from './generate/showhtml.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +34,14 @@ import { IdeaboxOptionComponent } from './ideabox/ideabox-option/ideabox-option.
     DebtlistComponent,
     UsersettingsComponent,
     InscriptionComponent,
-    InscriptionComponent,
     LoginComponent,
     InscriptionOptionsComponent,
     InformationComponent,
     RegisterComponent,
     IdeaboxOptionComponent
+    MermberlistOptionsComponent,
+    PageNotFoundComponent,
+    ShowhtmlComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,7 @@ import { IdeaboxOptionComponent } from './ideabox/ideabox-option/ideabox-option.
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [CookieService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

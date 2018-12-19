@@ -1,5 +1,5 @@
 <form [formGroup]="inscriptionOptionsForm" (ngSubmit)="onSubmit()">
-  <div>
+  <span>
     <p>First name</p>
     <label class="switch">
       <input type="checkbox" formControlName="fistNameActive" value="true" [checked]="firstNameActiveChecked">
@@ -13,9 +13,9 @@
       <input type="checkbox" formControlName="fistNameVisible" value="true" [checked]="firstNameVisibleChecked">
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Last name</p>
     <label class="switch">
       <input type="checkbox" formControlName="lastNameActive" value="true" [checked]="lastNameActiveChecked" >
@@ -29,9 +29,9 @@
       <input type="checkbox" formControlName="lastNameVisible" value="true" [checked]="lastNameVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Phone number</p>
     <label class="switch">
       <input type="checkbox" formControlName="phoneNumberActive" value="true" [checked]="phoneNumberActiveChecked" >
@@ -45,9 +45,9 @@
       <input type="checkbox" formControlName="phoneNumberVisible" value="true" [checked]="phoneNumberVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Allergy</p>
     <label class="switch">
       <input type="checkbox" formControlName="allergyActive" value="true" [checked]="allergyActiveChecked" >
@@ -61,9 +61,9 @@
       <input type="checkbox" formControlName="allergyVisible" value="true" [checked]="allergyVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Physical limitation</p>
     <label class="switch">
       <input type="checkbox" formControlName="physicalLimitationActive" value="true" [checked]="physicalLimitationActiveChecked" >
@@ -77,9 +77,9 @@
       <input type="checkbox" formControlName="physicalLimitationVisible" value="true" [checked]="physicalLimitationVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Birthdate</p>
     <label class="switch">
       <input type="checkbox" formControlName="birthdateActive" value="true" [checked]="birthdateActiveChecked" >
@@ -93,9 +93,9 @@
       <input type="checkbox" formControlName="birthdateVisible" value="true" [checked]="birthdateVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Gender</p>
     <label class="switch">
       <input type="checkbox" formControlName="genderActive" value="true" [checked]="genderActiveChecked" >
@@ -109,9 +109,9 @@
       <input type="checkbox" formControlName="genderVisible" value="true" [checked]="genderVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <div>
+  <span>
     <p>Email</p>
     <label class="switch">
       <input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >
@@ -125,7 +125,41 @@
       <input type="checkbox" formControlName="emailVisible" value="true" [checked]="emailVisibleChecked" >
       <span class="slider round"></span>
     </label>
-  </div>
+  </span>
 
-  <button type="submit">Change options</button>
+  <br/>
+
+  <!--<div>-->
+    <!--<p>Gender</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="genderActive" value="true" [checked]="genderActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="genderRequired" value="true" [checked]="genderRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="genderVisible" value="true" [checked]="genderVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
+
+  <!--<div>-->
+    <!--<p>Email</p>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailActive" value="true" [checked]="emailActiveChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailRequired" value="true" [checked]="emailRequiredChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--<input type="checkbox" formControlName="emailVisible" value="true" [checked]="emailVisibleChecked" >-->
+      <!--<span class="slider round"></span>-->
+    <!--</label>-->
+  <!--</div>-->
+
+  <button class="btn btn-primary" type="submit">Change options</button>
 </form>

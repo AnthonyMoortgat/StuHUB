@@ -1,242 +1,38 @@
-
 <div>
-  <!-- Options -->
-
+  <!-- InscriptionOptions -->
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>Ideabox-Options</h2></a>
+    <a data-toggle="collapse" data-target="#options"><h2>InscriptionOptions</h2></a>
     <div id="options" class="collapse">
-      <app-ideabox-option
-        [ideaboxForm]="ideaboxForm"></app-ideabox-option>
+
     </div>
   </div>
-  <hr/>
 
+  <hr>
 
   <!-- INPUT -->
-
-
   <div>
     <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
-      <form *ngIf="!edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
-          <label>
-            Subject :
-            <input type="text" formControlName="subject">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
-          <label>
-            Idea:
-            <input type="text" formControlName="idea">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
-          <label>
-              firstname :
-            <input type="text" formControlName="firstName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
-          <label>
-            Lastname :
-            <input type="text" formControlName="lastName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
-          <label>
-            E-mail:
-            <input type="text" formControlName="email">
-          </label>
-        </div>
-
-        <br/>
-
-
-        <button type="submit" [disabled]="!ideaboxForm.valid">Add idea</button>
-      </form>
-
-      <form *ngIf="edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
-          <label>
-            Subject :
-            <input type="text" formControlName="subject">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
-          <label>
-            Idea:
-            <input type="text" formControlName="idea">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
-          <label>
-            firstname :
-            <input type="text" formControlName="firstName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
-          <label>
-            Lastname :
-            <input type="text" formControlName="lastName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
-          <label>
-            E-mail:
-            <input type="text" formControlName="email">
-          </label>
-        </div>
-
-        <br/>
-
-
-        <button type="submit" [disabled]="!ideaboxForm.valid">Edit idea</button>
-        <button type="button" (click)="returnForm()">Return</button>
-      </form>
-
-
 
     </div>
   </div>
 
-
-
-<hr/>
-
-
-
-
-
+  <hr/>
 
   <!-- GEGEVENS -->
   <div>
     <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
     <div id="gegevens" class="collapse">
-      <div *ngIf="error">{{error}}</div>
-      <div *ngIf="success">{{success}}</div>
-
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col" *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">Subject</th>
-          <th scope="col" *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">Idea</th>
-          <th scope="col" *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">First</th>
-          <th scope="col" *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">Last</th>
-          <th scope="col" *ngIf="ideaboxOptionsChild.emailOptionActiveChk">Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let item of idea">
-          <th> {{item.id}} </th>
-          <th *ngIf="ideaboxOptionsChild.subjectOptionActiveChk"> {{item.subject}} </th>
-          <th *ngIf="ideaboxOptionsChild.ideaOptionActiveChk"> {{item.idea}} </th>
-          <th *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk"> {{item.firstName}} </th>
-          <th *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk"> {{item.lastName}} </th>
-          <th *ngIf="ideaboxOptionsChild.emailOptionActiveChk"> {{item.email}} </th>
-          <th><button (click)="editIdea(item.id)">Edit</button> <button (click)="deleteIdea(item.idea)">Delete</button> </th>
-        </tr>
-        </tbody>
-      </table>
-
 
     </div>
   </div>
 
   <hr>
-
 
   <div>
     <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
     <div id="preview" class="collapse">
 
-      <form *ngIf="!edit" [formGroup]="ideaboxForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="ideaboxOptionsChild.subjectOptionActiveChk">
-          <label>
-            Subject :
-            <input type="text" formControlName="subject">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.ideaOptionActiveChk">
-          <label>
-            Idea:
-            <input type="text" formControlName="idea">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.firstNameOptionActiveChk">
-          <label>
-            firstname :
-            <input type="text" formControlName="firstName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.lastNameOptionActiveChk">
-          <label>
-            Lastname :
-            <input type="text" formControlName="lastName">
-          </label>
-        </div>
-
-        <br/>
-
-        <div *ngIf="ideaboxOptionsChild.emailOptionActiveChk">
-          <label>
-            E-mail:
-            <input type="text" formControlName="email">
-          </label>
-        </div>
-
-        <br/>
-
-
-        <button type="submit" [disabled]="!ideaboxForm.valid">Add idea</button>
-      </form>
-
-
-
     </div>
   </div>
-
-
-  <hr>
-
-
-
-
 </div>
-
-
-

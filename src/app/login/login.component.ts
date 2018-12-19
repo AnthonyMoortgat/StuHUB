@@ -54,8 +54,6 @@ export class LoginComponent implements OnInit {
     this.success = '';
     this.dbname = '';
     // this.InvalidLogin = '';
-    console.log(f);
-
     this.loginService.store(this.loginData)
       .subscribe(
         (res: User[]) => {

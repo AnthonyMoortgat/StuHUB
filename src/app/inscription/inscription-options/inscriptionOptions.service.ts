@@ -12,7 +12,7 @@ import {Inscription} from '../inscription';
 })
 export class InscriptionOptionsService {
 
-  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/options';
+  baseUrl = 'http://dtsl.ehb.be/~michael.de.gauquier/SP2/api/options';
   inscriptionOptionsArray: InscriptionOptions[];
 
   constructor(private http: HttpClient) { }

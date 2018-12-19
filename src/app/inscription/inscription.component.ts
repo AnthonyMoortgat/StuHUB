@@ -5,6 +5,9 @@ import { InscriptionOptionsComponent } from './inscription-options/inscription-o
 
 import { Inscription } from './inscription';
 import { InscriptionService } from '../inscription.service';
+import {forEach} from '@angular/router/src/utils/collection';
+
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-inscription',

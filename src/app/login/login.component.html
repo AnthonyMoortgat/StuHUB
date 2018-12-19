@@ -1,11 +1,15 @@
 <form #f="ngForm" method="post" action="" id="formLog" (submit)="getLogin(f)">
   <div style="max-width: 400px;">
 
-    <p *ngIf="router.url === '/login?login=false'" class="fault">E-mail or password incorrect!</p>
+    <p *ngIf="router.url === '/login?login=false'" class="alert alert-danger">E-mail or password incorrect!</p>
 
-    <p *ngIf="router.url === '/login?register=true'" class="good">Registration successful!</p>
+    <p *ngIf="router.url === '/login?register=true'" class="alert alert-success">Registration successful!</p>
 
-    <p *ngIf="router.url === '/login?logout=true'" class="good">You are successfully logged out!</p>
+    <p *ngIf="router.url === '/login?logout=true'" class="alert alert-success">You are successfully logged out!</p>
+
+    <p *ngIf="router.url === '/login?usersettingsSaved=true'" class="alert alert-info">Your account settings are successfully changed!</p>
+
+    <p *ngIf="router.url === '/login?accountDeleted=true'" class="alert alert-warning">Your account has been deleted.</p>
 
     <h2 class="form-signin-heading"><b>Login</b></h2>
 

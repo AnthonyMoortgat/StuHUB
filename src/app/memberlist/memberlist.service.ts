@@ -47,6 +47,8 @@ export class MemberlistService {
   store(member: Member): Observable<Member[]> {
     const params = new HttpParams().set('id', this.userID);
 
+    console.log(member);
+
     return this.http.post(`${this.baseUrl}/memberlistStore.php`, { data: member}, {params: params})
       .pipe(map((res) => {
         this.members.push(res['data']);

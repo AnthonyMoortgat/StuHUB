@@ -29,6 +29,7 @@ export class MemberlistOptionService {
       }),
       catchError(this.handleError));
   }
+
   update(memberlistOption: MemberlistOptions): Observable<MemberlistOptions[]> {
     const params = new HttpParams().set('id', this.userID);
 
@@ -41,8 +42,9 @@ export class MemberlistOptionService {
             theMemberlistOption['firstName'] = memberlistOption['firstName'];
             theMemberlistOption['lastName'] = memberlistOption['lastName'];
             theMemberlistOption['rol'] = memberlistOption['phoneNumber'];
-            theMemberlistOption['email'] = memberlistOption['allergy'];
             theMemberlistOption['birthdate'] = memberlistOption['birthdate'];
+            theMemberlistOption['email'] = memberlistOption['allergy'];
+            theMemberlistOption['organisation'] = memberlistOption['organisation'];
           }
           return this.memberlistOptionsArray;
         }),

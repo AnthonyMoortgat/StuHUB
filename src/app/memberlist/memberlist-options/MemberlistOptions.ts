@@ -5,6 +5,7 @@ export class MemberlistOptions {
   rolOption?: string;
   emailOption?: string;
   birthdateOption?: number;
+  organisation?: number;
 
   constructor(
     organisationId: number,
@@ -12,5 +13,6 @@ export class MemberlistOptions {
     lastNameOption?: string,
     rolOption?: string,
     emailOption?: string,
-    birthdateOption?: number) {}
+    birthdateOption?: number,
+    organisation?: number) {}
 }

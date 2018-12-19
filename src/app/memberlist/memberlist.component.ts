@@ -54,24 +54,6 @@ export class MemberlistComponent implements OnInit {
     );
   }
 
-  addMember(form) {
-    this.error = '';
-    this.success = '';
-
-    this.memberlistService.store(this.memberlistData)
-      .subscribe(
-        (res: Member[]) => {
-          // Update the list of members
-          this.members = res;
-          // Inform the user
-          this.success = 'Created successfully';
-          // Reset the form
-          form.reset();
-        },
-        (err) => this.error = err
-      );
-  }
-
   editMemberlist(id): void {
 
     this.editID = id;

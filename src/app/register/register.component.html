@@ -1,17 +1,10 @@
-
-<!--<meta charset="UTF-8">
-    <title>Register</title>
-        <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
-            <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
-                <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />-->
-
 <form #f="ngForm" method="post" action="" id="formReg" (submit)="addRegister(f)">
   <div style="max-width: 400px;">
 
     <!--<p *ngIf="success">Stored successfully</p>-->
     <p *ngIf="error">There is an error</p>
-    <p *ngIf="router.url === '/register?register=false'" class="fault">E-mail already used, please try again.</p>
-    <p *ngIf="router.url === '/register?orgname=false'" class="fault">Org. name already used, please try again.</p>
+    <p *ngIf="router.url === '/register?register=false'" class="alert alert-danger">E-mail already used, please try again.</p>
+    <p *ngIf="router.url === '/register?orgname=false'" class="alert alert-danger">Org. name already used, please try again.</p>
 
     <h2 class="form-signin-heading"><b>Registration</b></h2>
 

@@ -126,55 +126,69 @@ export class DebtlistComponent implements OnInit {
   }
 
   sortOnDebt(): void {
-    this.debtors.sort((a, b) => a.debt - b.debt);
-    this.sortDebt = false;
-    this.staySorted = 1;
+    if (this.debtors != null) {
+      this.debtors.sort((a, b) => a.debt - b.debt);
+      this.sortDebt = false;
+      this.staySorted = 1;
+    }
   }
 
   reversedDebt(): void {
-    this.debtors.sort((a, b) => b.debt - a.debt);
-    this.sortDebt = true;
-    this.staySorted = 2;
+    if (this.debtors != null) {
+      this.debtors.sort((a, b) => b.debt - a.debt);
+      this.sortDebt = true;
+      this.staySorted = 2;
+    }
   }
 
   debtSort(): void {
-    if (this.sortDebt === true) {
-      this.sortOnDebt();
-    } else {
-      this.reversedDebt();
+    if (this.debtors != null) {
+      if (this.sortDebt === true) {
+        this.sortOnDebt();
+      } else {
+        this.reversedDebt();
+      }
     }
   }
 
   sortOnName(): void {
-    this.debtors.sort((a, b) => a.memberName.localeCompare(b.memberName));
-    this.sortName = true;
-    this.staySorted = 4;
+    if (this.debtors != null) {
+      this.debtors.sort((a, b) => a.memberName.localeCompare(b.memberName));
+      this.sortName = true;
+      this.staySorted = 4;
+    }
   }
 
   reversedName(): void {
-    this.debtors.sort((a, b) => b.memberName.localeCompare(a.memberName));
-    this.sortName = false;
-    this.staySorted = 3;
+    if (this.debtors != null) {
+      this.debtors.sort((a, b) => b.memberName.localeCompare(a.memberName));
+      this.sortName = false;
+      this.staySorted = 3;
+    }
   }
 
   nameSort(): void {
-    if (this.sortName === false) {
-      this.sortOnName();
-    } else {
-      this.reversedName();
+    if (this.debtors != null) {
+      if (this.sortName === false) {
+        this.sortOnName();
+      } else {
+        this.reversedName();
+      }
     }
   }
 
   keepSorted(): void {
-    switch (this.staySorted) {
-      case 1: this.sortOnDebt();
-      break;
-      case 2: this.reversedDebt();
-      break;
-      case 3: this.reversedName();
-      break;
-      case 4: this.sortOnName();
-      break;
+    if (this.debtors != null) {
+      switch (this.staySorted) {
+        case 1: this.sortOnDebt();
+          break;
+        case 2: this.reversedDebt();
+          break;
+        case 3: this.reversedName();
+          break;
+        case 4: this.sortOnName();
+          break;
+      }
     }
   }
 }

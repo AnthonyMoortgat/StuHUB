@@ -23,8 +23,10 @@ export class MemberlistService {
 
     return this.http.get(`${this.baseUrl}/memberlistGetAll.php`, {params: params}).pipe(
       map((res) => {
-        this.members = res['data'];
-        return this.members;
+        if (res !== null) {
+          this.members = res['data'];
+          return this.members;
+        }
       }),
       catchError(this.handleError));
   }
@@ -47,7 +49,6 @@ export class MemberlistService {
 
     return this.http.post(`${this.baseUrl}/memberlistStore.php`, { data: member}, {params: params})
       .pipe(map((res) => {
-        // console.log(res['data']);
         this.members.push(res['data']);
         return this.members;
       }),

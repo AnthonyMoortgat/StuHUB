@@ -23,8 +23,10 @@ export class DebtlistService {
 
     return this.http.get(`${this.baseUrl}/debtlistGetAll.php`, {params: params}).pipe(
       map((res) => {
-        this.debtors = res['data'];
-        return this.debtors;
+        if (res != null) {
+          this.debtors = res['data'];
+          return this.debtors;
+        }
       }),
       catchError(this.handleError));
   }

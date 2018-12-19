@@ -11,7 +11,7 @@ import { Inscription } from './inscription/inscription';
 })
 export class InscriptionService {
 
-  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api';
+  baseUrl = 'http://dtsl.ehb.be/~michael.de.gauquier/SP2/api';
   inscriptions: Inscription[];
 
   constructor(private http: HttpClient) { }
@@ -23,8 +23,10 @@ export class InscriptionService {
 
     return this.http.get(`${this.baseUrl}/inscriptionList.php`, {params: params}).pipe(
       map((res) => {
-        this.inscriptions = res['data'];
-        return this.inscriptions;
+        if (res != null) {
+          this.inscriptions = res['data'];
+          return this.inscriptions;
+        }
     }),
     catchError(this.handleError));
   }

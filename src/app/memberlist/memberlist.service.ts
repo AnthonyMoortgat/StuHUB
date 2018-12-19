@@ -23,8 +23,10 @@ export class MemberlistService {
 
     return this.http.get(`${this.baseUrl}/memberlistGetAll.php`, {params: params}).pipe(
       map((res) => {
-        this.members = res['data'];
-        return this.members;
+        if (res !== null) {
+          this.members = res['data'];
+          return this.members;
+        }
       }),
       catchError(this.handleError));
   }

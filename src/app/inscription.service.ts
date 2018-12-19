@@ -23,8 +23,10 @@ export class InscriptionService {
 
     return this.http.get(`${this.baseUrl}/inscriptionList.php`, {params: params}).pipe(
       map((res) => {
-        this.inscriptions = res['data'];
-        return this.inscriptions;
+        if (res != null) {
+          this.inscriptions = res['data'];
+          return this.inscriptions;
+        }
     }),
     catchError(this.handleError));
   }

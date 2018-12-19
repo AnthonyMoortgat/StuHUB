@@ -12,16 +12,26 @@
   width: 10.5em;
 }
 .container {
-  max-width:83em;
+  min-width: 35em;
+  max-width: 83em;
   margin-left: 0em;
   margin-right: 0em;
-  padding-right: 0;
-}
-table {
-  max-width: 82em;
+  padding-left: 0;
 }
 
 .debtButton{
   margin-right: 1em;
   width: 8em;
 }
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 480px) {
+
+}
+
+.widthCorrect{
+  width: 35em;
+}
+

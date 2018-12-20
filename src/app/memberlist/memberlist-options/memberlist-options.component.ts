@@ -76,13 +76,14 @@ export class MermberlistOptionsComponent implements OnInit {
 
   ngOnInit() {
     this.getOptions();
-    this.changeOptionCheckboxes();
     this.onChanges();
   }
+
   getOptions(): void {
     this.memberlistOptionsService.getAll().subscribe(
       (res: MemberlistOptions[]) => {
         this.memberlistOptionsArray = res;
+        this.changeVarDb();
       },
       (err) => {
         this.error = err;
@@ -91,7 +92,7 @@ export class MermberlistOptionsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.changeFormValue('Enigma');
+    this.changeFormValue(sessionStorage.getItem('Orgname'));
 
     this.memberlistOptionsService.update(this.memberlistOptionsUpdateForm.value)
       .subscribe(
@@ -349,6 +350,7 @@ export class MermberlistOptionsComponent implements OnInit {
   changeOptionCheckboxes() {
     switch (this.firstNameNumber) {
       case 0:
+
         break;
 
       case 1:
@@ -506,5 +508,16 @@ export class MermberlistOptionsComponent implements OnInit {
         this.changeRequirements('organisation', this.organisationRequiredChecked);
         break;
     }
+  }
+
+  changeVarDb() {
+    this.firstNameNumber = +this.memberlistOptionsArray[0]['firstName'];
+    this.lastNameNumber = +this.memberlistOptionsArray[0]['lastName'];
+    this.rolnumber = +this.memberlistOptionsArray[0]['role'];
+    this.birthdateNumber = +this.memberlistOptionsArray[0]['birthdate'];
+    this.emailNumber = +this.memberlistOptionsArray[0]['email'];
+    this.organisationNumber = +this.memberlistOptionsArray[0]['organisation'];
+
+    this.changeOptionCheckboxes();
   }
 }

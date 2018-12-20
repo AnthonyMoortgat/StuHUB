@@ -26,4 +26,32 @@
   </ul>
 </nav>
 
+<div class="dropdown">
+  <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="material-icons">list</i></button>
+
+  <div class="dropdown-menu">
+    <a class="dropdown-item" routerLink="" routerLinkActive="activated">
+      <i class="material-icons">home</i> Home
+    </a>
+    <a class="dropdown-item" routerLink="usersettings" routerLinkActive="activated">
+      <i class="material-icons">build</i> Settings
+    </a>
+    <a class="dropdown-item" routerLink="memberlist" routerLinkActive="activated">
+      <i class="material-icons">person</i> Memberlist
+    </a>
+    <a class="dropdown-item" routerLink="debtlist" routerLinkActive="activated">
+      <i class="material-icons">attach_money</i> Debtlist
+    </a>
+    <a class="dropdown-item" routerLink="ideabox" routerLinkActive="activated">
+      <i class="material-icons">comment</i> Ideabox
+    </a>
+    <a class="dropdown-item" routerLink="inscription" routerLinkActive="activated">
+      <i class="material-icons">person_add</i>Inscription
+    </a>
+    <a class="dropdown-item" *ngIf="auth.isLoggednIn()" (click)="auth.logout()" routerLink="" routerLinkActive="deactivated">
+      <i class="material-icons">logout</i> Logout
+    </a>
+  </div>
+</div>
+
 <!-- *ngIf="router.url != '/' && router.url != '/?login=false' && router.url != '/?register=true' && router.url != '/register' && router.url != '/register?register=false'" -->

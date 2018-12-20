@@ -6,6 +6,7 @@ define('DB_USER', '1819SP2_DB');
 define('DB_PASS', 'eixpbwz');
 define('DB_NAME', '1819SP2_Org1');
 
+
 // Connect with the database.
 function connect()
 {

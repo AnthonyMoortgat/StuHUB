@@ -8,7 +8,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InformationComponent } from './information/information.component';
-import { AuthService } from './authguard/auth.service';
 import { AuthGuard } from './authguard/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 

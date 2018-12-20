@@ -12,7 +12,7 @@ import {Inscription} from '../inscription';
 })
 export class InscriptionOptionsService {
 
-  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/options';
+  baseUrl = 'http://dtsl.ehb.be/~anthony.moortgat/SP2/api/options/';
   inscriptionOptionsArray: InscriptionOptions[];
 
   constructor(private http: HttpClient) { }
@@ -22,7 +22,7 @@ export class InscriptionOptionsService {
   getAll(): Observable<InscriptionOptions[]> {
     const params = new HttpParams().set('id', this.userID);
 
-    return this.http.get(`${this.baseUrl}/inscriptionOptionsGetAll.php`, {params}).pipe(
+    return this.http.get(`${this.baseUrl}/inscriptionOptionsGetAll.php`, {params: params}).pipe(
       map((res) => {
         this.inscriptionOptionsArray = res['data'];
         return this.inscriptionOptionsArray;
@@ -33,7 +33,7 @@ export class InscriptionOptionsService {
   update(inscriptionOption: InscriptionOptions): Observable<InscriptionOptions[]> {
     const params = new HttpParams().set('id', this.userID);
 
-    return this.http.put(`${this.baseUrl}/inscriptionOptionsUpdate.php`, { data: inscriptionOption }, {params})
+    return this.http.put(`${this.baseUrl}/inscriptionOptionsUpdate.php`, { data: inscriptionOption }, {params: params})
       .pipe(map((res) => {
           const theInscriptionOption = this.inscriptionOptionsArray.find((item) => {
             return +item['organisationId'] === +inscriptionOption['organisationId'];

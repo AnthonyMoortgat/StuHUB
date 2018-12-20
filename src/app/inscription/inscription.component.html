@@ -1,3 +1,4 @@
+<div class="widthCorrect"></div>
 <div>
   <!-- InscriptionOptions -->
   <div>
@@ -23,13 +24,11 @@
             <br/>
           </div>
 
-          <div class="form-group col-md-6">
-            <div *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
+            <div class="col-md-6" *ngIf="inscriptionOptionsChild.lastNameActiveChecked">
               <label for="iLastName">Last Name:</label><br/>
                 <input type="text" id="iLastName" formControlName="lastName" class="form-control">
               <br/>
             </div>
-          </div>
         </div>
 
         <div *ngIf="inscriptionOptionsChild.phoneNumberActiveChecked">
@@ -149,11 +148,10 @@
 
   <!-- GEGEVENS -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>All the inscriptions</h2></a>
+    <a data-toggle="collapse" data-target="#gegevens"><h2>Registered inscriptions</h2></a>
     <div id="gegevens" class="collapse">
       <div *ngIf="error">{{error}}</div>
       <div *ngIf="success">{{success}}</div>
-
       <table class="table table-striped table-hover">
         <thead>
           <tr>

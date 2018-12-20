@@ -13,9 +13,9 @@ import {DebtlistService} from './debtlist.service';
 export class DebtlistComponent implements OnInit {
   debtorForm = new FormGroup({
     id: new FormControl(''),
-    memberName: new FormControl('', Validators.required),
-    company: new FormControl('', Validators.required),
-    debt: new FormControl('', Validators.required),
+    memberName: new FormControl(''),
+    company: new FormControl(''),
+    debt: new FormControl(''),
     memberRole: new FormControl('')
 
   });

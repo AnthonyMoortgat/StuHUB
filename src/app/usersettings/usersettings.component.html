@@ -1,9 +1,33 @@
 <div>
-  <!-- InscriptionOptions -->
+  <!-- DATA -->
   <div>
-    <a data-toggle="collapse" data-target="#options"><h2>InscriptionOptions</h2></a>
-    <div id="options" class="collapse">
+    <a data-toggle="collapse" data-target="#data"><h2>Your Profile</h2></a>
+    <div id="data" class="collapse">
+      <div *ngIf="error">{{error}}</div>
+      <div *ngIf="success">{{success}}</div>
 
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col" >First name</th>
+          <th scope="col" >Last name</th>
+          <th scope="col" >E-mail</th>
+          <th scope="col" >Organisation name</th>
+          <th scope="col" >Edit</th>
+          <th scope="col" >Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of usersettings">
+          <td> {{item.first_name}} </td>
+          <td> {{item.last_name}} </td>
+          <td> {{item.user_email}} </td>
+          <td> {{item.org_name}} </td>
+          <td> <button (click)="editUser(item.user_id)" data-toggle="collapse" data-target="#input">Edit Profile</button> </td>
+          <td> <button data-toggle="collapse" data-target="#del">Delete Account</button> </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -11,28 +35,125 @@
 
   <!-- INPUT -->
   <div>
-    <a data-toggle="collapse" data-target="#input"><h2>Input</h2></a>
     <div id="input" class="collapse">
+      <a data-toggle="collapse" data-target="#input"><h2>Edit Profile</h2></a>
 
+      <form [formGroup]="usersettingsForm1" (ngSubmit)="updateUser()">
+
+        <hr/>
+
+        <label>
+          First Name:<br/>
+          <input type="text"
+                 class="form-control"
+                 formControlName="first_name">
+        </label>
+
+        <br/>
+
+        <label>
+          Last Name:<br/>
+          <input type="text"
+                 class="form-control"
+                 formControlName="last_name">
+        </label>
+
+        <br/>
+
+        <label>
+          E-mail:<br/>
+          <input type="text"
+                 class="form-control"
+                 formControlName="user_email">
+        </label>
+
+        <br/>
+
+        <label>
+          Organisation:<br/>
+          <input type="text"
+                 class="form-control"
+                 formControlName="org_name">
+        </label>
+
+        <br/>
+
+        <hr/>
+
+        <p>After the changes you will be automatically logged out for security reasons.</p>
+        <button class="btn btn-primary btn-lg mainButton" type="submit" [disabled]="!usersettingsForm1.valid">Update Profile</button>
+      </form>
+
+      <hr/>
+
+    </div>
+  </div>
+
+
+  <!-- Change Password -->
+  <div>
+    <a data-toggle="collapse" data-target="#changePass"><h2>Change Password</h2></a>
+    <div id="changePass" class="collapse">
+      <form [formGroup]="usersettingsForm2" (ngSubmit)="updatePassUser()">
+
+        <hr/>
+
+        <label>
+          Old Password:<br/>
+          <input type="password"
+                 class="form-control"
+                 formControlName="user_password"
+                 maxlength="20">
+        </label>
+
+        <br/>
+
+        <label>
+          New Password:<br/>
+          <input type="password"
+                 class="form-control"
+                 formControlName="new_password"
+                 maxlength="20"
+                 title="The password must consist of letters and numbers and at least 8 characters and a maximum of 20 characters!">
+        </label>
+
+        <br/>
+
+        <hr/>
+
+        <p>Make sure you will remember your new password!</p>
+        <p>After the changes you will be automatically logged out for security reasons.</p>
+        <button class="btn btn-primary btn-lg mainButton" type="submit" [disabled]="!(usersettingsForm2.valid)">Change Password</button>
+      </form>
     </div>
   </div>
 
   <hr/>
 
-  <!-- GEGEVENS -->
+
+  <!-- DELETE Account -->
   <div>
-    <a data-toggle="collapse" data-target="#gegevens"><h2>Gegevens</h2></a>
-    <div id="gegevens" class="collapse">
+    <div id="del" class="collapse">
+      <a data-toggle="collapse" data-target="#del"><h2>Delete your Account</h2></a>
+
+      <form [formGroup]="usersettingsForm3" (ngSubmit)="deleteUser()">
+
+        <hr/>
+
+        <label>
+          Give your Password:<br/>
+          <input type="password" class="form-control" formControlName="user_password">
+        </label>
+
+        <hr/>
+
+        <p>There is no way back!</p>
+        <button class="btn btn-danger btn-lg mainButton" type="submit" [disabled]="!usersettingsForm3.valid">Delete Account</button>
+      </form>
+
+      <hr/>
 
     </div>
   </div>
 
-  <hr>
-
-  <div>
-    <a data-toggle="collapse" data-target="#preview"><h2>Preview</h2></a>
-    <div id="preview" class="collapse">
-
-    </div>
-  </div>
 </div>

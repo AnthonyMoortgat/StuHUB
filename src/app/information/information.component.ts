@@ -14,6 +14,23 @@ export class InformationComponent implements OnInit {
   firstname = sessionStorage.getItem('Firstname');
   lastname = sessionStorage.getItem('Lastname');
   userID = sessionStorage.getItem('Orgname');
+  text = '<script>\n' +
+    '        function addHtmlStuHUB()\n' +
+    '        {\n' +
+    '          console.log(\'test\');\n' +
+    '\n' +
+    '          var xmlhttp = new XMLHttpRequest();\n' +
+    '          xmlhttp.onreadystatechange = function()\n' +
+    '          {\n' +
+    '            if (this.readyState == 4 && this.status == 200) {\n' +
+    '              document.getElementById("generateHtmlDivStuHUB").innerHTML = this.responseText;\n' +
+    '            }\n' +
+    '          };\n' +
+    '\n' +
+    '          xmlhttp.open("GET", "generateHTML.php?h=' + this.userID + '", true);\n' +
+    '          xmlhttp.send();\n' +
+    '        }\n' +
+    '      </script>'.toString();
 
   constructor(private auth: AuthService ) {}
 
